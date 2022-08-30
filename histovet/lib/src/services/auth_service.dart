@@ -63,9 +63,7 @@ class AuthService {
   Future<bool> estado() async {
     try {
       final administradores = [
-        "5Q5W4CWh9KUSz0J6uSuCxuhxZAm2",
-        "Kwiz2KFQYdTwDm1skFgxeBaF1LV2",
-        "iPDk5F0wvYeYferaZoPcLaa6MwL2"
+        "tr1O7cB5GfXGUeKHRv9z0J84I5Q2"
       ];
       final User? user = _auth.currentUser;
       final uid = user?.uid;

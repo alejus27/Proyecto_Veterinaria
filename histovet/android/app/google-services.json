@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "340097573168",
-    "project_id": "histovet-b3b84",
-    "storage_bucket": "histovet-b3b84.appspot.com"
+    "project_number": "298862813372",
+    "project_id": "veterinaria-11f1a",
+    "storage_bucket": "veterinaria-11f1a.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:340097573168:android:4b1538d322b75fd43428f5",
+        "mobilesdk_app_id": "1:298862813372:android:5d35d5e3fc10a5bd12f0b9",
         "android_client_info": {
           "package_name": "com.histovet.histovet"
         }
       },
       "oauth_client": [
         {
-          "client_id": "340097573168-lu8jsiu4q9ofibgk2m3h7qjkqshsd2t9.apps.googleusercontent.com",
+          "client_id": "298862813372-sueg35ohi540f221iam49dve9is1fddd.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCTivrPScafLA-LrmyWUqinBC2gaeXyfbk"
+          "current_key": "AIzaSyAHv0a6pP1liW8cCw_wkX2SS1vP4mwzCJM"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "340097573168-lu8jsiu4q9ofibgk2m3h7qjkqshsd2t9.apps.googleusercontent.com",
+              "client_id": "298862813372-sueg35ohi540f221iam49dve9is1fddd.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
