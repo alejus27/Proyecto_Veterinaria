@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:histovet/src/pages/Login/signin_screen.dart';
+import 'package:histovet/src/pages/appointments/appointment_page.dart';
 import 'package:histovet/src/pages/clinicalHistory/clinicalhistory_page.dart';
 import 'package:histovet/src/pages/clinicalHistory/consultar_histories.dart';
 import 'package:histovet/src/pages/gps/gps_page.dart';
@@ -63,6 +64,16 @@ class _MenuLateralState extends State<MenuLateral> {
               onTap: () {
                 Navigator.pushNamed(context, Home.id);
               },
+            ),
+            Visibility(
+              visible: estado,
+              child: ListTile(
+                leading: const Icon(Icons.book),
+                title: const Text("Citas médicas"),
+                onTap: () {
+                  Navigator.pushNamed(context, AppointmentsPage.id);
+                },
+              ),
             ),
             Visibility(
               visible: estado,

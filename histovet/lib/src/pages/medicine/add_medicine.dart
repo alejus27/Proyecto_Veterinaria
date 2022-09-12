@@ -187,8 +187,7 @@ class _AddMedicine extends State<AddMedicine> {
       List<String> fechas = fechaAux.split("00:00:00.000");
       //print("fecha " + fechas[0]);
       final fechaVen = fechas[0] + fechas[1];
-      late Medicine medicine =
-          Medicine("", code, name, description, group, precio, fechaVen);
+      late Medicine medicine = Medicine("", code, name, description, group, precio, fechaVen);
       addMedicine(medicine);
     }
   }

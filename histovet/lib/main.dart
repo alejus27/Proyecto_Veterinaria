@@ -4,6 +4,9 @@ import 'package:histovet/src/pages/Home/home_page.dart';
 import 'package:histovet/src/pages/Login/reset_password.dart';
 import 'package:histovet/src/pages/Login/signin_screen.dart';
 import 'package:histovet/src/pages/Login/signup_screen.dart';
+import 'package:histovet/src/pages/appointments/add_appointment.dart';
+import 'package:histovet/src/pages/appointments/appointment_page.dart';
+import 'package:histovet/src/pages/appointments/appointment_update.dart';
 import 'package:histovet/src/pages/clinicalHistory/add_clinicalhistory.dart';
 import 'package:histovet/src/pages/clinicalHistory/add_historypet.dart';
 import 'package:histovet/src/pages/clinicalHistory/clinicalhistory_page.dart';
@@ -48,10 +51,19 @@ class MyApp extends StatelessWidget {
           routes: {
             Home.id: (context) => const Home(),
             '/home': (context) => const Home(),
+
             PetsPage.id: (context) => const PetsPage(),
             '/pets': (context) => const PetsPage(),
             AddPet.id: (context) => const AddPet(),
             UpdatePet.id: (context) => const UpdatePet(""),
+
+
+            AppointmentsPage.id: (context) => const AppointmentsPage(),
+            '/appointments': (context) => const AppointmentsPage(),
+            AddAppointment.id: (context) => const AddAppointment(),
+            UpdateAppointment.id: (context) => const UpdateAppointment(""),
+
+
             ConsultarMedicamento.id: (context) => const ConsultarMedicamento(),
             SalesPage.id: (context) => const SalesPage(),
             '/sales': (context) => const SalesPage(),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:histovet/src/pages/appointments/appointment_page.dart';
 import 'package:histovet/src/pages/clinicalHistory/clinicalhistory_page.dart';
 import 'package:histovet/src/pages/clinicalHistory/consultar_histories.dart';
 import 'package:histovet/src/pages/gps/gps_page.dart';
@@ -163,6 +164,42 @@ class _GridDashboardState extends State<GridDashboard> {
                 ],
               ),
             ),
+            Container(
+              decoration: BoxDecoration(
+                  color: const Color.fromRGBO(33, 211, 255, 1),
+                  borderRadius: BorderRadius.circular(10)),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  /*Image.asset(
+                    "assets/img/medicine.png",
+                    height: 110,
+                    scale: 5,
+                  ),*/
+                  TextButton(
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all<Color>(
+                          const Color.fromRGBO(33, 150, 255, 1)),
+                      foregroundColor:
+                          MaterialStateProperty.all<Color>(Colors.black),
+                    ),
+                    onPressed: () {
+                      if (estado) {
+                        Navigator.pushNamed(context, AppointmentsPage.id);
+                      } else {
+                        Navigator.pushNamed(context, ConsultarMedicamento.id);
+                      }
+                    },
+                    child: Text(estado ? "Citas" : "Buscar citas"),
+                  ),
+                ],
+              ),
+            ),
+            
+            
             Visibility(
               visible: estado,
               child: Container(
