@@ -220,7 +220,7 @@ class _AddAppointmentState extends State<AddAppointment> {
   void messageAdd(Appointment Appointment) async {
     answer = await AppointmentCont.addAppointment(Appointment);
     if (answer) {
-      Navigator.pushNamed(context, '/Appointments')
+      Navigator.pushNamed(context, '/appointments')
           .then((_) => setState(() {}));
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
         content: Text("Se guardó la información de la cita médica"),
