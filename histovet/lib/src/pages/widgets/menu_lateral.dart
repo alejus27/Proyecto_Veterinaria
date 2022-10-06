@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:histovet/src/pages/Login/signin_screen.dart';
 import 'package:histovet/src/pages/appointments/appointment_page.dart';
+import 'package:histovet/src/pages/appointments/consultar_appointment.dart';
 import 'package:histovet/src/pages/clinicalHistory/clinicalhistory_page.dart';
 import 'package:histovet/src/pages/clinicalHistory/consultar_histories.dart';
 import 'package:histovet/src/pages/gps/gps_page.dart';
@@ -68,16 +69,6 @@ class _MenuLateralState extends State<MenuLateral> {
             Visibility(
               visible: estado,
               child: ListTile(
-                leading: const Icon(Icons.book),
-                title: const Text("Citas médicas"),
-                onTap: () {
-                  Navigator.pushNamed(context, AppointmentsPage.id);
-                },
-              ),
-            ),
-            Visibility(
-              visible: estado,
-              child: ListTile(
                 leading: const Icon(Icons.pets),
                 title: const Text("Mascotas"),
                 onTap: () {
@@ -92,6 +83,27 @@ class _MenuLateralState extends State<MenuLateral> {
                 Navigator.pushNamed(context, ConsultarMascota.id);
               },
             ),
+
+            Visibility(
+              visible: estado,
+              child: ListTile(
+                leading: const Icon(Icons.book),
+                title: const Text("Citas médicas"),
+                onTap: () {
+                  Navigator.pushNamed(context, AppointmentsPage.id);
+                },
+              ),
+            ),
+
+            ListTile(
+              leading: const Icon(Icons.content_paste_search_rounded),
+              title: const Text("Consultar Cita Médica"),
+              onTap: () {
+                Navigator.pushNamed(context, ConsultarAppointment.id);
+              },
+            ),
+
+            /*
             Visibility(
               visible: estado,
               child: ListTile(
@@ -143,6 +155,8 @@ class _MenuLateralState extends State<MenuLateral> {
                 },
               ),
             ),
+
+            */
           ])
         ],
       ),

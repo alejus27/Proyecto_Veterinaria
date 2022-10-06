@@ -27,7 +27,7 @@ class AppointmentController {
     try {
       final collection = FirebaseFirestore.instance
           .collection('appointment')
-          .where("name", isEqualTo: name);
+          .where("code", isEqualTo: name);
       collection.snapshots().listen((querySnapshot) {
         for (var doc in querySnapshot.docs) {
           Map<String, dynamic> data = doc.data();

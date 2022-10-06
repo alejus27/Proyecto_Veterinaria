@@ -133,7 +133,7 @@ class _ViewAppointment extends State<ViewAppointment> {
           enabled: false,
           name: "reason",
           decoration: const InputDecoration(
-              labelText: "Razón",
+              labelText: "Motivo",
               prefixIcon: Icon(Icons.abc_sharp),
               border: OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.teal))),

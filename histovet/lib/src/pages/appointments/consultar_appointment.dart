@@ -27,7 +27,7 @@ class _ConsultarAppointmentState extends State<ConsultarAppointment> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Consultar appointment"),
+        title: const Text("Consultar cita médica"),
       ),
       body: Padding(
         padding: const EdgeInsets.all(17.0),
@@ -39,7 +39,7 @@ class _ConsultarAppointmentState extends State<ConsultarAppointment> {
             TextField(
               controller: searchController,
               decoration: const InputDecoration(
-                labelText: 'Ingrese el nombre del appointment',
+                labelText: 'Ingrese el codigo de la cita medica',
                 border: OutlineInputBorder(),
                 suffixIcon: Icon(
                   Icons.search,
@@ -100,7 +100,7 @@ class _ConsultarAppointmentState extends State<ConsultarAppointment> {
                                           height: 10,
                                         ),
                                         Image.asset(
-                                          "assets/img/medicine.png",
+                                          "assets/img/appointment.png",
                                           height: 100,
                                         ),
                                         Row(
@@ -121,7 +121,7 @@ class _ConsultarAppointmentState extends State<ConsultarAppointment> {
                                         ),
                                         Row(
                                           children: const [
-                                            Text("  Nombre: ",
+                                            Text("  Nombre del dueño de la mascota: ",
                                                 style: TextStyle(
                                                     fontWeight:
                                                         FontWeight.bold))
@@ -137,7 +137,7 @@ class _ConsultarAppointmentState extends State<ConsultarAppointment> {
                                         ),
                                         Row(
                                           children: const [
-                                            Text("  Precio:",
+                                            Text("  Nombre de la mascota:",
                                                 style: TextStyle(
                                                     fontWeight:
                                                         FontWeight.bold)),
@@ -154,7 +154,7 @@ class _ConsultarAppointmentState extends State<ConsultarAppointment> {
                                         ),
                                         Row(
                                           children: const [
-                                            Text("  Nombre de mascota: ",
+                                            Text("  Fecha: ",
                                                 style: TextStyle(
                                                     fontWeight:
                                                         FontWeight.bold))
@@ -170,7 +170,7 @@ class _ConsultarAppointmentState extends State<ConsultarAppointment> {
                                         ),
                                         Row(
                                           children: const [
-                                            Text("  Fecha: ",
+                                            Text("  Motivo de la consulta: ",
                                                 style: TextStyle(
                                                     fontWeight:
                                                         FontWeight.bold)),

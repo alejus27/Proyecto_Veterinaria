@@ -30,7 +30,7 @@ class _AppointmentsPageState extends State<AppointmentsPage> {
       child: Scaffold(
           appBar: AppBar(
             centerTitle: true,
-            title: const Text("Mascotas"),
+            title: const Text("Citas Médicas"),
             actions: [
               IconButton(
                   onPressed: () {
@@ -78,7 +78,7 @@ class _AppointmentsPageState extends State<AppointmentsPage> {
                                                   appoint.id.toString())));
                                     },
                                     leading: const Icon(
-                                      FontAwesomeIcons.paw,
+                                      FontAwesomeIcons.bookMedical,
                                       color: Colors.black,
                                     ),
                                     title: Text(

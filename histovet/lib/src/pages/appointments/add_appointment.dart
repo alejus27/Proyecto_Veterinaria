@@ -48,7 +48,7 @@ class _AddAppointment extends State<AddAppointment> {
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     decoration: const InputDecoration(
                         labelText: "Código",
-                        hintText: "Ingrese el código",
+                        hintText: "Ingrese el código de la cita",
                         prefixIcon: Icon(Icons.code),
                         border: OutlineInputBorder(
                             borderSide: BorderSide(color: Colors.teal))),
@@ -74,7 +74,7 @@ class _AddAppointment extends State<AddAppointment> {
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   decoration: const InputDecoration(
                       labelText: "Correo electrónico",
-                      hintText: "Ingrese el correo electrónico",
+                      hintText: "Ingrese el correo electrónico del dueño de la mascota",
                       prefixIcon: Icon(Icons.person_outline_outlined),
                       border: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.teal))),
@@ -95,8 +95,8 @@ class _AddAppointment extends State<AddAppointment> {
                       name: "ownerName",
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       decoration: const InputDecoration(
-                          labelText: "Nombre",
-                          hintText: "Ingrese el nombre del medicamento",
+                          labelText: "Nombre del dueño de la mascota",
+                          hintText: "Ingrese el nombre del dueño de la mascota",
                           prefixIcon: Icon(Icons.people),
                           border: OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.teal))),
@@ -114,9 +114,9 @@ class _AddAppointment extends State<AddAppointment> {
                       name: "petName",
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       decoration: const InputDecoration(
-                          labelText: "Descripción",
-                          hintText: "Ingrese la descripción del medicamento",
-                          prefixIcon: Icon(Icons.description),
+                          labelText: "Nombre de la mascota",
+                          hintText: "Ingrese el nombre de la mascota",
+                          prefixIcon: Icon(Icons.pets_sharp),
                           border: OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.teal))),
                       keyboardType: TextInputType.text,
@@ -133,13 +133,13 @@ class _AddAppointment extends State<AddAppointment> {
                       name: "reason",
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       decoration: const InputDecoration(
-                          labelText: "Grupo",
-                          hintText: "Ingrese el grupo del medicamento",
-                          prefixIcon: Icon(Icons.group),
+                          labelText: "Motivo de cita médica",
+                          hintText: "Ingrese el motivo de cita médica",
+                          prefixIcon: Icon(Icons.book_online),
                           border: OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.teal))),
                       keyboardType: TextInputType.text,
-                      maxLength: 30,
+                      maxLength: 50,
                       validator: FormBuilderValidators.compose([
                         FormBuilderValidators.required(context,
                             errorText: "Valor requerido")
@@ -152,9 +152,9 @@ class _AddAppointment extends State<AddAppointment> {
                     name: "phone",
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     decoration: const InputDecoration(
-                        labelText: "Precio",
-                        hintText: "Ingrese el phone",
-                        prefixIcon: Icon(Icons.price_change),
+                        labelText: "Telefono de contacto",
+                        hintText: "Ingrese el telefo de contacto del dueño de la mascota",
+                        prefixIcon: Icon(Icons.phone_android),
                         border: OutlineInputBorder(
                             borderSide: BorderSide(color: Colors.teal))),
                     keyboardType: TextInputType.number,

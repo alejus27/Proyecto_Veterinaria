@@ -133,7 +133,7 @@ class AppointmentService {
           Appointment newAppointment = Appointment(
               data["id"],
               data["code"],
-              data["onerName"],
+              data["ownerName"],
               data["petName"],
               data["email"],
               data["phone"],
