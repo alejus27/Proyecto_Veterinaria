@@ -102,7 +102,7 @@ class _Updatemedicationtate extends State<UpdateMedicine> {
                       prefixIcon: Icon(Icons.medication),
                       border: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.teal))),
-                  maxLength: 30,
+                  maxLength: 300,
                   validator: FormBuilderValidators.compose([
                     FormBuilderValidators.required(context,
                         errorText: "Valor requerido")

@@ -20,8 +20,8 @@ class PetController {
 
   // Permite usar el servicio para buscar una mascota por su código en la base de datos
   // Retorna las mascotas que se encuentren
-  Future<List<Pet>> searchPet(String code) async {
-    List<Pet> pets = await _service.searchPet(code);
+  Future<List<Pet>> searchPet(String name) async {
+    List<Pet> pets = await _service.searchPet(name);
     return pets;
   }
 

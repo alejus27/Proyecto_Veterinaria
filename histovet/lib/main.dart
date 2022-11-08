@@ -56,7 +56,7 @@ class MyApp extends StatelessWidget {
             PetsPage.id: (context) => const PetsPage(),
             '/pets': (context) => const PetsPage(),
             AddPet.id: (context) => const AddPet(),
-            UpdatePet.id: (context) => const UpdatePet(""),
+            UpdatePet.id: (context) => const UpdatePet("",""),
 
 
             AppointmentsPage.id: (context) => const AppointmentsPage(),
@@ -73,7 +73,7 @@ class MyApp extends StatelessWidget {
             '/sales': (context) => const SalesPage(),
             AddSale.id: (context) => const AddSale(),
             '/addsale': (context) => const AddSale(),
-            '/updatepet': (context) => const UpdatePet(""),
+            '/updatepet': (context) => const UpdatePet("",""),
             MedicinePage.id: (context) => const MedicinePage(),
             '/medicine': (context) => const MedicinePage(),
             AddMedicine.id: (context) => const AddMedicine(),

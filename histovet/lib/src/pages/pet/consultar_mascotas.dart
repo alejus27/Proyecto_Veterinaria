@@ -45,7 +45,7 @@ class _ConsultarMascotaState extends State<ConsultarMascota> {
               maxLength: 4,
               keyboardType: TextInputType.number,
               decoration: const InputDecoration(
-                labelText: 'Ingrese el código de la mascota',
+                labelText: 'Ingrese el nombre de la mascota',
                 border: OutlineInputBorder(),
                 suffixIcon: Icon(
                   Icons.search,

@@ -4,7 +4,8 @@ import 'package:form_builder_validators/form_builder_validators.dart';
 import '../../controller/appointment_controller.dart';
 import '../../models/appointment.dart';
 import '../../services/appointment_service.dart';
-
+import 'package:intl/intl.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
 // Clases encargadas de la vista que le permite al usuario
 // ingresar datos para agregar una medicina
@@ -47,7 +48,7 @@ class _AddAppointment extends State<AddAppointment> {
                     name: "code",
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     decoration: const InputDecoration(
-                        labelText: "Código",
+                        labelText: "Código de la cita médica",
                         hintText: "Ingrese el código de la cita",
                         prefixIcon: Icon(Icons.code),
                         border: OutlineInputBorder(
@@ -66,28 +67,6 @@ class _AddAppointment extends State<AddAppointment> {
                     ]),
                   ),
                 ),
-                Container(
-                margin:
-                    const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
-                child: FormBuilderTextField(
-                  name: "email",
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
-                  decoration: const InputDecoration(
-                      labelText: "Correo electrónico",
-                      hintText: "Ingrese el correo electrónico del dueño de la mascota",
-                      prefixIcon: Icon(Icons.person_outline_outlined),
-                      border: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.teal))),
-                  keyboardType: TextInputType.text,
-                  maxLength: 20,
-                  validator: FormBuilderValidators.compose([
-                    FormBuilderValidators.required(context,
-                        errorText: "Valor requerido"),
-                    FormBuilderValidators.email(context,
-                        errorText: "Debe tener formato de correo")
-                  ]),
-                ),
-              ),
                 Container(
                   margin:
                       const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
@@ -130,20 +109,24 @@ class _AddAppointment extends State<AddAppointment> {
                   margin:
                       const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
                   child: FormBuilderTextField(
-                      name: "reason",
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
-                      decoration: const InputDecoration(
-                          labelText: "Motivo de cita médica",
-                          hintText: "Ingrese el motivo de cita médica",
-                          prefixIcon: Icon(Icons.book_online),
-                          border: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.teal))),
-                      keyboardType: TextInputType.text,
-                      maxLength: 50,
-                      validator: FormBuilderValidators.compose([
-                        FormBuilderValidators.required(context,
-                            errorText: "Valor requerido")
-                      ])),
+                    name: "email",
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    decoration: const InputDecoration(
+                        labelText: "Correo electrónico",
+                        hintText:
+                            "Ingrese el correo electrónico del dueño de la mascota",
+                        prefixIcon: Icon(Icons.person_outline_outlined),
+                        border: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.teal))),
+                    keyboardType: TextInputType.text,
+                    maxLength: 20,
+                    validator: FormBuilderValidators.compose([
+                      FormBuilderValidators.required(context,
+                          errorText: "Valor requerido"),
+                      FormBuilderValidators.email(context,
+                          errorText: "Debe tener formato de correo")
+                    ]),
+                  ),
                 ),
                 Container(
                   margin:
@@ -153,7 +136,8 @@ class _AddAppointment extends State<AddAppointment> {
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     decoration: const InputDecoration(
                         labelText: "Telefono de contacto",
-                        hintText: "Ingrese el telefo de contacto del dueño de la mascota",
+                        hintText:
+                            "Ingrese el telefo de contacto del dueño de la mascota",
                         prefixIcon: Icon(Icons.phone_android),
                         border: OutlineInputBorder(
                             borderSide: BorderSide(color: Colors.teal))),
@@ -172,7 +156,28 @@ class _AddAppointment extends State<AddAppointment> {
                 Container(
                   margin:
                       const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
-                  child: FormBuilderDateRangePicker(
+                  child: FormBuilderTextField(
+                      name: "reason",
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      decoration: const InputDecoration(
+                          labelText: "Motivo de cita médica",
+                          hintText: "Ingrese el motivo de cita médica",
+                          prefixIcon: Icon(Icons.book_online),
+                          border: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.teal))),
+                      keyboardType: TextInputType.text,
+                      maxLength: 50,
+                      validator: FormBuilderValidators.compose([
+                        FormBuilderValidators.required(context,
+                            errorText: "Valor requerido")
+                      ])),
+                ),
+                
+                Container(
+                  margin:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+                      
+                  child: FormBuilderDateTimePicker(
                       keyboardType: TextInputType.datetime,
                       name: "fecha",
                       firstDate: DateTime(2000),
@@ -182,12 +187,10 @@ class _AddAppointment extends State<AddAppointment> {
                       enabled: true,
                       decoration: const InputDecoration(
                           prefixIcon: Icon(Icons.calendar_month),
-                          labelText: 'Seleccione rango de fechas',
-                          helperText:
-                              'Rango de fecha en la que se puede usar la appointment',
+                          labelText: 'Seleccione fecha',
                           border: OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.teal)))),
-                )
+                ),
               ],
             ),
           )),
@@ -204,15 +207,16 @@ class _AddAppointment extends State<AddAppointment> {
       final ownerName = values['ownerName'];
       final petName = values['petName'];
       final reason = values['reason'];
-      final phone = int.parse(values['phone']);;
+      final phone = int.parse(values['phone']);
       final email = values['email'];
-      var fechaAux = values['fecha'].toString();
-      List<String> fechas = fechaAux.split("00:00:00.000");
+
+      var fecha = values['fecha'].toString();
+      //0List<String> fechas = fechaAux.split("00:00:00.000");
       //print("fecha " + fechas[0]);
-      final fecha = fechas[0] + fechas[1];
+      //final fecha = fechas[0] + fechas[1];
 
-
-      late Appointment appointment = Appointment("", code, ownerName, petName, reason, phone, email,fecha);
+      late Appointment appointment = Appointment(
+          "", code, ownerName, petName,email, phone,  reason, fecha);
       addAppointment(appointment);
     }
   }
@@ -221,7 +225,8 @@ class _AddAppointment extends State<AddAppointment> {
   void addAppointment(Appointment appointment) async {
     respuesta = await _service.addAppointment(appointment);
     if (respuesta) {
-      Navigator.pushNamed(context, '/appointments').then((_) => setState(() {}));
+      Navigator.pushNamed(context, '/appointments')
+          .then((_) => setState(() {}));
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
         content: Text("Se guardó la información de la medicina"),
         backgroundColor: Colors.green,

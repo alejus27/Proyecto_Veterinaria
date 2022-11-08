@@ -37,7 +37,7 @@ class _UpdateAppointment extends State<UpdateAppointment> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: const Text("Editar Información Mascota"),
+        title: const Text("Actualizar Información Cita Médica"),
       ),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.save),
@@ -55,10 +55,11 @@ class _UpdateAppointment extends State<UpdateAppointment> {
                   margin:
                       const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
                   child: FormBuilderTextField(
+                    controller: codeController,
                     name: "code",
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     decoration: const InputDecoration(
-                        labelText: "Código",
+                        labelText: "Código de la cita médica",
                         hintText: "Ingrese el código de la cita médica",
                         prefixIcon: Icon(Icons.numbers),
                         border: OutlineInputBorder(
@@ -81,13 +82,14 @@ class _UpdateAppointment extends State<UpdateAppointment> {
                     margin: const EdgeInsets.symmetric(
                         horizontal: 10, vertical: 15),
                     child: FormBuilderTextField(
+                        controller: ownerNameController,
                         name: "ownerName",
                         autovalidateMode: AutovalidateMode.onUserInteraction,
                         decoration: const InputDecoration(
-                            labelText: "Nombre",
+                            labelText: "Nombre del dueño de la mascota",
                             hintText:
                                 "Ingrese el nombre del dueño de la mascota",
-                            prefixIcon: Icon(Icons.pets),
+                            prefixIcon: Icon(Icons.people),
                             border: OutlineInputBorder(
                                 borderSide: BorderSide(color: Colors.teal))),
                         keyboardType: TextInputType.text,
@@ -100,10 +102,11 @@ class _UpdateAppointment extends State<UpdateAppointment> {
                     margin: const EdgeInsets.symmetric(
                         horizontal: 10, vertical: 15),
                     child: FormBuilderTextField(
+                      controller: petNameController,
                         name: "petName",
                         autovalidateMode: AutovalidateMode.onUserInteraction,
                         decoration: const InputDecoration(
-                            labelText: "Nombre",
+                            labelText: "Nombre de la mascota",
                             hintText: "Ingrese el nombre de la mascota",
                             prefixIcon: Icon(Icons.pets),
                             border: OutlineInputBorder(
@@ -118,6 +121,7 @@ class _UpdateAppointment extends State<UpdateAppointment> {
                   margin:
                       const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
                   child: FormBuilderTextField(
+                    controller: emailController,
                     name: "email",
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     decoration: const InputDecoration(
@@ -140,12 +144,13 @@ class _UpdateAppointment extends State<UpdateAppointment> {
                   margin:
                       const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
                   child: FormBuilderTextField(
+                    controller: phoneController,
                     name: "phone",
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     decoration: const InputDecoration(
-                        labelText: "contacto",
-                        hintText: "Ingrese el contacto",
-                        prefixIcon: Icon(Icons.contact_phone_outlined),
+                        labelText: "Teléfono de contacto",
+                        hintText: "Ingrese el teléfono de contacto",
+                        prefixIcon: Icon(Icons.phone_android),
                         border: OutlineInputBorder(
                             borderSide: BorderSide(color: Colors.teal))),
                     keyboardType: TextInputType.number,
@@ -166,12 +171,13 @@ class _UpdateAppointment extends State<UpdateAppointment> {
                     margin: const EdgeInsets.symmetric(
                         horizontal: 10, vertical: 15),
                     child: FormBuilderTextField(
+                      controller: reasonController,
                         name: "reason",
                         autovalidateMode: AutovalidateMode.onUserInteraction,
                         decoration: const InputDecoration(
-                            labelText: "Razón",
+                            labelText: "Razón de la cita médica",
                             hintText: "Ingrese la razón de la cita médica",
-                            prefixIcon: Icon(Icons.pets),
+                            prefixIcon: Icon(Icons.book_online),
                             border: OutlineInputBorder(
                                 borderSide: BorderSide(color: Colors.teal))),
                         keyboardType: TextInputType.text,
@@ -183,8 +189,9 @@ class _UpdateAppointment extends State<UpdateAppointment> {
                 Container(
                   margin:
                       const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
-                  child: FormBuilderDateRangePicker(
+                  child: FormBuilderDateTimePicker(
                       keyboardType: TextInputType.datetime,
+                      controller: fechaController,
                       name: "fecha",
                       firstDate: DateTime(2000),
                       lastDate: DateTime(2026),
@@ -193,9 +200,7 @@ class _UpdateAppointment extends State<UpdateAppointment> {
                       enabled: true,
                       decoration: const InputDecoration(
                           prefixIcon: Icon(Icons.calendar_month),
-                          labelText: 'Seleccione rango de fechas',
-                          helperText:
-                              'Rango de fecha',
+                          labelText: 'Seleccione fecha',
                           border: OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.teal)))),
                 )

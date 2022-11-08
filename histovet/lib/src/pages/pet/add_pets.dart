@@ -275,7 +275,7 @@ class _AddPetState extends State<AddPet> {
       final specie = values['subespecie'];
       final color = values['color'];
       final sex = values['sex'];
-      late Pet pet = Pet("", code, name, nameOwner, contactOwner, docOwner, age,
+      late Pet pet = Pet("", "",code, name, nameOwner, contactOwner, docOwner, age,
           breed, specie, color, sex);
       messageAdd(pet);
     }

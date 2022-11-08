@@ -98,7 +98,7 @@ class _AddMedicine extends State<AddMedicine> {
                           border: OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.teal))),
                       keyboardType: TextInputType.text,
-                      maxLength: 50,
+                      maxLength: 300,
                       validator: FormBuilderValidators.compose([
                         FormBuilderValidators.required(context,
                             errorText: "Valor requerido")

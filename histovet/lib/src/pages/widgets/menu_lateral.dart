@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:histovet/src/pages/Login/signin_screen.dart';
 import 'package:histovet/src/pages/appointments/appointment_page.dart';
@@ -26,6 +27,7 @@ class MenuLateral extends StatefulWidget {
 class _MenuLateralState extends State<MenuLateral> {
   AuthController sign = AuthController();
   String username = "";
+  String username_aux = "";
   bool estado = false;
   @override
   Widget build(BuildContext context) {
@@ -66,15 +68,12 @@ class _MenuLateralState extends State<MenuLateral> {
                 Navigator.pushNamed(context, Home.id);
               },
             ),
-            Visibility(
-              visible: estado,
-              child: ListTile(
-                leading: const Icon(Icons.pets),
-                title: const Text("Mascotas"),
-                onTap: () {
-                  Navigator.pushNamed(context, PetsPage.id);
-                },
-              ),
+            ListTile(
+              leading: const Icon(Icons.pets),
+              title: const Text("Mascotas"),
+              onTap: () {
+                Navigator.pushNamed(context, PetsPage.id);
+              },
             ),
             ListTile(
               leading: const Icon(Icons.content_paste_search_rounded),
@@ -83,7 +82,19 @@ class _MenuLateralState extends State<MenuLateral> {
                 Navigator.pushNamed(context, ConsultarMascota.id);
               },
             ),
+            ListTile(
+              leading: const Icon(Icons.content_paste_search_rounded),
+              title: const Text("Consultar Medicamento"),
+              onTap: () {
+                Navigator.pushNamed(context, ConsultarMedicamento.id);
+              },
+            ),
+            
 
+            /*
+
+
+             
             Visibility(
               visible: estado,
               child: ListTile(
@@ -94,7 +105,6 @@ class _MenuLateralState extends State<MenuLateral> {
                 },
               ),
             ),
-
             ListTile(
               leading: const Icon(Icons.content_paste_search_rounded),
               title: const Text("Consultar Cita Médica"),
@@ -103,7 +113,7 @@ class _MenuLateralState extends State<MenuLateral> {
               },
             ),
 
-            /*
+           
             Visibility(
               visible: estado,
               child: ListTile(
@@ -188,7 +198,15 @@ class _MenuLateralState extends State<MenuLateral> {
   }
 
   void getUsername() async {
-    username = await sign.username();
+    username = (await sign.username());
+    estado = await sign.estado();
+
+    if (estado) {
+      username_aux = "Usuario regular";
+    } else {
+      username_aux = "Usuario administrador";
+    }
+
     setState(() {});
   }
 

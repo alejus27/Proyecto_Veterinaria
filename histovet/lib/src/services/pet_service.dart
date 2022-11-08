@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 import '../models/pet_model.dart';
 
@@ -12,6 +13,7 @@ class PetService {
     final snapshot = await _firestore.collection('pet').doc(id).get();
     Pet pet = Pet(
         snapshot["id"],
+        snapshot["user_id"],
         snapshot["code"],
         snapshot["name"],
         snapshot["nameOwner"],
@@ -30,9 +32,13 @@ class PetService {
   Future<bool> addPetBD(Pet pet) async {
     final DocumentReference petDoc = _firestore.collection("pet").doc();
 
+    final FirebaseAuth auth = FirebaseAuth.instance;
+    final User? user = auth.currentUser;
+
     try {
       await petDoc.set({
         "id": petDoc.id,
+        "user_id": user?.uid,
         "code": pet.code,
         "name": pet.name,
         "nameOwner": pet.nameOwner,
@@ -52,16 +58,23 @@ class PetService {
 
   // Permite obtener todas las mascotas que coincidan con el codigo recibido en Firebase
   // Retorna una lista con las mascotas que haya encontrado
-  Future<List<Pet>> searchPet(String code) async {
+  Future<List<Pet>> searchPet(String name) async {
+
     List<Pet> mascotas = [];
+    final FirebaseAuth auth = FirebaseAuth.instance;
+    final User? user = auth.currentUser;
+    final uid = user?.uid;
+
     try {
-      final collection =
-          _firestore.collection('pet').where("code", isEqualTo: code);
+      final collection =_firestore.collection('pet').where("name", isEqualTo: name).where('user_id', isEqualTo: uid);
+
+
       collection.snapshots().listen((querySnapshot) {
         for (var doc in querySnapshot.docs) {
           Map<String, dynamic> data = doc.data();
           Pet newMedicine = Pet(
               data["id"],
+              data["user_id"],
               data["code"],
               data["name"],
               data["nameOwner"],
@@ -87,6 +100,7 @@ class PetService {
     try {
       await _firestore.collection("pet").doc(pet.id).set({
         "id": pet.id,
+        "user_id": pet.user_id,
         "code": pet.code,
         "name": pet.name,
         "nameOwner": pet.nameOwner,
@@ -119,14 +133,23 @@ class PetService {
   // Retorna una lista con las mascotas que haya encontrado
   Future<List<Pet>> getPetsBD() async {
     List<Pet> mascotas = [];
+
+    final FirebaseAuth auth = FirebaseAuth.instance;
+    final User? user = auth.currentUser;
+    final uid = user?.uid;
+
     try {
-      final collection = _firestore.collection('pet');
+      //final collection = _firestore.collection('pet');
+
+      var collection;
+      collection = FirebaseFirestore.instance.collection('pet').where('user_id', isEqualTo: uid);
 
       collection.snapshots().listen((querySnapshot) {
         for (var doc in querySnapshot.docs) {
           Map<String, dynamic> data = doc.data();
           Pet newPet = Pet(
               data["id"],
+              data["user_id"],
               data["code"],
               data["name"],
               data["nameOwner"],

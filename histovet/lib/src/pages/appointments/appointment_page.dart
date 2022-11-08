@@ -65,7 +65,7 @@ class _AppointmentsPageState extends State<AppointmentsPage> {
                             child: Container(
                                 decoration: const BoxDecoration(
                                   image: DecorationImage(
-                                      image: AssetImage('assets/img/fondo.jpg'),
+                                      image: AssetImage('assets/img/fondo_cita.png'),
                                       fit: BoxFit.cover,
                                       opacity: 0.3),
                                 ),
@@ -86,7 +86,7 @@ class _AppointmentsPageState extends State<AppointmentsPage> {
                                       style: txtStyle,
                                     ),
                                     subtitle: Text(
-                                      appoint.code,
+                                      appoint.petName,
                                       style: txtStyle.copyWith(fontSize: 17),
                                     ),
                                     trailing: IconButton(
