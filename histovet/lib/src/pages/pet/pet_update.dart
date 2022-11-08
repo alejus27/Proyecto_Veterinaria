@@ -22,7 +22,7 @@ class _UpdatePet extends State<UpdatePet> {
   final _formState = GlobalKey<FormBuilderState>();
   PetController petCont = PetController();
 
-  TextEditingController codeController = TextEditingController();
+  //TextEditingController codeController = TextEditingController();
   TextEditingController nameController = TextEditingController();
   TextEditingController nownerController = TextEditingController();
   TextEditingController contactController = TextEditingController();
@@ -53,7 +53,7 @@ class _UpdatePet extends State<UpdatePet> {
             padding: const EdgeInsets.all(8.0),
             child: ListView(
               children: [
-                Container(
+                /*Container(
                   margin:
                       const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
                   child: FormBuilderTextField(
@@ -77,7 +77,7 @@ class _UpdatePet extends State<UpdatePet> {
                         FormBuilderValidators.minLength(context, 4,
                             errorText: "La longitud del documento es de 4")
                       ])),
-                ),
+                ),*/
                 Container(
                   margin:
                       const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
@@ -268,7 +268,7 @@ class _UpdatePet extends State<UpdatePet> {
   getInfoPetPet() async {
     bool validate = _formState.currentState!.saveAndValidate();
     if (validate) {
-      final code = codeController.text;
+      //final code = codeController.text;
       final name = nameController.text;
       final docOwner = docController.text;
       final nameOwner = nownerController.text;
@@ -278,7 +278,7 @@ class _UpdatePet extends State<UpdatePet> {
       final subspecies = subspeciesController.text;
       final color = colorController.text;
       final sex = sexController.text;
-      late Pet pet = Pet(widget.idPet, widget.idUser, code, name, nameOwner, contactOwner,
+      late Pet pet = Pet(widget.idPet, widget.idUser, /*code*/ name, nameOwner, contactOwner,
           docOwner, age, breed, subspecies, color, sex);
       messageUpdate(pet);
     }
@@ -307,7 +307,7 @@ class _UpdatePet extends State<UpdatePet> {
   void getInfoPet() async {
     Pet pet = await petCont.getPet(widget.idPet);
     setState(() {
-      codeController.text = pet.code;
+      //codeController.text = pet.code;
       nameController.text = pet.name;
       nownerController.text = pet.nameOwner;
       contactController.text = pet.contactOwner;

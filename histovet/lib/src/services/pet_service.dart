@@ -14,7 +14,7 @@ class PetService {
     Pet pet = Pet(
         snapshot["id"],
         snapshot["user_id"],
-        snapshot["code"],
+        //snapshot["code"],
         snapshot["name"],
         snapshot["nameOwner"],
         snapshot["contactOwner"],
@@ -39,7 +39,7 @@ class PetService {
       await petDoc.set({
         "id": petDoc.id,
         "user_id": user?.uid,
-        "code": pet.code,
+        //"code": pet.code,
         "name": pet.name,
         "nameOwner": pet.nameOwner,
         "contactOwner": pet.contactOwner,
@@ -75,7 +75,7 @@ class PetService {
           Pet newMedicine = Pet(
               data["id"],
               data["user_id"],
-              data["code"],
+              //data["code"],
               data["name"],
               data["nameOwner"],
               data["contactOwner"],
@@ -101,7 +101,7 @@ class PetService {
       await _firestore.collection("pet").doc(pet.id).set({
         "id": pet.id,
         "user_id": pet.user_id,
-        "code": pet.code,
+        //"code": pet.code,
         "name": pet.name,
         "nameOwner": pet.nameOwner,
         "contactOwner": pet.contactOwner,
@@ -150,7 +150,7 @@ class PetService {
           Pet newPet = Pet(
               data["id"],
               data["user_id"],
-              data["code"],
+              //data["code"],
               data["name"],
               data["nameOwner"],
               data["contactOwner"],

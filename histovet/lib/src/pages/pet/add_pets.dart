@@ -38,7 +38,7 @@ class _AddPetState extends State<AddPet> {
             padding: const EdgeInsets.all(8.0),
             child: ListView(
               children: [
-                Container(
+                /*Container(
                   margin:
                       const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
                   child: FormBuilderTextField(
@@ -63,7 +63,7 @@ class _AddPetState extends State<AddPet> {
                           errorText: "La longitud del documento es de 4")
                     ]),
                   ),
-                ),
+                ),*/
                 Container(
                     margin: const EdgeInsets.symmetric(
                         horizontal: 10, vertical: 15),
@@ -265,7 +265,7 @@ class _AddPetState extends State<AddPet> {
     bool validate = _formState.currentState!.saveAndValidate();
     if (validate) {
       final values = _formState.currentState!.value;
-      final code = values['code'];
+      //final code = values['code'];
       final name = values['name'];
       final docOwner = values['docOwner'];
       final nameOwner = values['nameOwner'];
@@ -275,7 +275,7 @@ class _AddPetState extends State<AddPet> {
       final specie = values['subespecie'];
       final color = values['color'];
       final sex = values['sex'];
-      late Pet pet = Pet("", "",code, name, nameOwner, contactOwner, docOwner, age,
+      late Pet pet = Pet("", "",/*code*/ name, nameOwner, contactOwner, docOwner, age,
           breed, specie, color, sex);
       messageAdd(pet);
     }

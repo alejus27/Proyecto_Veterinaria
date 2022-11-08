@@ -84,7 +84,7 @@ class _PetsPageState extends State<PetsPage> {
                                       style: txtStyle,
                                     ),
                                     subtitle: Text(
-                                      specie.code,
+                                      specie.specie,
                                       style: txtStyle.copyWith(fontSize: 17),
                                     ),
                                     trailing: IconButton(

@@ -48,7 +48,7 @@ class _ViewPet extends State<ViewPet> {
 
   List<Widget> _inputs() {
     return [
-      Container(
+      /*Container(
         margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
         child: FormBuilderTextField(
           controller: codeController,
@@ -60,7 +60,7 @@ class _ViewPet extends State<ViewPet> {
               border: OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.teal))),
         ),
-      ),
+      ),*/
       Container(
         margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
         child: FormBuilderTextField(
@@ -192,7 +192,7 @@ class _ViewPet extends State<ViewPet> {
   void getInfoPet() async {
     Pet pet = await petCont.getPet(widget.idPet);
     setState(() {
-      codeController.text = pet.code;
+      //codeController.text = pet.code;
       nameController.text = pet.name;
       nownerController.text = pet.nameOwner;
       contactController.text = pet.contactOwner;

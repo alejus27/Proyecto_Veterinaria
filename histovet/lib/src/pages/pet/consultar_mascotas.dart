@@ -42,7 +42,7 @@ class _ConsultarMascotaState extends State<ConsultarMascota> {
             ),
             TextField(
               controller: searchController,
-              maxLength: 4,
+              maxLength: 20,
               keyboardType: TextInputType.number,
               decoration: const InputDecoration(
                 labelText: 'Ingrese el nombre de la mascota',
@@ -105,7 +105,7 @@ class _ConsultarMascotaState extends State<ConsultarMascota> {
                                         "assets/img/dogcat.png",
                                         height: 100,
                                       ),
-                                      estado
+                                      /*estado
                                           ? ElevatedButton.icon(
                                               onPressed: () {
                                                 Navigator.push(
@@ -133,8 +133,8 @@ class _ConsultarMascotaState extends State<ConsultarMascota> {
                                                   Icons.article_outlined),
                                               label: const Text(
                                                   "Ver información")),
-                                      estado
-                                          ? ElevatedButton.icon(
+                                                */
+                                       ElevatedButton.icon(
                                               onPressed: () {
                                                 Navigator.push(
                                                     context,
@@ -146,14 +146,30 @@ class _ConsultarMascotaState extends State<ConsultarMascota> {
                                               icon: const Icon(
                                                   Icons.article_outlined),
                                               label:
-                                                  const Text("Ver información"))
-                                          : const SizedBox(
-                                              height: 1,
-                                            ),
+                                                  const Text("Ver historial clínico"))
+                                        ,
                                       const SizedBox(
                                         height: 5,
                                       ),
-                                      Row(
+
+                                      ElevatedButton.icon(
+                                              onPressed: () {
+                                                Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            ViewPet(pet.id
+                                                                .toString())));
+                                              },
+                                              icon: const Icon(
+                                                  Icons.article_outlined),
+                                              label:
+                                                  const Text("Ver información "))
+                                         ,
+                                      const SizedBox(
+                                        height: 5,
+                                      ),
+                                      /*Row(
                                         children: const [
                                           Text("  Código: ",
                                               style: TextStyle(
@@ -164,7 +180,7 @@ class _ConsultarMascotaState extends State<ConsultarMascota> {
                                         children: [
                                           Text("  " + pet.code),
                                         ],
-                                      ),
+                                      ),*/
                                       const SizedBox(
                                         height: 5,
                                       ),

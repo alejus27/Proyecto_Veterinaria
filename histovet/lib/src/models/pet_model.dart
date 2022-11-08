@@ -3,7 +3,7 @@
 class Pet {
   final String? id;
   final String? user_id;
-  final String code;
+  //final String code;
   final String name;
   final String nameOwner;
   final String contactOwner;
@@ -17,7 +17,7 @@ class Pet {
   Pet(
       this.id,
       this.user_id,
-      this.code,
+      //this.code,
       this.name,
       this.nameOwner,
       this.contactOwner,
