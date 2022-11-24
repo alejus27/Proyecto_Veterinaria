@@ -61,9 +61,9 @@ class _GridDashboardState extends State<GridDashboard> {
                       } else {
                         Navigator.pushNamed(context, ConsultarMascota.id);
                       }*/
-                       Navigator.pushNamed(context, PetsPage.id);
+                       Navigator.pushNamed(context, ConsultarMascota.id);
                     },
-                    child: Text("Mascotas"),
+                    child: Text("Mis Mascotas"),
                   ),
                 ],
               ),
@@ -102,7 +102,7 @@ class _GridDashboardState extends State<GridDashboard> {
 
                       Navigator.pushNamed(context, ConsultarMedicamento.id);
                     },
-                    child: Text("Consultar medicamento"),
+                    child: Text("Comprar Medicamento"),
                   ),
                 ],
               ),

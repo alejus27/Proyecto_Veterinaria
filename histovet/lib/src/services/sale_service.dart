@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 
 import '../models/sale_model.dart';
@@ -18,10 +19,14 @@ class SaleService {
   Future<bool> addSale(Sale sale) async {
     final DocumentReference saleDoc = _firestore.collection("sale").doc();
 
+    final FirebaseAuth auth = FirebaseAuth.instance;
+    final User? user = auth.currentUser;
+
     try {
       await saleDoc.set({
         "id": saleDoc.id,
-        "code": sale.code,
+        //"code": sale.code,
+        "user_id": user?.uid,
         "name": sale.name,
         "formaPago": sale.formaPago,
         "precio": sale.precio,
@@ -40,7 +45,8 @@ class SaleService {
     final snapshot = await _firestore.collection('sale').doc(id).get();
     Sale sale = Sale(
         snapshot["id"],
-        snapshot["code"],
+        //snapshot["code"],
+        snapshot["user_id"],
         snapshot["name"],
         snapshot["formaPago"],
         snapshot["precio"],
@@ -53,14 +59,22 @@ class SaleService {
   // Retorna una lista con las ventas que haya encontrado
   Future<List<Sale>> getSales() async {
     List<Sale> sales = [];
+
+    final FirebaseAuth auth = FirebaseAuth.instance;
+    final User? user = auth.currentUser;
+    final uid = user?.uid;
+
     try {
-      final collection = FirebaseFirestore.instance.collection('sale');
+      var collection;
+      collection = FirebaseFirestore.instance.collection('sale').where('user_id', isEqualTo: uid);
+
       collection.snapshots().listen((querySnapshot) {
         for (var doc in querySnapshot.docs) {
           Map<String, dynamic> data = doc.data();
           Sale newSale = Sale(
               data["id"],
-              data["code"],
+              data["user_id"],
+              //data["code"],
               data["name"],
               data["formaPago"],
               data["precio"],

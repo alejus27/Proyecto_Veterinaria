@@ -31,7 +31,7 @@ class _ConsultarMascotaState extends State<ConsultarMascota> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Consultar mascota"),
+        title: const Text("Mis Mascotas"),
       ),
       body: Padding(
         padding: const EdgeInsets.all(17),
@@ -40,7 +40,7 @@ class _ConsultarMascotaState extends State<ConsultarMascota> {
             const SizedBox(
               height: 5,
             ),
-            TextField(
+            /*TextField(
               controller: searchController,
               maxLength: 20,
               keyboardType: TextInputType.number,
@@ -68,9 +68,8 @@ class _ConsultarMascotaState extends State<ConsultarMascota> {
             const SizedBox(
               height: 5,
             ),
+            */
             Container(
-                decoration:
-                    BoxDecoration(border: Border.all(color: Colors.black)),
                 padding: const EdgeInsets.only(
                   left: 40,
                   top: 20,

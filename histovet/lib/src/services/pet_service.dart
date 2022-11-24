@@ -59,15 +59,18 @@ class PetService {
   // Permite obtener todas las mascotas que coincidan con el codigo recibido en Firebase
   // Retorna una lista con las mascotas que haya encontrado
   Future<List<Pet>> searchPet(String name) async {
-
     List<Pet> mascotas = [];
     final FirebaseAuth auth = FirebaseAuth.instance;
     final User? user = auth.currentUser;
     final uid = user?.uid;
 
     try {
-      final collection =_firestore.collection('pet').where("name", isEqualTo: name).where('user_id', isEqualTo: uid);
+      //final collection =_firestore.collection('pet').where("name", isEqualTo: name).where('user_id', isEqualTo: uid);
 
+      var collection;
+      collection = FirebaseFirestore.instance
+          .collection('pet')
+          .where('user_id', isEqualTo: uid);
 
       collection.snapshots().listen((querySnapshot) {
         for (var doc in querySnapshot.docs) {
@@ -142,7 +145,9 @@ class PetService {
       //final collection = _firestore.collection('pet');
 
       var collection;
-      collection = FirebaseFirestore.instance.collection('pet').where('user_id', isEqualTo: uid);
+      collection = FirebaseFirestore.instance
+          .collection('pet')
+          .where('user_id', isEqualTo: uid);
 
       collection.snapshots().listen((querySnapshot) {
         for (var doc in querySnapshot.docs) {

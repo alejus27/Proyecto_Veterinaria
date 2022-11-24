@@ -50,11 +50,11 @@ class _MenuLateralState extends State<MenuLateral> {
               )),
           Column(children: [
             ListTile(
-              leading: const Icon(Icons.photo_camera_front_outlined),
+              leading: const Icon(Icons.photo_camera_front_outlined,color: Colors.green),
               title: Text(username.toString()),
             ),
             ListTile(
-              leading: const Icon(Icons.photo_camera_front_outlined),
+              leading: const Icon(Icons.door_back_door,color: Colors.red),
               title: const Text("Cerrar sesión"),
               onTap: () {
                 messageOut();
@@ -69,25 +69,33 @@ class _MenuLateralState extends State<MenuLateral> {
               },
             ),
             ListTile(
-              leading: const Icon(Icons.pets),
-              title: const Text("Mascotas"),
+              leading: const Icon(Icons.pets,color: Colors.amber),
+              title: const Text("Administrar Mascotas"),
               onTap: () {
                 Navigator.pushNamed(context, PetsPage.id);
               },
             ),
             ListTile(
-              leading: const Icon(Icons.content_paste_search_rounded),
-              title: const Text("Consultar Mascota"),
+              leading: const Icon(Icons.content_paste_search_rounded,color: Colors.amber),
+              title: const Text("Mis Mascotas"),
               onTap: () {
                 Navigator.pushNamed(context, ConsultarMascota.id);
               },
             ),
+            Container(height: 1, color: Colors.grey),
             ListTile(
-              leading: const Icon(Icons.content_paste_search_rounded),
-              title: const Text("Consultar Medicamento"),
+              leading: const Icon(Icons.shopping_cart, color: Colors.blueAccent),
+              title: const Text("Comprar Medicamentos"),
               onTap: () {
                 Navigator.pushNamed(context, ConsultarMedicamento.id);
               },
+            ),
+            ListTile(
+                leading: const Icon(Icons.point_of_sale_outlined,color: Colors.blueAccent),
+                title: const Text("Mis Compras"),
+                onTap: () {
+                  Navigator.pushNamed(context, SalesPage.id);
+                },
             ),
             
 
@@ -148,25 +156,15 @@ class _MenuLateralState extends State<MenuLateral> {
                 Navigator.pushNamed(context, ConsultarHistories.id);
               },
             ),
+            */
+            Container(height: 1, color: Colors.grey),
             ListTile(
-              leading: const Icon(Icons.map),
+              leading: const Icon(Icons.map,color: Colors.brown),
               title: const Text("Mapa"),
               onTap: () {
                 Navigator.pushNamed(context, GpsPage.id);
               },
             ),
-            Visibility(
-              visible: estado,
-              child: ListTile(
-                leading: const Icon(Icons.point_of_sale_outlined),
-                title: const Text("Ventas"),
-                onTap: () {
-                  Navigator.pushNamed(context, SalesPage.id);
-                },
-              ),
-            ),
-
-            */
           ])
         ],
       ),

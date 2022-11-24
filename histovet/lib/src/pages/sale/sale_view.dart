@@ -30,7 +30,7 @@ class _ViewSale extends State<ViewSale> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: const Text("Información Venta"),
+        title: const Text("Información Compra"),
       ),
       body: FormBuilder(
           key: _formState,
@@ -44,7 +44,7 @@ class _ViewSale extends State<ViewSale> {
   //Cuadros de texto donde se muestra la información de la venta
   List<Widget> _inputs() {
     return [
-      Container(
+      /*Container(
         margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
         child: FormBuilderTextField(
           controller: codeController,
@@ -56,7 +56,7 @@ class _ViewSale extends State<ViewSale> {
               border: OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.teal))),
         ),
-      ),
+      ),*/
       Container(
         margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
         child: FormBuilderTextField(
@@ -136,7 +136,7 @@ class _ViewSale extends State<ViewSale> {
   void getInfoSale() async {
     Sale sale = await saleContr.getSale(widget.idSale);
     setState(() {
-      codeController.text = sale.code;
+      //codeController.text = sale.code;
       nameController.text = sale.name;
       formaPagoController.text = sale.formaPago;
       precioController.text = sale.precio.toString();

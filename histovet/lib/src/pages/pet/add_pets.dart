@@ -198,11 +198,11 @@ class _AddPetState extends State<AddPet> {
                     child: FormBuilderDropdown(
                         name: "sex",
                         decoration: const InputDecoration(
-                            labelText: "Sexo",
+                            labelText: "Seleccionar sexo",
                             prefixIcon: Icon(Icons.article_outlined),
                             border: OutlineInputBorder(
                                 borderSide: BorderSide(color: Colors.teal))),
-                        hint: const Text("Seleccionar sexo"),
+                        //hint: const Text("Seleccionar sexo"),
                         validator: FormBuilderValidators.required(context,
                             errorText: "Seleccione un sexo para la mascota"),
                         items: [
@@ -219,12 +219,11 @@ class _AddPetState extends State<AddPet> {
                   child: FormBuilderDropdown(
                       name: "subespecie",
                       decoration: const InputDecoration(
-                          labelText: "Subespecie",
+                          labelText: "Seleccionar subespecie",
                           prefixIcon: Icon(Icons.article_outlined),
                           border: OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.teal))),
-                      hint:
-                          const Text("Seleccionar subespecie para la mascota"),
+                      //hint:const Text("Seleccionar subespecie para la mascota"),
                       validator: FormBuilderValidators.required(context,
                           errorText: "Seleccione una subespecie"),
                       items: [

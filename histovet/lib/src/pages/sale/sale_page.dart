@@ -27,7 +27,7 @@ class _SalesPAgeState extends State<SalesPage> {
       child: Scaffold(
           appBar: AppBar(
             centerTitle: true,
-            title: const Text("Ventas"),
+            title: const Text("Compras"),
             actions: [
               IconButton(
                   onPressed: () {
@@ -73,11 +73,11 @@ class _SalesPAgeState extends State<SalesPage> {
                                     color: Colors.black,
                                   ),
                                   title: Text(
-                                    sale.code,
+                                    sale.name,
                                     style: txtStyle,
                                   ),
                                   subtitle: Text(
-                                    sale.name,
+                                    sale.total.toString(),
                                     style: txtStyle.copyWith(fontSize: 17),
                                   ),
                                 )),
