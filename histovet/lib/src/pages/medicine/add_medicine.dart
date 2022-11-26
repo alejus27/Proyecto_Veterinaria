@@ -182,7 +182,7 @@ class _AddMedicine extends State<AddMedicine> {
       final name = values['name'];
       final description = values['description'];
       final group = values['group'];
-      final precio = double.parse(values['precio']);
+      final precio = num.parse(values['precio']);
       var fechaAux = values['fechaVen'].toString();
       List<String> fechas = fechaAux.split("00:00:00.000");
       //print("fecha " + fechas[0]);

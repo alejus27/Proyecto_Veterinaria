@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:histovet/src/controller/clinicalHistory_controller.dart';
 import 'package:histovet/src/pages/clinicalHistory/clinical_view.dart';
 import '../../models/clinicalHistory_model.dart';
-
+import 'package:hexcolor/hexcolor.dart';
 import '../../controller/auth_controller.dart';
 
 // Clases encargadas de la vista que le permite al usuario
@@ -35,13 +35,13 @@ class _ConsultarHistoriesState extends State<ConsultarHistories> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Historias clínicas"),
-         actions: [
-              IconButton(
-                  onPressed: () {
-                    setState(() {});
-                  },
-                  icon: const Icon(Icons.refresh))
-            ],
+        actions: [
+          IconButton(
+              onPressed: () {
+                setState(() {});
+              },
+              icon: const Icon(Icons.refresh))
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(17.0),
@@ -80,9 +80,8 @@ class _ConsultarHistoriesState extends State<ConsultarHistories> {
             ),
             */
             Container(
-                decoration:
-                    BoxDecoration(border: Border.all(color: Colors.black)),
-                height: 590,
+                //decoration:BoxDecoration(border: Border.all(color: Colors.black)),
+                height: 550,
                 child: FutureBuilder(
                     future: history.searchClinicalHistories(widget.idHistory),
                     builder:
@@ -101,8 +100,11 @@ class _ConsultarHistoriesState extends State<ConsultarHistories> {
                                     margin: const EdgeInsets.only(
                                         top: 10, bottom: 10),
                                     decoration: BoxDecoration(
-                                        border:
-                                            Border.all(color: Colors.black)),
+                                        borderRadius:
+                                            BorderRadius.circular(100),
+                                        border: Border.all(
+                                            color: HexColor("#335c67"),
+                                            width: 5)),
                                     child: Column(
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
@@ -111,9 +113,29 @@ class _ConsultarHistoriesState extends State<ConsultarHistories> {
                                           height: 10,
                                         ),
                                         Image.asset(
-                                          "assets/img/medicine.png",
+                                          "assets/img/1.png",
                                           height: 100,
                                         ),
+                                        const SizedBox(
+                                          height: 5,
+                                        ),
+                                        const SizedBox(
+                                          height: 5,
+                                        ),
+                                        Text("  Nombre: ",
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                            textAlign: TextAlign.center),
+                                        Text("  " + pet.pet_name),
+                                        const SizedBox(
+                                          height: 5,
+                                        ),
+                                        Text("  Observaciones: ",
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold),
+                                            textAlign: TextAlign.center),
+                                        Text("  " + pet.observations),
                                         ElevatedButton.icon(
                                             onPressed: () {
                                               Navigator.push(
@@ -125,50 +147,13 @@ class _ConsultarHistoriesState extends State<ConsultarHistories> {
                                             },
                                             icon: const Icon(
                                                 Icons.article_outlined),
-                                            label:
-                                                const Text("Ver información")),
-                                        const SizedBox(
-                                          height: 5,
-                                        ),
-                                        const SizedBox(
-                                          height: 5,
-                                        ),
-                                        Row(
-                                          children: const [
-                                            Text("  Nombre: ",
-                                                style: TextStyle(
-                                                    fontWeight:
-                                                        FontWeight.bold))
-                                          ],
-                                        ),
-                                        Row(
-                                          children: [
-                                            Text("  " + pet.pet_name),
-                                          ],
-                                        ),
-
-                                        const SizedBox(
-                                          height: 5,
-                                        ),
-                                        Row(
-                                          children: const [
-                                            Text("  Fecha: ",
-                                                style: TextStyle(
-                                                    fontWeight:
-                                                        FontWeight.bold))
-                                          ],
-                                        ),
-                                        Row(
-                                          children: [
-                                            Text("  " + pet.observations),
-                                          ],
-                                        ),
+                                            label: const Text("Información")),
                                       ],
                                     ),
                                   ),
                               if (pets.isEmpty)
                                 Column(
-                                  children: const [Text("No hay información")],
+                                  children: const [Text("...")],
                                 )
                             ],
                           ),

@@ -7,7 +7,7 @@ class ClinicalHistory {
   final String birth_number;
   final String clinic;
   final String consultation_reason;
-  final Timestamp date;
+  final String date;
   final String deworming;
   final String diet_type;
   final String digestive_system;

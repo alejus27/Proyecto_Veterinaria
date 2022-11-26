@@ -238,14 +238,13 @@ class _AddSaleState extends State<AddSale> {
     if (validate) {
       final values = _formState.currentState!.value;
       final formaPago = values["formaPago"];
-      final cantidad = double.parse(values["cantidad"]);
+      final cantidad = num.parse(values["cantidad"]);
       final precio = tempMedi.precio;
       final name = tempMedi.name;
       final total2 = total;
       //final code = tempMedi.code;
 
-      late Sale sale =
-          Sale("", "", name, formaPago, precio, cantidad, total2);
+      late Sale sale = Sale("", "", name, formaPago, precio, cantidad, total2);
       addSaleMessage(sale);
     }
   }

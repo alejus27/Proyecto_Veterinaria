@@ -1,25 +1,34 @@
 import 'package:flutter/material.dart';
-import 'package:histovet/src/controller/medicine_controller.dart';
-import 'package:histovet/src/models/medicine_model.dart';
-import 'package:histovet/src/pages/medicine/medicine_view.dart';
+import 'package:histovet/src/controller/hospitalization_controller.dart';
+import 'package:histovet/src/models/Hospitalization_model.dart';
+import 'package:histovet/src/pages/hospitalization/hospitalization_view.dart';
+
 import 'package:hexcolor/hexcolor.dart';
+import '../../controller/auth_controller.dart';
 
 // Clases encargadas de la vista que le permite al usuario
-// buscar medicamentos
-class ConsultarMedicamento extends StatefulWidget {
-  static String id = "consultar_medicamento";
-  const ConsultarMedicamento({Key? key}) : super(key: key);
+// buscar historias clínicas de una mascota
+class ConsultHospitalization extends StatefulWidget {
+  static String id = "consultar_hospitalizaciones";
+
+  final String idHospitalization;
+
+  const ConsultHospitalization(this.idHospitalization, {Key? key})
+      : super(key: key);
 
   @override
-  State<ConsultarMedicamento> createState() => _ConsultarMedicamentoState();
+  State<ConsultHospitalization> createState() => _ConsultHospitalizationState();
 }
 
-class _ConsultarMedicamentoState extends State<ConsultarMedicamento> {
+class _ConsultHospitalizationState extends State<ConsultHospitalization> {
   TextEditingController searchController = TextEditingController();
-  MedicineController medCont = MedicineController();
+  HospitalizationController history = HospitalizationController();
+  bool estado = false;
+  AuthController auth = AuthController();
 
   @override
   void initState() {
+    getEstado();
     super.initState();
   }
 
@@ -27,7 +36,7 @@ class _ConsultarMedicamentoState extends State<ConsultarMedicamento> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Comprar Medicamento"),
+        title: const Text("Hospitalizaciones"),
         actions: [
           IconButton(
               onPressed: () {
@@ -43,11 +52,12 @@ class _ConsultarMedicamentoState extends State<ConsultarMedicamento> {
             const SizedBox(
               height: 5,
             ),
-            /*
-            TextField(
+            /*TextField(
               controller: searchController,
+              maxLength: 10,
+              keyboardType: TextInputType.name,
               decoration: const InputDecoration(
-                labelText: 'Ingrese el nombre del medicamento',
+                labelText: 'Ingrese el nombre de la mascota',
                 border: OutlineInputBorder(),
                 suffixIcon: Icon(
                   Icons.search,
@@ -55,7 +65,7 @@ class _ConsultarMedicamentoState extends State<ConsultarMedicamento> {
               ),
             ),
             const SizedBox(
-              height: 25,
+              height: 5,
             ),
             SizedBox(
               width: 20,
@@ -72,29 +82,23 @@ class _ConsultarMedicamentoState extends State<ConsultarMedicamento> {
             ),
             */
             Container(
-                //decoration:
-                //BoxDecoration(border: Border.all(color: Colors.black)),
-                padding: const EdgeInsets.only(
-                  left: 40,
-                  top: 20,
-                  right: 40,
-                  bottom: 20,
-                ),
-                height: 590,
+                //decoration:BoxDecoration(border: Border.all(color: Colors.black)),
+                height: 550,
                 child: FutureBuilder(
-                    future: medCont.searchMedicine(searchController.text),
+                    future: history
+                        .searchHospitalizations(widget.idHospitalization),
                     builder:
                         (BuildContext context, AsyncSnapshot<List> snapshot) {
                       if (snapshot.hasError) {
                         return const Text('Error');
                       } else if (snapshot.hasData) {
-                        List medicines = snapshot.data ?? [];
+                        List pets = snapshot.data ?? [];
                         return Padding(
                           padding: const EdgeInsets.all(20.0),
                           child: ListView(
                             children: [
-                              if (medicines.isNotEmpty)
-                                for (Medicine medicine in medicines)
+                              if (pets.isNotEmpty)
+                                for (Hospitalization pet in pets)
                                   Container(
                                     margin: const EdgeInsets.only(
                                         top: 10, bottom: 10),
@@ -112,7 +116,7 @@ class _ConsultarMedicamentoState extends State<ConsultarMedicamento> {
                                           height: 10,
                                         ),
                                         Image.asset(
-                                          "assets/img/medicine.png",
+                                          "assets/img/logo2.png",
                                           height: 100,
                                         ),
                                         const SizedBox(
@@ -123,55 +127,35 @@ class _ConsultarMedicamentoState extends State<ConsultarMedicamento> {
                                         ),
                                         Text("  Nombre: ",
                                             style: TextStyle(
-                                                fontWeight: FontWeight.bold)),
-                                        Text("  " + medicine.name),
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                            textAlign: TextAlign.center),
+                                        Text("  " + pet.pet_name),
                                         const SizedBox(
                                           height: 5,
                                         ),
-                                        Text("  Precio unitario:",
+                                        Text("  Observaciones: ",
                                             style: TextStyle(
-                                                fontWeight: FontWeight.bold)),
-                                        Text("  " + medicine.precio.toString()),
-                                        const SizedBox(
-                                          height: 5,
-                                        ),
-                                        const SizedBox(
-                                          height: 5,
-                                        ),
-                                        Text("  Descripción: ",
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.bold)),
-                                        Text("  " + medicine.descripcion),
-                                        const SizedBox(
-                                          height: 16,
-                                        ),
+                                                fontWeight: FontWeight.bold),
+                                            textAlign: TextAlign.center),
+                                        Text("  " + pet.description),
                                         ElevatedButton.icon(
                                             onPressed: () {
                                               Navigator.push(
                                                   context,
                                                   MaterialPageRoute(
                                                       builder: (context) =>
-                                                          ViewMedicine(medicine
+                                                          ViewHospitalization(pet
                                                               .id
                                                               .toString())));
                                             },
                                             icon: const Icon(
                                                 Icons.article_outlined),
-                                            label:
-                                                const Text("Ver información")),
-                                        ElevatedButton.icon(
-                                            onPressed: () {
-                                              Navigator.pushNamed(
-                                                  context, '/addsale',
-                                                  arguments: medicine);
-                                            },
-                                            icon:
-                                                const Icon(Icons.shopping_cart),
-                                            label: const Text("Comprar"))
+                                            label: const Text("Información")),
                                       ],
                                     ),
                                   ),
-                              if (medicines.isEmpty)
+                              if (pets.isEmpty)
                                 Column(
                                   children: const [Text("...")],
                                 )
@@ -186,5 +170,11 @@ class _ConsultarMedicamentoState extends State<ConsultarMedicamento> {
         ),
       ),
     );
+  }
+
+  //Permite saber que tipo de usuario es el que está en sesión
+  void getEstado() async {
+    estado = await auth.estado();
+    setState(() {});
   }
 }

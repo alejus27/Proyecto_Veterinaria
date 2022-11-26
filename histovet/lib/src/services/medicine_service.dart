@@ -22,7 +22,7 @@ class MedicineService {
         snapshot["description"],
         snapshot["group"],
         snapshot["precio"],
-        snapshot["fechaVen"]);
+        snapshot["fechaVen"].toString());
     //print(medicine.toString());
     return medicine;
   }
@@ -43,12 +43,11 @@ class MedicineService {
           // print(doc.data());
           Medicine newMedicine = Medicine(
               data["id"],
-      
               data["name"],
               data["description"],
               data["group"],
               data["precio"],
-              data["fechaVen"]);
+              data["fechaVen"].toString());
           medicines.add(newMedicine);
         }
       });
@@ -126,12 +125,11 @@ class MedicineService {
           //print(doc.data());
           Medicine newMedicine = Medicine(
               data["id"],
-
               data["name"],
               data["description"],
               data["group"],
               data["precio"],
-              data["fechaVen"]);
+              data["fechaVen"].toString());
           medicines.add(newMedicine);
         }
       });

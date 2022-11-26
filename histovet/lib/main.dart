@@ -13,6 +13,7 @@ import 'package:histovet/src/pages/appointments/consultar_appointment.dart';
 //import 'package:histovet/src/pages/clinicalHistory/clinicalHistory_page.dart';
 import 'package:histovet/src/pages/clinicalHistory/consultar_histories.dart';
 import 'package:histovet/src/pages/gps/gps_page.dart';
+import 'package:histovet/src/pages/hospitalization/consult_hospitalization.dart';
 import 'package:histovet/src/pages/medicine/add_medicine.dart';
 import 'package:histovet/src/pages/pet/add_pets.dart';
 import 'package:histovet/src/pages/medicine/consultar_medicamento.dart';
@@ -82,7 +83,11 @@ class MyApp extends StatelessWidget {
             //AddClinicalHistory.id: (context) => const AddClinicalHistory(),
             //'/addHistory': (context) => const AddClinicalHistory(),
             ConsultarHistories.id: (context) => const ConsultarHistories(""),
-            '/searchistories': (context) => const ConsultarHistories(""),
+            '/searcHistories': (context) => const ConsultarHistories(""),
+
+            ConsultHospitalization.id: (context) => const ConsultHospitalization(""),
+            '/searcHospitalization': (context) => const ConsultHospitalization(""),
+
             SignIn.id: (context) => const SignIn(),
             '/signin': (context) => const SignIn(),
             SignUp.id: (context) => const SignUp(),

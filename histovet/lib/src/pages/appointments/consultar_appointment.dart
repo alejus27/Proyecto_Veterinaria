@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import '../../controller/appointment_controller.dart';
 import '../../models/appointment.dart';
 
-
 // Clases encargadas de la vista que le permite al usuario
 // buscar appointments
 class ConsultarAppointment extends StatefulWidget {
@@ -121,7 +120,8 @@ class _ConsultarAppointmentState extends State<ConsultarAppointment> {
                                         ),
                                         Row(
                                           children: const [
-                                            Text("  Nombre del dueño de la mascota: ",
+                                            Text(
+                                                "  Nombre del dueño de la mascota: ",
                                                 style: TextStyle(
                                                     fontWeight:
                                                         FontWeight.bold))
@@ -145,8 +145,7 @@ class _ConsultarAppointmentState extends State<ConsultarAppointment> {
                                         ),
                                         Row(
                                           children: [
-                                            Text("  " +
-                                                appointment.petName),
+                                            Text("  " + appointment.petName),
                                           ],
                                         ),
                                         const SizedBox(
@@ -189,7 +188,7 @@ class _ConsultarAppointmentState extends State<ConsultarAppointment> {
                                   ),
                               if (appointments.isEmpty)
                                 Column(
-                                  children: const [Text("No hay información")],
+                                  children: const [Text("...")],
                                 )
                             ],
                           ),

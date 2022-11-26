@@ -6,9 +6,9 @@ class Sale {
   final String? user_id;
   final String name;
   final String formaPago;
-  final double precio;
-  final double cantidad;
-  final double total;
+  final num precio;
+  final num cantidad;
+  final num total;
 
   Sale(this.id, this.user_id, this.name, this.formaPago, this.precio,
       this.cantidad, this.total);

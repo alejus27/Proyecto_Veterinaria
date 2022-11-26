@@ -193,7 +193,7 @@ class _Updatemedicationtate extends State<UpdateMedicine> {
       final name = values['name'];
       final description = values['description'];
       final group = values['group'];
-      final precio = double.parse(values['precio']);
+      final precio = int.parse(values['precio']);
       final fechaVen = values['fechaVen'];
 
       late Medicine medicine = Medicine(

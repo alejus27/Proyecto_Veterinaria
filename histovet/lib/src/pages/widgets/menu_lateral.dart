@@ -101,13 +101,7 @@ class _MenuLateralState extends State<MenuLateral> {
                 Navigator.pushNamed(context, SalesPage.id);
               },
             ),
-            ListTile(
-              leading: const Icon(Icons.content_paste_search_rounded),
-              title: const Text("Buscar Historias Clínicas"),
-              onTap: () {
-                Navigator.pushNamed(context, ConsultarHistories.id);
-              },
-            ),
+            
 
             /*
 

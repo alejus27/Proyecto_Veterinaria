@@ -9,7 +9,7 @@ class SaleService {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final databaseRef = FirebaseDatabase.instance.ref();
 
-  Sale sale = Sale("", "", "", "", 0.0, 0.0, 0.0);
+  Sale sale = Sale("", "", "", "", 0, 0, 0);
 
   CollectionReference medicineAll =
       FirebaseFirestore.instance.collection("medicine");

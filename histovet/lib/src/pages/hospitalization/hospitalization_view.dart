@@ -1,57 +1,55 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:histovet/src/controller/clinicalHistory_controller.dart';
-import 'package:histovet/src/models/clinicalHistory_model.dart';
+import 'package:histovet/src/controller/hospitalization_controller.dart';
+import 'package:histovet/src/models/Hospitalization_model.dart';
+
 
 // Clases encargadas de la vista donde se muestra la información de la historia clínica
-class ViewHistory extends StatefulWidget {
-  static String id = "view_history";
+class ViewHospitalization extends StatefulWidget {
+  static String id = "view_hospitalization";
 
-  final String idHistory;
+  final String idHospitalization;
 
-  //final String id2=snapshot.data.docs[0].reference.id;
-
-  const ViewHistory(this.idHistory, {Key? key}) : super(key: key);
+  const ViewHospitalization(this.idHospitalization, {Key? key})
+      : super(key: key);
 
   @override
-  State<ViewHistory> createState() => _ViewHistoryState();
+  State<ViewHospitalization> createState() => _ViewHospitalizationState();
 }
 
-class _ViewHistoryState extends State<ViewHistory> {
+class _ViewHospitalizationState extends State<ViewHospitalization> {
   final _formState = GlobalKey<FormBuilderState>();
-  ClinicalHistoryController histCont = ClinicalHistoryController();
 
-  TextEditingController birth_numberController = TextEditingController();
+  HospitalizationController cont = HospitalizationController();
+
+  TextEditingController apetiteController = TextEditingController();
+  TextEditingController cardiacController = TextEditingController();
   TextEditingController clinicController = TextEditingController();
-  TextEditingController consultation_reasonController = TextEditingController();
   TextEditingController dateController = TextEditingController();
-  TextEditingController dewormingController = TextEditingController();
-  TextEditingController diet_typeController = TextEditingController();
-  TextEditingController digestive_systemController = TextEditingController();
-  TextEditingController nervous_systemController = TextEditingController();
-  TextEditingController observationsController = TextEditingController();
-  TextEditingController owner_nameController = TextEditingController();
-  TextEditingController paraclinical_testsController = TextEditingController();
-  TextEditingController parasites_controlController = TextEditingController();
+  TextEditingController dehydrationController = TextEditingController();
+  TextEditingController descriptionController = TextEditingController();
+  TextEditingController fecalController = TextEditingController();
+  TextEditingController medicineController = TextEditingController();
+  TextEditingController medicine_frequencyController = TextEditingController();
+  TextEditingController medicine_quantityController = TextEditingController();
+  TextEditingController medicine_viaController = TextEditingController();
+  TextEditingController mucousController = TextEditingController();
   TextEditingController pet_nameController = TextEditingController();
-  TextEditingController presumptive_diagnosisController =
-      TextEditingController();
-  TextEditingController previous_illnessesController = TextEditingController();
-  TextEditingController previous_surgeriesController = TextEditingController();
-  TextEditingController previousIllnessesController = TextEditingController();
-  TextEditingController previousSurgeriesController = TextEditingController();
-  TextEditingController previous_treatmentsController = TextEditingController();
-  TextEditingController reproductive_statusController = TextEditingController();
-  TextEditingController respiratory_systemController = TextEditingController();
-  TextEditingController therapeutic_planController = TextEditingController();
-  TextEditingController vaccinationController = TextEditingController();
+  TextEditingController owner_nameController = TextEditingController();
+  TextEditingController prognosisController = TextEditingController();
+  TextEditingController pulseController = TextEditingController();
+  TextEditingController remarkController = TextEditingController();
+  TextEditingController respiratoryController = TextEditingController();
+  TextEditingController temperatureController = TextEditingController();
+  TextEditingController tllcController = TextEditingController();
+  TextEditingController urineController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: const Text("Información Historia Clínica"),
+        title: const Text("Información Hospitalización"),
       ),
       body: FormBuilder(
           key: _formState,
@@ -97,7 +95,7 @@ class _ViewHistoryState extends State<ViewHistory> {
         child: FormBuilderTextField(
           controller: dateController,
           enabled: false,
-          name: "date",
+          name: ("date").toString(),
           decoration: const InputDecoration(
               labelText: "Fecha de realización",
               prefixIcon: Icon(Icons.document_scanner_outlined),
@@ -121,11 +119,11 @@ class _ViewHistoryState extends State<ViewHistory> {
       Container(
         margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
         child: FormBuilderTextField(
-          controller: reproductive_statusController,
+          controller: descriptionController,
           enabled: false,
-          name: "reproductive_status",
+          name: "description",
           decoration: const InputDecoration(
-              labelText: "Estado reproductivo",
+              labelText: "Diagnostico",
               prefixIcon: Icon(Icons.document_scanner_outlined),
               border: OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.teal))),
@@ -134,11 +132,11 @@ class _ViewHistoryState extends State<ViewHistory> {
       Container(
         margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
         child: FormBuilderTextField(
-          controller: consultation_reasonController,
+          controller: prognosisController,
           enabled: false,
-          name: "consultation_reason",
+          name: "prognosis",
           decoration: const InputDecoration(
-              labelText: "Motivo de consulta",
+              labelText: "Pronostico",
               prefixIcon: Icon(Icons.document_scanner_outlined),
               border: OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.teal))),
@@ -147,11 +145,11 @@ class _ViewHistoryState extends State<ViewHistory> {
       Container(
         margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
         child: FormBuilderTextField(
-          controller: dewormingController,
+          controller: cardiacController,
           enabled: false,
-          name: "deworming",
+          name: "cardiac",
           decoration: const InputDecoration(
-              labelText: "Estado reproductivo",
+              labelText: "Frecuencia cardiaca",
               prefixIcon: Icon(Icons.document_scanner_outlined),
               border: OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.teal))),
@@ -160,11 +158,11 @@ class _ViewHistoryState extends State<ViewHistory> {
       Container(
         margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
         child: FormBuilderTextField(
-          controller: birth_numberController,
+          controller: respiratoryController,
           enabled: false,
-          name: "birth_number",
+          name: "respiratory",
           decoration: const InputDecoration(
-              labelText: "Número de partos",
+              labelText: "Frecuencia respiratoria",
               prefixIcon: Icon(Icons.document_scanner_outlined),
               border: OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.teal))),
@@ -173,11 +171,11 @@ class _ViewHistoryState extends State<ViewHistory> {
       Container(
         margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
         child: FormBuilderTextField(
-          controller: vaccinationController,
+          controller: pulseController,
           enabled: false,
-          name: "vaccination",
+          name: "pulse",
           decoration: const InputDecoration(
-              labelText: "Vacunación vigente",
+              labelText: "Pulso",
               prefixIcon: Icon(Icons.document_scanner_outlined),
               border: OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.teal))),
@@ -186,11 +184,11 @@ class _ViewHistoryState extends State<ViewHistory> {
       Container(
         margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
         child: FormBuilderTextField(
-          controller: parasites_controlController,
+          controller: temperatureController,
           enabled: false,
-          name: "parasites_control",
+          name: "temperature",
           decoration: const InputDecoration(
-              labelText: "Desparacitación vigente",
+              labelText: "Temperatura",
               prefixIcon: Icon(Icons.document_scanner_outlined),
               border: OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.teal))),
@@ -199,11 +197,11 @@ class _ViewHistoryState extends State<ViewHistory> {
       Container(
         margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
         child: FormBuilderTextField(
-          controller: diet_typeController,
+          controller: mucousController,
           enabled: false,
-          name: "diet_type",
+          name: "mucous",
           decoration: const InputDecoration(
-              labelText: "Tipo de dieta",
+              labelText: "Mocusa",
               prefixIcon: Icon(Icons.document_scanner_outlined),
               border: OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.teal))),
@@ -212,11 +210,11 @@ class _ViewHistoryState extends State<ViewHistory> {
       Container(
         margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
         child: FormBuilderTextField(
-          controller: previous_illnessesController,
+          controller: tllcController,
           enabled: false,
-          name: "previous_illnesses",
+          name: "tllc",
           decoration: const InputDecoration(
-              labelText: "Enfermedades anteriores",
+              labelText: "TLLC",
               prefixIcon: Icon(Icons.document_scanner_outlined),
               border: OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.teal))),
@@ -225,11 +223,11 @@ class _ViewHistoryState extends State<ViewHistory> {
       Container(
         margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
         child: FormBuilderTextField(
-          controller: previous_surgeriesController,
+          controller: dehydrationController,
           enabled: false,
-          name: "previous_surgeries",
+          name: "dehydration",
           decoration: const InputDecoration(
-              labelText: "Cirugias anteriores",
+              labelText: "Deshidratación",
               prefixIcon: Icon(Icons.document_scanner_outlined),
               border: OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.teal))),
@@ -238,11 +236,25 @@ class _ViewHistoryState extends State<ViewHistory> {
       Container(
         margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
         child: FormBuilderTextField(
-          controller: previous_treatmentsController,
+          controller: apetiteController,
           enabled: false,
-          name: "previous_treatments",
+          name: "apetite",
           decoration: const InputDecoration(
-              labelText: "Tratamientos previos y evolución",
+              labelText: "Apetito",
+              prefixIcon: Icon(Icons.document_scanner_outlined),
+              border: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.teal))),
+        ),
+      ),
+      
+      Container(
+        margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+        child: FormBuilderTextField(
+          controller: urineController,
+          enabled: false,
+          name: "urine",
+          decoration: const InputDecoration(
+              labelText: "Estado de orina",
               prefixIcon: Icon(Icons.document_scanner_outlined),
               border: OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.teal))),
@@ -251,11 +263,11 @@ class _ViewHistoryState extends State<ViewHistory> {
       Container(
         margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
         child: FormBuilderTextField(
-          controller: respiratory_systemController,
+          controller: fecalController,
           enabled: false,
-          name: "respiratory_system",
+          name: "fecal",
           decoration: const InputDecoration(
-              labelText: "Estado sistema respiratorio",
+              labelText: "Estado materia fecal",
               prefixIcon: Icon(Icons.document_scanner_outlined),
               border: OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.teal))),
@@ -264,11 +276,11 @@ class _ViewHistoryState extends State<ViewHistory> {
       Container(
         margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
         child: FormBuilderTextField(
-          controller: digestive_systemController,
+          controller: medicineController,
           enabled: false,
-          name: "digestive_system",
+          name: "medicine",
           decoration: const InputDecoration(
-              labelText: "Estado sistema digestivo",
+              labelText: "Medicinas aplicadas",
               prefixIcon: Icon(Icons.document_scanner_outlined),
               border: OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.teal))),
@@ -277,11 +289,11 @@ class _ViewHistoryState extends State<ViewHistory> {
       Container(
         margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
         child: FormBuilderTextField(
-          controller: nervous_systemController,
+          controller: medicine_frequencyController,
           enabled: false,
-          name: "nervous_system",
+          name: "medicine_frequency",
           decoration: const InputDecoration(
-              labelText: "Estado sistema nervioso",
+              labelText: "Frecuencia de aplicación",
               prefixIcon: Icon(Icons.document_scanner_outlined),
               border: OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.teal))),
@@ -290,11 +302,11 @@ class _ViewHistoryState extends State<ViewHistory> {
       Container(
         margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
         child: FormBuilderTextField(
-          controller: presumptive_diagnosisController,
+          controller: medicine_quantityController,
           enabled: false,
-          name: "presumptive_diagnosis",
+          name: "medicine_quantity",
           decoration: const InputDecoration(
-              labelText: "Diagnóstico presuntivo",
+              labelText: "Cantidad aplicada",
               prefixIcon: Icon(Icons.document_scanner_outlined),
               border: OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.teal))),
@@ -303,11 +315,11 @@ class _ViewHistoryState extends State<ViewHistory> {
       Container(
         margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
         child: FormBuilderTextField(
-          controller: paraclinical_testsController,
+          controller: medicine_viaController,
           enabled: false,
-          name: "paraclinical_tests",
+          name: "medicine_via",
           decoration: const InputDecoration(
-              labelText: "Pruebas paraclínicas",
+              labelText: "Via de aplicación",
               prefixIcon: Icon(Icons.document_scanner_outlined),
               border: OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.teal))),
@@ -316,24 +328,11 @@ class _ViewHistoryState extends State<ViewHistory> {
       Container(
         margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
         child: FormBuilderTextField(
-          controller: therapeutic_planController,
+          controller: remarkController,
           enabled: false,
-          name: "therapeutic_plan",
+          name: "remark",
           decoration: const InputDecoration(
-              labelText: "Plan terapeutico",
-              prefixIcon: Icon(Icons.document_scanner_outlined),
-              border: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.teal))),
-        ),
-      ),
-      Container(
-        margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
-        child: FormBuilderTextField(
-          controller: observationsController,
-          enabled: false,
-          name: "observations",
-          decoration: const InputDecoration(
-              labelText: "Observaciones",
+              labelText: "Observaciones generales",
               prefixIcon: Icon(Icons.document_scanner_outlined),
               border: OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.teal))),
@@ -344,37 +343,37 @@ class _ViewHistoryState extends State<ViewHistory> {
 
   @override
   void initState() {
-    getInfoClinicalHistory();
+    getInfoHospitalization();
     super.initState();
   }
 
   // Obtiene la información de la historia clínica y la asigna a los campos de textos
-  void getInfoClinicalHistory() async {
-    ClinicalHistory clinicalHistory =
-        await histCont.getClinicalHistory(widget.idHistory);
+  void getInfoHospitalization() async {
+    Hospitalization hospitalization =
+        await cont.getHospitalization(widget.idHospitalization);
+
     setState(() {
-      birth_numberController.text = clinicalHistory.birth_number;
-      clinicController.text = clinicalHistory.clinic;
-      consultation_reasonController.text = clinicalHistory.consultation_reason;
-      dateController.text = clinicalHistory.date.toString();
-      dewormingController.text = clinicalHistory.deworming;
-      diet_typeController.text = clinicalHistory.diet_type;
-      digestive_systemController.text = clinicalHistory.digestive_system;
-      nervous_systemController.text = clinicalHistory.nervous_system;
-      observationsController.text = clinicalHistory.observations;
-      owner_nameController.text = clinicalHistory.owner_name;
-      paraclinical_testsController.text = clinicalHistory.paraclinical_tests;
-      parasites_controlController.text = clinicalHistory.parasites_control;
-      pet_nameController.text = clinicalHistory.pet_name;
-      presumptive_diagnosisController.text =
-          clinicalHistory.presumptive_diagnosis;
-      previous_illnessesController.text = clinicalHistory.previous_illnesses;
-      previous_surgeriesController.text = clinicalHistory.previous_surgeries;
-      previous_treatmentsController.text = clinicalHistory.previous_treatments;
-      reproductive_statusController.text = clinicalHistory.reproductive_status;
-      respiratory_systemController.text = clinicalHistory.respiratory_system;
-      therapeutic_planController.text = clinicalHistory.therapeutic_plan;
-      vaccinationController.text = clinicalHistory.vaccination;
+      apetiteController.text = hospitalization.apetite;
+      clinicController.text = hospitalization.clinic;
+      pet_nameController.text = hospitalization.pet_name;
+      dateController.text = hospitalization.date.toString();
+      owner_nameController.text = hospitalization.owner_name;
+      cardiacController.text = hospitalization.cardiac;
+      dehydrationController.text = hospitalization.dehydration;
+      descriptionController.text = hospitalization.description;
+      fecalController.text = hospitalization.fecal;
+      medicineController.text = hospitalization.medicine;
+      medicine_frequencyController.text = hospitalization.medicine_frequency;
+      medicine_quantityController.text = hospitalization.medicine_quantity;
+      medicine_viaController.text = hospitalization.medicine_via;
+      mucousController.text = hospitalization.mucous;
+      prognosisController.text = hospitalization.prognosis;
+      pulseController.text = hospitalization.pulse;
+      remarkController.text = hospitalization.remark;
+      respiratoryController.text = hospitalization.respiratory;
+      temperatureController.text = hospitalization.temperature;
+      tllcController.text = hospitalization.tllc;
+      urineController.text = hospitalization.urine;
     });
   }
 }

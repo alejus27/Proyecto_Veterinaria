@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:histovet/src/controller/pet_controller.dart';
 import 'package:histovet/src/models/pet_model.dart';
 import 'package:histovet/src/pages/clinicalHistory/consultar_histories.dart';
+import 'package:histovet/src/pages/hospitalization/consult_hospitalization.dart';
 import 'package:histovet/src/pages/pet/pet_view.dart';
 import '../../controller/auth_controller.dart';
+import 'package:hexcolor/hexcolor.dart';
 
 // Clases encargadas de la vista que le permite al usuario
 // buscar una mascota
@@ -32,6 +34,13 @@ class _ConsultarMascotaState extends State<ConsultarMascota> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Mis Mascotas"),
+        actions: [
+          IconButton(
+              onPressed: () {
+                setState(() {});
+              },
+              icon: const Icon(Icons.refresh))
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(17),
@@ -70,12 +79,8 @@ class _ConsultarMascotaState extends State<ConsultarMascota> {
             ),
             */
             Container(
-                padding: const EdgeInsets.only(
-                  left: 40,
-                  top: 20,
-                  right: 40,
-                  bottom: 20,
-                ),
+                width: double.infinity,
+                padding: const EdgeInsets.only(left: 32, right: 32, top: 32),
                 height: 590,
                 child: FutureBuilder(
                     future: petse.searchPet(searchController.text),
@@ -93,9 +98,14 @@ class _ConsultarMascotaState extends State<ConsultarMascota> {
                                   margin: const EdgeInsets.only(
                                       top: 10, bottom: 10),
                                   decoration: BoxDecoration(
-                                      border: Border.all(color: Colors.black)),
+                                      borderRadius: BorderRadius.circular(100),
+                                      border: Border.all(
+                                          color: HexColor("#335c67"),
+                                          width: 5)),
+                                  alignment: Alignment.center,
                                   child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
                                     children: <Widget>[
                                       const SizedBox(
                                         height: 10,
@@ -104,153 +114,100 @@ class _ConsultarMascotaState extends State<ConsultarMascota> {
                                         "assets/img/dogcat.png",
                                         height: 100,
                                       ),
-                                      /*estado
-                                          ? ElevatedButton.icon(
-                                              onPressed: () {
-                                                Navigator.push(
-                                                    context,
-                                                    MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            HistoryPetSelectPage(pet
-                                                                .id
-                                                                .toString())));
-                                              },
-                                              icon: const Icon(
-                                                  Icons.add_box_outlined),
-                                              label: const Text(
-                                                  "Agregar historia"))
-                                          : ElevatedButton.icon(
-                                              onPressed: () {
-                                                Navigator.push(
-                                                    context,
-                                                    MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            ViewPet(pet.id
-                                                                .toString())));
-                                              },
-                                              icon: const Icon(
-                                                  Icons.article_outlined),
-                                              label: const Text(
-                                                  "Ver información")),
-                                                */
-
-                                      ElevatedButton.icon(
-                                              onPressed: () {
-                                                Navigator.push(
-                                                    context,
-                                                    MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            ViewPet(pet.id
-                                                                .toString())));
-                                              },
-                                              icon: const Icon(
-                                                  Icons.article_outlined),
-                                              label:
-                                                  const Text("Ver información "))
-                                         ,
                                       const SizedBox(
                                         height: 5,
                                       ),
-                                       ElevatedButton.icon(
-                                              onPressed: () {
-                                                Navigator.push(
-                                                    context,
-                                                    MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            ConsultarHistories(pet.id
-                                                                .toString())));
-                                              },
-                                              icon: const Icon(
-                                                  Icons.article_outlined),
-                                              label:
-                                                  const Text("Ver historial clínico"))
-                                        ,
-                                      const SizedBox(
-                                        height: 5,
+                                      Text(
+                                        ' Nombre: ',
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold),
                                       ),
-
-                                      
-                                      /*Row(
-                                        children: const [
-                                          Text("  Código: ",
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.bold)),
-                                        ],
-                                      ),
-                                      Row(
-                                        children: [
-                                          Text("  " + pet.code),
-                                        ],
-                                      ),*/
-                                      const SizedBox(
-                                        height: 5,
-                                      ),
-                                      Row(
-                                        children: const [
-                                          Text("  Nombre: ",
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.bold))
-                                        ],
-                                      ),
-                                      Row(
-                                        children: [
-                                          Text("  " + pet.name),
-                                        ],
+                                      Text(
+                                        "  " + pet.name,
                                       ),
                                       const SizedBox(
                                         height: 5,
                                       ),
-                                      /*Row(
-                                        children: const [
-                                          Text("  Nombre dueño:",
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.bold)),
-                                        ],
-                                      ),
-                                      Row(
-                                        children: [
-                                          Text("  " + pet.nameOwner),
-                                        ],
-                                      ),*/
                                       const SizedBox(
                                         height: 5,
                                       ),
-                                      Row(
-                                        children: const [
-                                          Text("  Especie: ",
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.bold))
-                                        ],
+                                      Text(
+                                        "  Especie: ",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold),
                                       ),
-                                      Row(
-                                        children: [
-                                          Text("  " + pet.specie),
-                                        ],
+                                      Text(
+                                        "  " + pet.specie,
+                                        textAlign: TextAlign.center,
                                       ),
                                       const SizedBox(
                                         height: 5,
                                       ),
-                                      Row(
-                                        children: const [
-                                          Text("  Sexo: ",
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.bold)),
-                                        ],
+                                      Text(
+                                        "  Sexo: ",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold),
                                       ),
-                                      Row(
-                                        children: [
-                                          Text("  " + pet.gender),
-                                        ],
+                                      Text(
+                                        "  " + pet.gender,
                                       ),
                                       const SizedBox(
                                         height: 16,
+                                      ),
+                                      ElevatedButton.icon(
+                                          onPressed: () {
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        ViewPet(pet.id
+                                                            .toString())));
+                                          },
+                                          icon: const Icon(
+                                              Icons.article_outlined),
+                                          label: const Text("Información")),
+                                      const SizedBox(
+                                        height: 5,
+                                      ),
+                                      ElevatedButton.icon(
+                                          onPressed: () {
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        ConsultarHistories(pet
+                                                            .id
+                                                            .toString())));
+                                          },
+                                          icon: const Icon(
+                                              Icons.article_outlined),
+                                          label:
+                                              const Text("Historial Clínico")),
+                                      const SizedBox(
+                                        height: 5,
+                                      ),
+                                      ElevatedButton.icon(
+                                          onPressed: () {
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        ConsultHospitalization(
+                                                            pet.id
+                                                                .toString())));
+                                          },
+                                          icon: const Icon(
+                                              Icons.article_outlined),
+                                          label: const Text("Hospitalización")),
+                                      const SizedBox(
+                                        height: 5,
                                       ),
                                     ],
                                   ),
                                 ),
                             if (pets.isEmpty)
                               Column(
-                                children: const [Text("No hay información")],
+                                children: const [Text("...")],
                               )
                           ],
                         );
