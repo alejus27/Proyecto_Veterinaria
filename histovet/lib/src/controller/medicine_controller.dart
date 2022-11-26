@@ -23,30 +23,10 @@ class MedicineController {
   // Permite usar el servicio para buscar una  medicina por su nombre en la base de datos
   // Retorna las medicinas que se encuentren
   Future<List<Medicine>> searchMedicine(String name) async {
-    List<Medicine> medicines = [];
-    try {
-      final collection = FirebaseFirestore.instance
-          .collection('medicine')
-          .where("name", isEqualTo: name);
-      collection.snapshots().listen((querySnapshot) {
-        for (var doc in querySnapshot.docs) {
-          Map<String, dynamic> data = doc.data();
-          Medicine newMedicine = Medicine(
-              data["id"],
-              data["code"],
-              data["name"],
-              data["description"],
-              data["group"],
-              data["precio"],
-              data["fechaVen"]);
-          medicines.add(newMedicine);
-        }
-      });
-      return medicines;
-    } catch (e) {
-      return medicines;
-    }
+    List<Medicine> medicines = await _service.searchMedicine(name);
+    return medicines;
   }
+
 
   // Permite usar el servicio para actualizar un registro de medicina de la base de datos
   // Retorna true si la medicina se actualizó correctamente

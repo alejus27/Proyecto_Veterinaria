@@ -72,7 +72,7 @@ class _AddPetState extends State<AddPet> {
                         autovalidateMode: AutovalidateMode.onUserInteraction,
                         decoration: const InputDecoration(
                             labelText: "Nombre",
-                            hintText: "Ingrese el nombre de la mascotas",
+                            hintText: "Ingrese el nombre de la mascota",
                             prefixIcon: Icon(Icons.pets),
                             border: OutlineInputBorder(
                                 borderSide: BorderSide(color: Colors.teal))),
@@ -82,78 +82,7 @@ class _AddPetState extends State<AddPet> {
                           FormBuilderValidators.required(context,
                               errorText: "Valor requerido")
                         ]))),
-                Container(
-                  margin:
-                      const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
-                  child: FormBuilderTextField(
-                    name: "nameOwner",
-                    autovalidateMode: AutovalidateMode.onUserInteraction,
-                    decoration: const InputDecoration(
-                        labelText: "Nombre Dueño",
-                        hintText: "Ingrese el nombre del dueño",
-                        prefixIcon: Icon(Icons.person_outline_outlined),
-                        border: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.teal))),
-                    keyboardType: TextInputType.text,
-                    maxLength: 20,
-                    validator: FormBuilderValidators.compose([
-                      FormBuilderValidators.required(context,
-                          errorText: "Valor requerido")
-                    ]),
-                  ),
-                ),
-                Container(
-                  margin:
-                      const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
-                  child: FormBuilderTextField(
-                    name: "contactOwner",
-                    autovalidateMode: AutovalidateMode.onUserInteraction,
-                    decoration: const InputDecoration(
-                        labelText: "contacto Dueño",
-                        hintText: "Ingrese el contacto del dueño",
-                        prefixIcon: Icon(Icons.contact_phone_outlined),
-                        border: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.teal))),
-                    keyboardType: TextInputType.number,
-                    maxLength: 10,
-                    validator: FormBuilderValidators.compose([
-                      FormBuilderValidators.required(context,
-                          errorText: "Valor requerido"),
-                      FormBuilderValidators.integer(context,
-                          errorText: "No puede tener decimales"),
-                      FormBuilderValidators.min(context, 1,
-                          errorText: "Debe ser un número mayor que 0"),
-                      FormBuilderValidators.minLength(context, 10,
-                          errorText: "La longitud del número es de 10")
-                    ]),
-                  ),
-                ),
-                Container(
-                  margin:
-                      const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
-                  child: FormBuilderTextField(
-                      name: "docOwner",
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
-                      decoration: const InputDecoration(
-                          labelText: "Documento Dueño",
-                          hintText: "Ingrese el documento del dueño",
-                          prefixIcon: Icon(Icons.badge_outlined),
-                          border: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.teal))),
-                      keyboardType: TextInputType.number,
-                      maxLength: 10,
-                      validator: FormBuilderValidators.compose([
-                        FormBuilderValidators.required(context,
-                            errorText: "Valor requerido"),
-                        FormBuilderValidators.minLength(context, 10,
-                            errorText: "La longitud del documento es de 10"),
-                        FormBuilderValidators.integer(context,
-                            errorText: "No puede tener decimales"),
-                        FormBuilderValidators.min(context, 1,
-                            errorText: "Debe ser un número mayor que 0"),
-                      ])),
-                ),
-                Container(
+                  Container(
                   margin:
                       const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
                   child: FormBuilderTextField(
@@ -196,22 +125,22 @@ class _AddPetState extends State<AddPet> {
                     margin: const EdgeInsets.symmetric(
                         horizontal: 10, vertical: 15),
                     child: FormBuilderDropdown(
-                        name: "sex",
+                        name: "gender",
                         decoration: const InputDecoration(
-                            labelText: "Seleccionar sexo",
+                            labelText: "Seleccionar genero",
                             prefixIcon: Icon(Icons.article_outlined),
                             border: OutlineInputBorder(
                                 borderSide: BorderSide(color: Colors.teal))),
-                        //hint: const Text("Seleccionar sexo"),
+                        //hint: const Text("Seleccionar gendero"),
                         validator: FormBuilderValidators.required(context,
-                            errorText: "Seleccione un sexo para la mascota"),
+                            errorText: "Seleccione un gendero para la mascota"),
                         items: [
                           {'value': 'Macho', 'key': 'Macho'},
                           {'value': 'Hembra', 'key': 'Hembra'}
                         ]
-                            .map((sex) => DropdownMenuItem(
-                                value: sex["value"],
-                                child: Text("${sex["value"]}")))
+                            .map((gender) => DropdownMenuItem(
+                                value: gender["value"],
+                                child: Text("${gender["value"]}")))
                             .toList())),
                 Container(
                   margin:
@@ -219,13 +148,13 @@ class _AddPetState extends State<AddPet> {
                   child: FormBuilderDropdown(
                       name: "subespecie",
                       decoration: const InputDecoration(
-                          labelText: "Seleccionar subespecie",
+                          labelText: "Seleccionar Especie",
                           prefixIcon: Icon(Icons.article_outlined),
                           border: OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.teal))),
                       //hint:const Text("Seleccionar subespecie para la mascota"),
                       validator: FormBuilderValidators.required(context,
-                          errorText: "Seleccione una subespecie"),
+                          errorText: "Seleccione una especie"),
                       items: [
                         {'value': 'Perro', 'key': 'Perro'},
                         {'value': 'Gato', 'key': 'Gato'}
@@ -236,6 +165,27 @@ class _AddPetState extends State<AddPet> {
                           .toList()),
                 ),
                 Container(
+                    margin: const EdgeInsets.symmetric(
+                        horizontal: 10, vertical: 15),
+                    child: FormBuilderDropdown(
+                        name: "neutering",
+                        decoration: const InputDecoration(
+                            labelText: "Seleccionar esterilizado",
+                            prefixIcon: Icon(Icons.article_outlined),
+                            border: OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.teal))),
+                        //hint: const Text("Seleccionar gendero"),
+                        validator: FormBuilderValidators.required(context,
+                            errorText: "Seleccionar si es esterilizado"),
+                        items: [
+                          {'value': 'Si', 'key': 'Si'},
+                          {'value': 'No', 'key': 'No'}
+                        ]
+                            .map((neutering) => DropdownMenuItem(
+                                value: neutering["value"],
+                                child: Text("${neutering["value"]}")))
+                            .toList())),
+                Container(
                   margin:
                       const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
                   child: FormBuilderTextField(
@@ -245,6 +195,23 @@ class _AddPetState extends State<AddPet> {
                         labelText: "Color",
                         hintText: "Ingrese el color de la mascotas",
                         prefixIcon: Icon(Icons.color_lens_outlined),
+                        border: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.teal))),
+                    maxLength: 20,
+                    validator: FormBuilderValidators.required(context,
+                        errorText: "Valor requerido"),
+                  ),
+                ),
+                Container(
+                  margin:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+                  child: FormBuilderTextField(
+                    name: "birthday",
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    decoration: const InputDecoration(
+                        labelText: "Fecha de Nacimiento",
+                        hintText: "AAAA-MM-DD",
+                        prefixIcon: Icon(Icons.date_range),
                         border: OutlineInputBorder(
                             borderSide: BorderSide(color: Colors.teal))),
                     maxLength: 20,
@@ -266,16 +233,16 @@ class _AddPetState extends State<AddPet> {
       final values = _formState.currentState!.value;
       //final code = values['code'];
       final name = values['name'];
-      final docOwner = values['docOwner'];
-      final nameOwner = values['nameOwner'];
-      final contactOwner = values['contactOwner'];
       final age = int.parse(values['age']);
       final breed = values['breed'];
       final specie = values['subespecie'];
       final color = values['color'];
-      final sex = values['sex'];
-      late Pet pet = Pet("", "",/*code*/ name, nameOwner, contactOwner, docOwner, age,
-          breed, specie, color, sex);
+      final gender = values['gender'];
+      final birthday = values['birthday'];
+      final neutering = values['neutering'];
+  
+      late Pet pet = Pet("", "",birthday, name, neutering, age,
+          breed, specie, color, gender);
       messageAdd(pet);
     }
   }

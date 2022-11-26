@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:histovet/src/controller/pet_controller.dart';
 import 'package:histovet/src/models/pet_model.dart';
-import 'package:histovet/src/pages/clinicalHistory/add_historypet.dart';
+import 'package:histovet/src/pages/clinicalHistory/consultar_histories.dart';
 import 'package:histovet/src/pages/pet/pet_view.dart';
 import '../../controller/auth_controller.dart';
 
@@ -133,23 +133,6 @@ class _ConsultarMascotaState extends State<ConsultarMascota> {
                                               label: const Text(
                                                   "Ver información")),
                                                 */
-                                       ElevatedButton.icon(
-                                              onPressed: () {
-                                                Navigator.push(
-                                                    context,
-                                                    MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            ViewPet(pet.id
-                                                                .toString())));
-                                              },
-                                              icon: const Icon(
-                                                  Icons.article_outlined),
-                                              label:
-                                                  const Text("Ver historial clínico"))
-                                        ,
-                                      const SizedBox(
-                                        height: 5,
-                                      ),
 
                                       ElevatedButton.icon(
                                               onPressed: () {
@@ -168,6 +151,25 @@ class _ConsultarMascotaState extends State<ConsultarMascota> {
                                       const SizedBox(
                                         height: 5,
                                       ),
+                                       ElevatedButton.icon(
+                                              onPressed: () {
+                                                Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            ConsultarHistories(pet.id
+                                                                .toString())));
+                                              },
+                                              icon: const Icon(
+                                                  Icons.article_outlined),
+                                              label:
+                                                  const Text("Ver historial clínico"))
+                                        ,
+                                      const SizedBox(
+                                        height: 5,
+                                      ),
+
+                                      
                                       /*Row(
                                         children: const [
                                           Text("  Código: ",
@@ -198,7 +200,7 @@ class _ConsultarMascotaState extends State<ConsultarMascota> {
                                       const SizedBox(
                                         height: 5,
                                       ),
-                                      Row(
+                                      /*Row(
                                         children: const [
                                           Text("  Nombre dueño:",
                                               style: TextStyle(
@@ -209,20 +211,20 @@ class _ConsultarMascotaState extends State<ConsultarMascota> {
                                         children: [
                                           Text("  " + pet.nameOwner),
                                         ],
-                                      ),
+                                      ),*/
                                       const SizedBox(
                                         height: 5,
                                       ),
                                       Row(
                                         children: const [
-                                          Text("  Raza: ",
+                                          Text("  Especie: ",
                                               style: TextStyle(
                                                   fontWeight: FontWeight.bold))
                                         ],
                                       ),
                                       Row(
                                         children: [
-                                          Text("  " + pet.breed),
+                                          Text("  " + pet.specie),
                                         ],
                                       ),
                                       const SizedBox(
@@ -237,7 +239,7 @@ class _ConsultarMascotaState extends State<ConsultarMascota> {
                                       ),
                                       Row(
                                         children: [
-                                          Text("  " + pet.sex),
+                                          Text("  " + pet.gender),
                                         ],
                                       ),
                                       const SizedBox(

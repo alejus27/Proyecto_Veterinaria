@@ -2,29 +2,26 @@
 
 class Pet {
   final String? id;
-  final String? user_id;
+  final String? owner;
   //final String code;
   final String name;
-  final String nameOwner;
-  final String contactOwner;
-  final String documentOwner;
   final int age;
   final String breed;
   final String specie;
   final String color;
-  final String sex;
+  final String gender;
+  final String birthday;
+  final String neutering;
 
   Pet(
       this.id,
-      this.user_id,
-      //this.code,
+      this.owner,
+      this.birthday,
       this.name,
-      this.nameOwner,
-      this.contactOwner,
-      this.documentOwner,
+      this.neutering,
       this.age,
       this.breed,
       this.specie,
       this.color,
-      this.sex);
+      this.gender);
 }

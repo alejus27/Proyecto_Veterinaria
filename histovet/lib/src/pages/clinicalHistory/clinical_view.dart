@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import '../../controller/clinicalhistory_controller.dart';
-import '../../models/clinicalhistory_model.dart';
+import 'package:histovet/src/controller/clinicalHistory_controller.dart';
+import 'package:histovet/src/models/clinicalHistory_model.dart';
 
 // Clases encargadas de la vista donde se muestra la información de la historia clínica
 class ViewHistory extends StatefulWidget {
   static String id = "view_history";
+
   final String idHistory;
 
   const ViewHistory(this.idHistory, {Key? key}) : super(key: key);
@@ -18,45 +19,30 @@ class _ViewHistoryState extends State<ViewHistory> {
   final _formState = GlobalKey<FormBuilderState>();
   ClinicalHistoryController histCont = ClinicalHistoryController();
 
-  TextEditingController numberCHController = TextEditingController();
+  TextEditingController birth_numberController = TextEditingController();
+  TextEditingController clinicController = TextEditingController();
+  TextEditingController consultation_reasonController = TextEditingController();
   TextEditingController dateController = TextEditingController();
-  TextEditingController timeCHController = TextEditingController();
-  TextEditingController docOwnerCHController = TextEditingController();
-  TextEditingController nameOwnerController = TextEditingController();
-  TextEditingController contactOwnerController = TextEditingController();
-  TextEditingController addressOwnerController = TextEditingController();
-  TextEditingController emailAddressOwnerController = TextEditingController();
-  TextEditingController nameController = TextEditingController();
-  TextEditingController specieController = TextEditingController();
-  TextEditingController breedController = TextEditingController();
-  TextEditingController sexController = TextEditingController();
-  TextEditingController colorController = TextEditingController();
-  TextEditingController weightController = TextEditingController();
-  TextEditingController originController = TextEditingController();
-  TextEditingController dietCHController = TextEditingController();
+  TextEditingController dewormingController = TextEditingController();
+  TextEditingController diet_typeController = TextEditingController();
+  TextEditingController digestive_systemController = TextEditingController();
+  TextEditingController nervous_systemController = TextEditingController();
+  TextEditingController observationsController = TextEditingController();
+  TextEditingController owner_nameController = TextEditingController();
+  TextEditingController paraclinical_testsController = TextEditingController();
+  TextEditingController parasites_controlController = TextEditingController();
+  TextEditingController pet_nameController = TextEditingController();
+  TextEditingController presumptive_diagnosisController =
+      TextEditingController();
+  TextEditingController previous_illnessesController = TextEditingController();
+  TextEditingController previous_surgeriesController = TextEditingController();
   TextEditingController previousIllnessesController = TextEditingController();
   TextEditingController previousSurgeriesController = TextEditingController();
-  TextEditingController sterilizedController = TextEditingController();
-  TextEditingController nAnimalBirthsController = TextEditingController();
-  TextEditingController vaccinationScheduleController = TextEditingController();
-  TextEditingController lastDewormingController = TextEditingController();
-  TextEditingController recentTreatmentsController = TextEditingController();
-  TextEditingController animalBehaviorController = TextEditingController();
-  TextEditingController reasonForConsultationController =
-      TextEditingController();
-  TextEditingController physicalConditionController = TextEditingController();
-  TextEditingController temperatureController = TextEditingController();
-  TextEditingController heartFrequencyController = TextEditingController();
-  TextEditingController respiratoryFrequencyController =
-      TextEditingController();
-  TextEditingController tllcController = TextEditingController();
-  TextEditingController pulseController = TextEditingController();
-  TextEditingController trcpController = TextEditingController();
-  TextEditingController percentageDehydrationController =
-      TextEditingController();
-  TextEditingController mucousController = TextEditingController();
-
-  bool respuesta = false;
+  TextEditingController previous_treatmentsController = TextEditingController();
+  TextEditingController reproductive_statusController = TextEditingController();
+  TextEditingController respiratory_systemController = TextEditingController();
+  TextEditingController therapeutic_planController = TextEditingController();
+  TextEditingController vaccinationController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -81,49 +67,12 @@ class _ViewHistoryState extends State<ViewHistory> {
       Container(
         margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
         child: FormBuilderTextField(
-          controller: numberCHController,
+          controller: owner_nameController,
           enabled: false,
-          name: "numberCH",
+          name: "ownerName",
           decoration: const InputDecoration(
-              labelText: "Número de historia clinica",
-              prefixIcon: Icon(Icons.numbers),
-              border: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.teal))),
-        ),
-      ),
-      Container(
-          margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
-          child: FormBuilderTextField(
-            controller: dateController,
-            name: "date",
-            enabled: false,
-            decoration: const InputDecoration(
-                labelText: "Fecha",
-                prefixIcon: Icon(Icons.date_range),
-                border: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.teal))),
-          )),
-      Container(
-          margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
-          child: FormBuilderTextField(
-            controller: timeCHController,
-            enabled: false,
-            name: "time",
-            decoration: const InputDecoration(
-                labelText: "Hora",
-                prefixIcon: Icon(Icons.timer),
-                border: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.teal))),
-          )),
-      Container(
-        margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
-        child: FormBuilderTextField(
-          controller: docOwnerCHController,
-          enabled: false,
-          name: "docOwner",
-          decoration: const InputDecoration(
-              labelText: "Documento Dueño",
-              prefixIcon: Icon(Icons.badge_outlined),
+              labelText: "Nombre del dueño de la mascota",
+              prefixIcon: Icon(Icons.document_scanner_outlined),
               border: OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.teal))),
         ),
@@ -131,51 +80,12 @@ class _ViewHistoryState extends State<ViewHistory> {
       Container(
         margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
         child: FormBuilderTextField(
-          controller: nameOwnerController,
+          controller: pet_nameController,
           enabled: false,
-          name: "nameOwner",
-          decoration: const InputDecoration(
-              labelText: "Nombre Dueño",
-              prefixIcon: Icon(Icons.person_outline_outlined),
-              border: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.teal))),
-        ),
-      ),
-      Container(
-        margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
-        child: FormBuilderTextField(
-          controller: contactOwnerController,
-          enabled: false,
-          name: "contactOwner",
-          decoration: const InputDecoration(
-              labelText: "contacto Dueño",
-              prefixIcon: Icon(Icons.contact_phone_outlined),
-              border: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.teal))),
-        ),
-      ),
-      Container(
-        margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
-        child: FormBuilderTextField(
-          controller: addressOwnerController,
-          enabled: false,
-          name: "addressOwner",
-          decoration: const InputDecoration(
-              labelText: "Dirección",
-              prefixIcon: Icon(Icons.person_outline_outlined),
-              border: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.teal))),
-        ),
-      ),
-      Container(
-        margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
-        child: FormBuilderTextField(
-          controller: nameController,
-          enabled: false,
-          name: "name",
+          name: "pet_name",
           decoration: const InputDecoration(
               labelText: "Nombre de la mascota",
-              prefixIcon: Icon(Icons.person_outline_outlined),
+              prefixIcon: Icon(Icons.document_scanner_outlined),
               border: OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.teal))),
         ),
@@ -183,12 +93,12 @@ class _ViewHistoryState extends State<ViewHistory> {
       Container(
         margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
         child: FormBuilderTextField(
-          controller: emailAddressOwnerController,
+          controller: dateController,
           enabled: false,
-          name: "emailAddressOwner",
+          name: "date",
           decoration: const InputDecoration(
-              labelText: "Correo electrónico",
-              prefixIcon: Icon(Icons.person_outline_outlined),
+              labelText: "Fecha de realización",
+              prefixIcon: Icon(Icons.document_scanner_outlined),
               border: OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.teal))),
         ),
@@ -196,12 +106,12 @@ class _ViewHistoryState extends State<ViewHistory> {
       Container(
         margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
         child: FormBuilderTextField(
-          controller: specieController,
+          controller: clinicController,
           enabled: false,
-          name: "specie",
+          name: "clinic",
           decoration: const InputDecoration(
-              labelText: "Subespecie",
-              prefixIcon: Icon(Icons.pets),
+              labelText: "Centro clinico veterinario",
+              prefixIcon: Icon(Icons.document_scanner_outlined),
               border: OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.teal))),
         ),
@@ -209,12 +119,12 @@ class _ViewHistoryState extends State<ViewHistory> {
       Container(
         margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
         child: FormBuilderTextField(
-          controller: breedController,
+          controller: reproductive_statusController,
           enabled: false,
-          name: "breed",
+          name: "reproductive_status",
           decoration: const InputDecoration(
-              labelText: "Raza",
-              prefixIcon: Icon(Icons.pets),
+              labelText: "Estado reproductivo",
+              prefixIcon: Icon(Icons.document_scanner_outlined),
               border: OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.teal))),
         ),
@@ -222,12 +132,12 @@ class _ViewHistoryState extends State<ViewHistory> {
       Container(
         margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
         child: FormBuilderTextField(
-          controller: sexController,
+          controller: consultation_reasonController,
           enabled: false,
-          name: "sex",
+          name: "consultation_reason",
           decoration: const InputDecoration(
-              labelText: "Sexo",
-              prefixIcon: Icon(Icons.pets),
+              labelText: "Motivo de consulta",
+              prefixIcon: Icon(Icons.document_scanner_outlined),
               border: OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.teal))),
         ),
@@ -235,12 +145,12 @@ class _ViewHistoryState extends State<ViewHistory> {
       Container(
         margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
         child: FormBuilderTextField(
-          controller: colorController,
+          controller: dewormingController,
           enabled: false,
-          name: "color",
+          name: "deworming",
           decoration: const InputDecoration(
-              labelText: "Color",
-              prefixIcon: Icon(Icons.color_lens_outlined),
+              labelText: "Estado reproductivo",
+              prefixIcon: Icon(Icons.document_scanner_outlined),
               border: OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.teal))),
         ),
@@ -248,90 +158,12 @@ class _ViewHistoryState extends State<ViewHistory> {
       Container(
         margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
         child: FormBuilderTextField(
-          controller: weightController,
-          name: "weight",
+          controller: birth_numberController,
           enabled: false,
-          decoration: const InputDecoration(
-              labelText: "Peso(Kg)",
-              prefixIcon: Icon(Icons.monitor_weight_outlined),
-              border: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.teal))),
-        ),
-      ),
-      Container(
-        margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
-        child: FormBuilderTextField(
-          controller: originController,
-          enabled: false,
-          name: "origin",
-          decoration: const InputDecoration(
-              labelText: "Origen",
-              prefixIcon: Icon(Icons.color_lens_outlined),
-              border: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.teal))),
-        ),
-      ),
-      Container(
-        margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
-        child: FormBuilderTextField(
-          controller: dietCHController,
-          enabled: false,
-          name: "diet",
-          decoration: const InputDecoration(
-              labelText: "Dieta",
-              prefixIcon: Icon(Icons.color_lens_outlined),
-              border: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.teal))),
-        ),
-      ),
-      Container(
-        margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
-        child: FormBuilderTextField(
-          controller: previousIllnessesController,
-          name: "previousIllnesses",
-          enabled: false,
-          decoration: const InputDecoration(
-              labelText: "Enfermedades previas",
-              prefixIcon: Icon(Icons.color_lens_outlined),
-              border: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.teal))),
-        ),
-      ),
-      Container(
-        margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
-        child: FormBuilderTextField(
-          controller: previousSurgeriesController,
-          enabled: false,
-          name: "previousSurgeries",
-          decoration: const InputDecoration(
-              labelText: "cirugías previas",
-              prefixIcon: Icon(Icons.color_lens_outlined),
-              border: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.teal))),
-        ),
-      ),
-      Container(
-        margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
-        child: FormBuilderTextField(
-          controller: sterilizedController,
-          enabled: false,
-          name: "sterilized",
-          decoration: const InputDecoration(
-              labelText: "Esterilizado",
-              prefixIcon: Icon(Icons.pets),
-              border: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.teal))),
-        ),
-      ),
-      Container(
-        margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
-        child: FormBuilderTextField(
-          controller: nAnimalBirthsController,
-          enabled: false,
-          name: "nAnimalBirths",
+          name: "birth_number",
           decoration: const InputDecoration(
               labelText: "Número de partos",
-              prefixIcon: Icon(Icons.numbers),
+              prefixIcon: Icon(Icons.document_scanner_outlined),
               border: OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.teal))),
         ),
@@ -339,12 +171,12 @@ class _ViewHistoryState extends State<ViewHistory> {
       Container(
         margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
         child: FormBuilderTextField(
-          controller: vaccinationScheduleController,
+          controller: vaccinationController,
           enabled: false,
-          name: "vaccinationSchedule",
+          name: "vaccination",
           decoration: const InputDecoration(
-              labelText: "Vacunas",
-              prefixIcon: Icon(Icons.color_lens_outlined),
+              labelText: "Vacunación vigente",
+              prefixIcon: Icon(Icons.document_scanner_outlined),
               border: OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.teal))),
         ),
@@ -352,14 +184,12 @@ class _ViewHistoryState extends State<ViewHistory> {
       Container(
         margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
         child: FormBuilderTextField(
-          controller: lastDewormingController,
+          controller: parasites_controlController,
           enabled: false,
-          name: "lastDeworming",
-          autovalidateMode: AutovalidateMode.onUserInteraction,
+          name: "parasites_control",
           decoration: const InputDecoration(
-              labelText: "Última desparasitación",
-              hintText: "Fecha última desparasitación",
-              prefixIcon: Icon(Icons.color_lens_outlined),
+              labelText: "Desparacitación vigente",
+              prefixIcon: Icon(Icons.document_scanner_outlined),
               border: OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.teal))),
         ),
@@ -367,12 +197,12 @@ class _ViewHistoryState extends State<ViewHistory> {
       Container(
         margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
         child: FormBuilderTextField(
-          controller: recentTreatmentsController,
+          controller: diet_typeController,
           enabled: false,
-          name: "recentTreatments",
+          name: "diet_type",
           decoration: const InputDecoration(
-              labelText: "Tratamientos recientes",
-              prefixIcon: Icon(Icons.color_lens_outlined),
+              labelText: "Tipo de dieta",
+              prefixIcon: Icon(Icons.document_scanner_outlined),
               border: OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.teal))),
         ),
@@ -380,12 +210,12 @@ class _ViewHistoryState extends State<ViewHistory> {
       Container(
         margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
         child: FormBuilderTextField(
-          controller: animalBehaviorController,
+          controller: previous_illnessesController,
           enabled: false,
-          name: "animalBehavior",
+          name: "previous_illnesses",
           decoration: const InputDecoration(
-              labelText: "Comportamiento de la mascota",
-              prefixIcon: Icon(Icons.color_lens_outlined),
+              labelText: "Enfermedades anteriores",
+              prefixIcon: Icon(Icons.document_scanner_outlined),
               border: OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.teal))),
         ),
@@ -393,12 +223,12 @@ class _ViewHistoryState extends State<ViewHistory> {
       Container(
         margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
         child: FormBuilderTextField(
-          controller: reasonForConsultationController,
+          controller: previous_surgeriesController,
           enabled: false,
-          name: "reasonForConsultation",
+          name: "previous_surgeries",
           decoration: const InputDecoration(
-              labelText: "Razón de la consulta",
-              prefixIcon: Icon(Icons.color_lens_outlined),
+              labelText: "Cirugias anteriores",
+              prefixIcon: Icon(Icons.document_scanner_outlined),
               border: OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.teal))),
         ),
@@ -406,12 +236,12 @@ class _ViewHistoryState extends State<ViewHistory> {
       Container(
         margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
         child: FormBuilderTextField(
-          controller: physicalConditionController,
+          controller: previous_treatmentsController,
           enabled: false,
-          name: "physicalCondition",
+          name: "previous_treatments",
           decoration: const InputDecoration(
-              labelText: "Condición física",
-              prefixIcon: Icon(Icons.color_lens_outlined),
+              labelText: "Tratamientos previos y evolución",
+              prefixIcon: Icon(Icons.document_scanner_outlined),
               border: OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.teal))),
         ),
@@ -419,12 +249,12 @@ class _ViewHistoryState extends State<ViewHistory> {
       Container(
         margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
         child: FormBuilderTextField(
-          controller: temperatureController,
+          controller: respiratory_systemController,
           enabled: false,
-          name: "temperature",
+          name: "respiratory_system",
           decoration: const InputDecoration(
-              labelText: "Temperatura",
-              prefixIcon: Icon(Icons.numbers),
+              labelText: "Estado sistema respiratorio",
+              prefixIcon: Icon(Icons.document_scanner_outlined),
               border: OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.teal))),
         ),
@@ -432,12 +262,12 @@ class _ViewHistoryState extends State<ViewHistory> {
       Container(
         margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
         child: FormBuilderTextField(
-          controller: heartFrequencyController,
+          controller: digestive_systemController,
           enabled: false,
-          name: "heartFrequency",
+          name: "digestive_system",
           decoration: const InputDecoration(
-              labelText: "Frecuencia cardíaca",
-              prefixIcon: Icon(Icons.numbers),
+              labelText: "Estado sistema digestivo",
+              prefixIcon: Icon(Icons.document_scanner_outlined),
               border: OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.teal))),
         ),
@@ -445,12 +275,12 @@ class _ViewHistoryState extends State<ViewHistory> {
       Container(
         margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
         child: FormBuilderTextField(
-          controller: respiratoryFrequencyController,
+          controller: nervous_systemController,
           enabled: false,
-          name: "respiratoryFrequency",
+          name: "nervous_system",
           decoration: const InputDecoration(
-              labelText: "Frecuencia respiratoria",
-              prefixIcon: Icon(Icons.numbers),
+              labelText: "Estado sistema nervioso",
+              prefixIcon: Icon(Icons.document_scanner_outlined),
               border: OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.teal))),
         ),
@@ -458,12 +288,12 @@ class _ViewHistoryState extends State<ViewHistory> {
       Container(
         margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
         child: FormBuilderTextField(
-          controller: tllcController,
+          controller: presumptive_diagnosisController,
           enabled: false,
-          name: "tllc",
+          name: "presumptive_diagnosis",
           decoration: const InputDecoration(
-              labelText: "Tiempo de llenado capilar(Seg)",
-              prefixIcon: Icon(Icons.numbers),
+              labelText: "Diagnóstico presuntivo",
+              prefixIcon: Icon(Icons.document_scanner_outlined),
               border: OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.teal))),
         ),
@@ -471,12 +301,12 @@ class _ViewHistoryState extends State<ViewHistory> {
       Container(
         margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
         child: FormBuilderTextField(
-          controller: pulseController,
+          controller: paraclinical_testsController,
           enabled: false,
-          name: "pulse",
+          name: "paraclinical_tests",
           decoration: const InputDecoration(
-              labelText: "Pulso",
-              prefixIcon: Icon(Icons.numbers),
+              labelText: "Pruebas paraclínicas",
+              prefixIcon: Icon(Icons.document_scanner_outlined),
               border: OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.teal))),
         ),
@@ -484,12 +314,12 @@ class _ViewHistoryState extends State<ViewHistory> {
       Container(
         margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
         child: FormBuilderTextField(
-          controller: trcpController,
+          controller: therapeutic_planController,
           enabled: false,
-          name: "trcp",
+          name: "therapeutic_plan",
           decoration: const InputDecoration(
-              labelText: "Tiempo de recuperación del pliegue cutáneo",
-              prefixIcon: Icon(Icons.numbers),
+              labelText: "Plan terapeutico",
+              prefixIcon: Icon(Icons.document_scanner_outlined),
               border: OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.teal))),
         ),
@@ -497,29 +327,16 @@ class _ViewHistoryState extends State<ViewHistory> {
       Container(
         margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
         child: FormBuilderTextField(
-          controller: percentageDehydrationController,
+          controller: observationsController,
           enabled: false,
-          name: "percentageDehydration",
+          name: "observations",
           decoration: const InputDecoration(
-              labelText: "Porcentaje deshidratación",
-              prefixIcon: Icon(Icons.numbers),
+              labelText: "Observaciones",
+              prefixIcon: Icon(Icons.document_scanner_outlined),
               border: OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.teal))),
         ),
       ),
-      Container(
-        margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
-        child: FormBuilderTextField(
-          controller: mucousController,
-          enabled: false,
-          name: "mucous",
-          decoration: const InputDecoration(
-              labelText: "Estado de la mucosa",
-              prefixIcon: Icon(Icons.color_lens_outlined),
-              border: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.teal))),
-        ),
-      )
     ];
   }
 
@@ -534,43 +351,28 @@ class _ViewHistoryState extends State<ViewHistory> {
     ClinicalHistory clinicalHistory =
         await histCont.getClinicalHistory(widget.idHistory);
     setState(() {
-      numberCHController.text = clinicalHistory.numberCH.toString();
-      dateController.text = clinicalHistory.date;
-      timeCHController.text = clinicalHistory.time.toString();
-      docOwnerCHController.text = clinicalHistory.docOwner;
-      nameOwnerController.text = clinicalHistory.nameOwner;
-      contactOwnerController.text = clinicalHistory.contactOwner;
-      addressOwnerController.text = clinicalHistory.addressOwner;
-      emailAddressOwnerController.text = clinicalHistory.emailAddressOwner;
-      nameController.text = clinicalHistory.name;
-      specieController.text = clinicalHistory.specie;
-      breedController.text = clinicalHistory.breed;
-      sexController.text = clinicalHistory.sex;
-      colorController.text = clinicalHistory.color;
-      weightController.text = clinicalHistory.weight.toString();
-      originController.text = clinicalHistory.origin;
-      dietCHController.text = clinicalHistory.diet;
-      previousIllnessesController.text = clinicalHistory.previousIllnesses;
-      previousSurgeriesController.text = clinicalHistory.previousSurgeries;
-      sterilizedController.text = clinicalHistory.sterilized;
-      nAnimalBirthsController.text = clinicalHistory.nAnimalBirths;
-      vaccinationScheduleController.text = clinicalHistory.vaccinationSchedule;
-      lastDewormingController.text = clinicalHistory.lastDeworming;
-      recentTreatmentsController.text = clinicalHistory.recentTreatments;
-      animalBehaviorController.text = clinicalHistory.animalBehavior;
-      reasonForConsultationController.text =
-          clinicalHistory.reasonForConsultation;
-      physicalConditionController.text = clinicalHistory.physicalCondition;
-      temperatureController.text = clinicalHistory.temperature.toString();
-      heartFrequencyController.text = clinicalHistory.heartFrequency.toString();
-      respiratoryFrequencyController.text =
-          clinicalHistory.respiratoryFrequency.toString();
-      tllcController.text = clinicalHistory.tllc.toString();
-      pulseController.text = clinicalHistory.pulse.toString();
-      trcpController.text = clinicalHistory.trcp.toString();
-      percentageDehydrationController.text =
-          clinicalHistory.percentageDehydration.toString();
-      mucousController.text = clinicalHistory.mucous;
+      birth_numberController.text = clinicalHistory.birth_number;
+      clinicController.text = clinicalHistory.clinic;
+      consultation_reasonController.text = clinicalHistory.consultation_reason;
+      dateController.text = clinicalHistory.date.toString();
+      dewormingController.text = clinicalHistory.deworming;
+      diet_typeController.text = clinicalHistory.diet_type;
+      digestive_systemController.text = clinicalHistory.digestive_system;
+      nervous_systemController.text = clinicalHistory.nervous_system;
+      observationsController.text = clinicalHistory.observations;
+      owner_nameController.text = clinicalHistory.owner_name;
+      paraclinical_testsController.text = clinicalHistory.paraclinical_tests;
+      parasites_controlController.text = clinicalHistory.parasites_control;
+      pet_nameController.text = clinicalHistory.pet_name;
+      presumptive_diagnosisController.text =
+          clinicalHistory.presumptive_diagnosis;
+      previous_illnessesController.text = clinicalHistory.previous_illnesses;
+      previous_surgeriesController.text = clinicalHistory.previous_surgeries;
+      previous_treatmentsController.text = clinicalHistory.previous_treatments;
+      reproductive_statusController.text = clinicalHistory.reproductive_status;
+      respiratory_systemController.text = clinicalHistory.respiratory_system;
+      therapeutic_planController.text = clinicalHistory.therapeutic_plan;
+      vaccinationController.text = clinicalHistory.vaccination;
     });
   }
 }

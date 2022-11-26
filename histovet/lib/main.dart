@@ -8,9 +8,9 @@ import 'package:histovet/src/pages/appointments/add_appointment.dart';
 import 'package:histovet/src/pages/appointments/appointment_page.dart';
 import 'package:histovet/src/pages/appointments/appointment_update.dart';
 import 'package:histovet/src/pages/appointments/consultar_appointment.dart';
-import 'package:histovet/src/pages/clinicalHistory/add_clinicalhistory.dart';
-import 'package:histovet/src/pages/clinicalHistory/add_historypet.dart';
-import 'package:histovet/src/pages/clinicalHistory/clinicalhistory_page.dart';
+//import 'package:histovet/src/pages/clinicalHistory/add_clinicalhistory.dart';
+//import 'package:histovet/src/pages/clinicalHistory/add_historypet.dart';
+//import 'package:histovet/src/pages/clinicalHistory/clinicalHistory_page.dart';
 import 'package:histovet/src/pages/clinicalHistory/consultar_histories.dart';
 import 'package:histovet/src/pages/gps/gps_page.dart';
 import 'package:histovet/src/pages/medicine/add_medicine.dart';
@@ -77,12 +77,12 @@ class MyApp extends StatelessWidget {
             MedicinePage.id: (context) => const MedicinePage(),
             '/medicine': (context) => const MedicinePage(),
             AddMedicine.id: (context) => const AddMedicine(),
-            HistoryPage.id: (context) => const HistoryPage(),
-            '/clinicalHistories': (context) => const HistoryPage(),
-            AddClinicalHistory.id: (context) => const AddClinicalHistory(),
-            '/addHistory': (context) => const AddClinicalHistory(),
-            ConsultarHistories.id: (context) => const ConsultarHistories(),
-            '/searchistories': (context) => const ConsultarHistories(),
+            //HistoryPage.id: (context) => const HistoryPage(),
+            //'/clinicalHistories': (context) => const HistoryPage(),
+            //AddClinicalHistory.id: (context) => const AddClinicalHistory(),
+            //'/addHistory': (context) => const AddClinicalHistory(),
+            ConsultarHistories.id: (context) => const ConsultarHistories(""),
+            '/searchistories': (context) => const ConsultarHistories(""),
             SignIn.id: (context) => const SignIn(),
             '/signin': (context) => const SignIn(),
             SignUp.id: (context) => const SignUp(),
@@ -94,8 +94,7 @@ class MyApp extends StatelessWidget {
             ConsultarMascota.id: (context) => const ConsultarMascota(),
             '/buscarMascota': (context) => const ConsultarMascota(),
 
-            HistoryPetSelectPage.id: (context) =>
-                const HistoryPetSelectPage(""),
+            //HistoryPetSelectPage.id: (context) =>const HistoryPetSelectPage(""),
           },
         ));
   }

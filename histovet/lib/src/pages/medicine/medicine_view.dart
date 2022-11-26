@@ -136,7 +136,7 @@ class _Updatemedicationtate extends State<ViewMedicine> {
   void getInfo() async {
     Medicine medicine = await medicineCont.getMedicine(widget.idMedicine);
     setState(() {
-      codeController.text = medicine.code.toString();
+      //codeController.text = medicine.code.toString();
       nameController.text = medicine.name;
       descriptionController.text = medicine.descripcion;
       grupoController.text = medicine.group;

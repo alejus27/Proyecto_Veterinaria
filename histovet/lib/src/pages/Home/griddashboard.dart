@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:histovet/src/pages/appointments/appointment_page.dart';
 import 'package:histovet/src/pages/appointments/consultar_appointment.dart';
-import 'package:histovet/src/pages/clinicalHistory/clinicalhistory_page.dart';
+//import 'package:histovet/src/pages/clinicalHistory/clinicalhistory_page.dart';
 import 'package:histovet/src/pages/clinicalHistory/consultar_histories.dart';
 import 'package:histovet/src/pages/gps/gps_page.dart';
 import 'package:histovet/src/pages/medicine/medicine_page.dart';

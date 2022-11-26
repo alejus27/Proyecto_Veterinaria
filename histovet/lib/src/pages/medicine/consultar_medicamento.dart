@@ -35,6 +35,7 @@ class _ConsultarMedicamentoState extends State<ConsultarMedicamento> {
             const SizedBox(
               height: 5,
             ),
+            /*
             TextField(
               controller: searchController,
               decoration: const InputDecoration(
@@ -61,9 +62,10 @@ class _ConsultarMedicamentoState extends State<ConsultarMedicamento> {
             const SizedBox(
               height: 5,
             ),
+            */
             Container(
-                decoration:
-                    BoxDecoration(border: Border.all(color: Colors.black)),
+                //decoration:
+                    //BoxDecoration(border: Border.all(color: Colors.black)),
                 padding: const EdgeInsets.only(
                   left: 40,
                   top: 20,
@@ -128,7 +130,7 @@ class _ConsultarMedicamentoState extends State<ConsultarMedicamento> {
                                         const SizedBox(
                                           height: 5,
                                         ),
-                                        Row(
+                                        /*Row(
                                           children: const [
                                             Text("  Código: ",
                                                 style: TextStyle(
@@ -140,7 +142,7 @@ class _ConsultarMedicamentoState extends State<ConsultarMedicamento> {
                                           children: [
                                             Text("  " + medicine.code),
                                           ],
-                                        ),
+                                        ),*/
                                         const SizedBox(
                                           height: 5,
                                         ),
@@ -162,7 +164,7 @@ class _ConsultarMedicamentoState extends State<ConsultarMedicamento> {
                                         ),
                                         Row(
                                           children: const [
-                                            Text("  Precio:",
+                                            Text("  Precio unitario:",
                                                 style: TextStyle(
                                                     fontWeight:
                                                         FontWeight.bold)),
@@ -177,7 +179,7 @@ class _ConsultarMedicamentoState extends State<ConsultarMedicamento> {
                                         const SizedBox(
                                           height: 5,
                                         ),
-                                        Row(
+                                        /*Row(
                                           children: const [
                                             Text("  Fecha de vencimiento: ",
                                                 style: TextStyle(
@@ -189,7 +191,7 @@ class _ConsultarMedicamentoState extends State<ConsultarMedicamento> {
                                           children: [
                                             Text("  " + medicine.fechaVen),
                                           ],
-                                        ),
+                                        ),*/
                                         const SizedBox(
                                           height: 5,
                                         ),

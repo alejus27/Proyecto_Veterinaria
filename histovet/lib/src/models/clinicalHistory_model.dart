@@ -1,76 +1,54 @@
 // Clase encargada del modelo de historia clínica
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class ClinicalHistory {
   final String? id;
-  final int numberCH;
-  final String date;
-  final String time;
-  final String docOwner;
-  final String nameOwner;
-  final String contactOwner;
-  final String addressOwner;
-  final String emailAddressOwner;
-  final String name;
-  final String specie;
-  final String breed;
-  final String sex;
-  final String color;
-  final double weight;
-  final String origin;
-  final String diet;
-  final String previousIllnesses;
-  final String previousSurgeries;
-  final String sterilized;
-  final String nAnimalBirths;
-  final String vaccinationSchedule;
-  final String lastDeworming;
-  final String recentTreatments;
-  final String animalBehavior;
-  final String reasonForConsultation;
-  final String physicalCondition;
-  final double temperature;
-  final double heartFrequency;
-  final double respiratoryFrequency;
-  final double tllc;
-  final double pulse;
-  final double trcp;
-  final double percentageDehydration;
-  final String mucous;
+  final String birth_number;
+  final String clinic;
+  final String consultation_reason;
+  final Timestamp date;
+  final String deworming;
+  final String diet_type;
+  final String digestive_system;
+  final String nervous_system;
+  final String observations;
+  final String owner_name;
+  final String paraclinical_tests;
+  final String parasites_control;
+  final String pet_id;
+  final String pet_name;
+  final String presumptive_diagnosis;
+  final String previous_illnesses;
+  final String previous_surgeries;
+  final String previous_treatments;
+  final String reproductive_status;
+  final String respiratory_system;
+  final String therapeutic_plan;
+  final String vaccination;
 
   ClinicalHistory(
       this.id,
-      this.numberCH,
+      this.birth_number,
+      this.clinic,
+      this.consultation_reason,
       this.date,
-      this.time,
-      this.docOwner,
-      this.nameOwner,
-      this.contactOwner,
-      this.addressOwner,
-      this.emailAddressOwner,
-      this.name,
-      this.specie,
-      this.breed,
-      this.sex,
-      this.color,
-      this.weight,
-      this.origin,
-      this.diet,
-      this.previousSurgeries,
-      this.previousIllnesses,
-      this.sterilized,
-      this.nAnimalBirths,
-      this.vaccinationSchedule,
-      this.lastDeworming,
-      this.recentTreatments,
-      this.animalBehavior,
-      this.reasonForConsultation,
-      this.physicalCondition,
-      this.temperature,
-      this.heartFrequency,
-      this.respiratoryFrequency,
-      this.tllc,
-      this.pulse,
-      this.trcp,
-      this.percentageDehydration,
-      this.mucous);
+      this.deworming,
+      this.diet_type,
+      this.digestive_system,
+      this.nervous_system,
+      this.observations,
+      this.owner_name,
+      this.paraclinical_tests,
+      this.parasites_control,
+      this.pet_id,
+      this.pet_name,
+      this.presumptive_diagnosis,
+      this.previous_illnesses,
+      this.previous_surgeries,
+      this.previous_treatments,
+      this.reproductive_status,
+      this.respiratory_system,
+      this.therapeutic_plan,
+      this.vaccination);
 }

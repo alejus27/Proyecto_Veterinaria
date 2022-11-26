@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:histovet/src/pages/Login/signin_screen.dart';
 import 'package:histovet/src/pages/appointments/appointment_page.dart';
 import 'package:histovet/src/pages/appointments/consultar_appointment.dart';
-import 'package:histovet/src/pages/clinicalHistory/clinicalhistory_page.dart';
+//import 'package:histovet/src/pages/clinicalHistory/clinicalhistory_page.dart';
 import 'package:histovet/src/pages/clinicalHistory/consultar_histories.dart';
 import 'package:histovet/src/pages/gps/gps_page.dart';
 import 'package:histovet/src/pages/medicine/medicine_page.dart';
@@ -50,11 +50,12 @@ class _MenuLateralState extends State<MenuLateral> {
               )),
           Column(children: [
             ListTile(
-              leading: const Icon(Icons.photo_camera_front_outlined,color: Colors.green),
+              leading: const Icon(Icons.photo_camera_front_outlined,
+                  color: Colors.green),
               title: Text(username.toString()),
             ),
             ListTile(
-              leading: const Icon(Icons.door_back_door,color: Colors.red),
+              leading: const Icon(Icons.door_back_door, color: Colors.red),
               title: const Text("Cerrar sesión"),
               onTap: () {
                 messageOut();
@@ -69,14 +70,15 @@ class _MenuLateralState extends State<MenuLateral> {
               },
             ),
             ListTile(
-              leading: const Icon(Icons.pets,color: Colors.amber),
+              leading: const Icon(Icons.pets, color: Colors.amber),
               title: const Text("Administrar Mascotas"),
               onTap: () {
                 Navigator.pushNamed(context, PetsPage.id);
               },
             ),
             ListTile(
-              leading: const Icon(Icons.content_paste_search_rounded,color: Colors.amber),
+              leading: const Icon(Icons.content_paste_search_rounded,
+                  color: Colors.amber),
               title: const Text("Mis Mascotas"),
               onTap: () {
                 Navigator.pushNamed(context, ConsultarMascota.id);
@@ -84,20 +86,28 @@ class _MenuLateralState extends State<MenuLateral> {
             ),
             Container(height: 1, color: Colors.grey),
             ListTile(
-              leading: const Icon(Icons.shopping_cart, color: Colors.blueAccent),
+              leading:
+                  const Icon(Icons.shopping_cart, color: Colors.blueAccent),
               title: const Text("Comprar Medicamentos"),
               onTap: () {
                 Navigator.pushNamed(context, ConsultarMedicamento.id);
               },
             ),
             ListTile(
-                leading: const Icon(Icons.point_of_sale_outlined,color: Colors.blueAccent),
-                title: const Text("Mis Compras"),
-                onTap: () {
-                  Navigator.pushNamed(context, SalesPage.id);
-                },
+              leading: const Icon(Icons.point_of_sale_outlined,
+                  color: Colors.blueAccent),
+              title: const Text("Mis Compras"),
+              onTap: () {
+                Navigator.pushNamed(context, SalesPage.id);
+              },
             ),
-            
+            ListTile(
+              leading: const Icon(Icons.content_paste_search_rounded),
+              title: const Text("Buscar Historias Clínicas"),
+              onTap: () {
+                Navigator.pushNamed(context, ConsultarHistories.id);
+              },
+            ),
 
             /*
 
@@ -159,7 +169,7 @@ class _MenuLateralState extends State<MenuLateral> {
             */
             Container(height: 1, color: Colors.grey),
             ListTile(
-              leading: const Icon(Icons.map,color: Colors.brown),
+              leading: const Icon(Icons.map, color: Colors.brown),
               title: const Text("Mapa"),
               onTap: () {
                 Navigator.pushNamed(context, GpsPage.id);

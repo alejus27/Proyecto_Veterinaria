@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:histovet/src/controller/clinicalHistory_controller.dart';
 import 'package:histovet/src/pages/clinicalHistory/clinical_view.dart';
-import '../../models/clinicalhistory_model.dart';
+import '../../models/clinicalHistory_model.dart';
 
-import '../../controller/clinicalhistory_controller.dart';
 import '../../controller/auth_controller.dart';
 
 // Clases encargadas de la vista que le permite al usuario
 // buscar historias clínicas de una mascota
 class ConsultarHistories extends StatefulWidget {
   static String id = "consultar_historias";
-  const ConsultarHistories({Key? key}) : super(key: key);
+
+  final String idHistory;
+
+  const ConsultarHistories(this.idHistory, {Key? key}) : super(key: key);
 
   @override
   State<ConsultarHistories> createState() => _ConsultarHistoriesState();
@@ -31,7 +34,14 @@ class _ConsultarHistoriesState extends State<ConsultarHistories> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Consultar historias clínicas"),
+        title: const Text("Historias clínicas"),
+         actions: [
+              IconButton(
+                  onPressed: () {
+                    setState(() {});
+                  },
+                  icon: const Icon(Icons.refresh))
+            ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(17.0),
@@ -40,7 +50,7 @@ class _ConsultarHistoriesState extends State<ConsultarHistories> {
             const SizedBox(
               height: 5,
             ),
-            TextField(
+            /*TextField(
               controller: searchController,
               maxLength: 10,
               keyboardType: TextInputType.name,
@@ -68,12 +78,13 @@ class _ConsultarHistoriesState extends State<ConsultarHistories> {
             const SizedBox(
               height: 5,
             ),
+            */
             Container(
                 decoration:
                     BoxDecoration(border: Border.all(color: Colors.black)),
                 height: 590,
                 child: FutureBuilder(
-                    future: history.searchHistories(searchController.text),
+                    future: history.searchClinicalHistories(widget.idHistory),
                     builder:
                         (BuildContext context, AsyncSnapshot<List> snapshot) {
                       if (snapshot.hasError) {
@@ -99,6 +110,10 @@ class _ConsultarHistoriesState extends State<ConsultarHistories> {
                                         const SizedBox(
                                           height: 10,
                                         ),
+                                        Image.asset(
+                                          "assets/img/medicine.png",
+                                          height: 100,
+                                        ),
                                         ElevatedButton.icon(
                                             onPressed: () {
                                               Navigator.push(
@@ -115,20 +130,6 @@ class _ConsultarHistoriesState extends State<ConsultarHistories> {
                                         const SizedBox(
                                           height: 5,
                                         ),
-                                        Row(
-                                          children: const [
-                                            Text("  Código: ",
-                                                style: TextStyle(
-                                                    fontWeight:
-                                                        FontWeight.bold)),
-                                          ],
-                                        ),
-                                        Row(
-                                          children: [
-                                            Text(
-                                                "  " + pet.numberCH.toString()),
-                                          ],
-                                        ),
                                         const SizedBox(
                                           height: 5,
                                         ),
@@ -142,25 +143,10 @@ class _ConsultarHistoriesState extends State<ConsultarHistories> {
                                         ),
                                         Row(
                                           children: [
-                                            Text("  " + pet.name),
+                                            Text("  " + pet.pet_name),
                                           ],
                                         ),
-                                        const SizedBox(
-                                          height: 5,
-                                        ),
-                                        Row(
-                                          children: const [
-                                            Text("  Nombre dueño:",
-                                                style: TextStyle(
-                                                    fontWeight:
-                                                        FontWeight.bold)),
-                                          ],
-                                        ),
-                                        Row(
-                                          children: [
-                                            Text("  " + pet.nameOwner),
-                                          ],
-                                        ),
+
                                         const SizedBox(
                                           height: 5,
                                         ),
@@ -174,27 +160,8 @@ class _ConsultarHistoriesState extends State<ConsultarHistories> {
                                         ),
                                         Row(
                                           children: [
-                                            Text("  " + pet.date),
+                                            Text("  " + pet.observations),
                                           ],
-                                        ),
-                                        const SizedBox(
-                                          height: 5,
-                                        ),
-                                        Row(
-                                          children: const [
-                                            Text("  Sexo: ",
-                                                style: TextStyle(
-                                                    fontWeight:
-                                                        FontWeight.bold)),
-                                          ],
-                                        ),
-                                        Row(
-                                          children: [
-                                            Text("  " + pet.sex),
-                                          ],
-                                        ),
-                                        const SizedBox(
-                                          height: 16,
                                         ),
                                       ],
                                     ),

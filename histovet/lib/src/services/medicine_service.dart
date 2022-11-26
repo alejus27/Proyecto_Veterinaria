@@ -9,7 +9,7 @@ class MedicineService {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final databaseRef = FirebaseDatabase.instance.ref();
 
-  Medicine medicine = Medicine("", "", "", "", "", 0.0, "");
+  Medicine medicine = Medicine("", "", "", "", 0, "");
 
   // Permite obtener una medicina de la base de datos de Firebase
   // Retorna la medicina que se la haya especificado
@@ -18,7 +18,6 @@ class MedicineService {
         await FirebaseFirestore.instance.collection('medicine').doc(id).get();
     Medicine medicine = Medicine(
         snapshot["id"],
-        snapshot["code"],
         snapshot["name"],
         snapshot["description"],
         snapshot["group"],
@@ -33,9 +32,10 @@ class MedicineService {
   Future<List<Medicine>> searchMedicine(String name) async {
     List<Medicine> medicines = [];
     try {
-      final collection = FirebaseFirestore.instance
-          .collection('medicine')
-          .where("name", isEqualTo: name);
+      //final collection = FirebaseFirestore.instance.collection('medicine') .where("name", isEqualTo: name);
+
+      final collection = FirebaseFirestore.instance.collection('medicine');
+
       collection.snapshots().listen((querySnapshot) {
         for (var doc in querySnapshot.docs) {
           Map<String, dynamic> data = doc.data();
@@ -43,7 +43,7 @@ class MedicineService {
           // print(doc.data());
           Medicine newMedicine = Medicine(
               data["id"],
-              data["code"],
+      
               data["name"],
               data["description"],
               data["group"],
@@ -70,7 +70,6 @@ class MedicineService {
     try {
       await medicineDoc.set({
         "id": medicineDoc.id,
-        "code": medicine.code,
         "name": medicine.name,
         "description": medicine.descripcion,
         "group": medicine.group,
@@ -92,7 +91,6 @@ class MedicineService {
           .doc(medicine.id)
           .set({
         "id": medicine.id,
-        "code": medicine.code,
         "name": medicine.name,
         "description": medicine.descripcion,
         "group": medicine.group,
@@ -128,7 +126,7 @@ class MedicineService {
           //print(doc.data());
           Medicine newMedicine = Medicine(
               data["id"],
-              data["code"],
+
               data["name"],
               data["description"],
               data["group"],

@@ -21,14 +21,12 @@ class _ViewPet extends State<ViewPet> {
 
   TextEditingController codeController = TextEditingController();
   TextEditingController nameController = TextEditingController();
-  TextEditingController nownerController = TextEditingController();
-  TextEditingController contactController = TextEditingController();
-  TextEditingController docController = TextEditingController();
+  TextEditingController neuteringController = TextEditingController();
   TextEditingController ageController = TextEditingController();
   TextEditingController breedController = TextEditingController();
   TextEditingController subspeciesController = TextEditingController();
   TextEditingController colorController = TextEditingController();
-  TextEditingController sexController = TextEditingController();
+  TextEditingController genderController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -77,45 +75,6 @@ class _ViewPet extends State<ViewPet> {
       Container(
         margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
         child: FormBuilderTextField(
-          controller: nownerController,
-          enabled: false,
-          name: "nameOwner",
-          decoration: const InputDecoration(
-              labelText: "Nombre Dueño",
-              prefixIcon: Icon(Icons.pets),
-              border: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.teal))),
-        ),
-      ),
-      Container(
-        margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
-        child: FormBuilderTextField(
-          controller: contactController,
-          enabled: false,
-          name: "contactOwner",
-          decoration: const InputDecoration(
-              labelText: "contacto Dueño",
-              prefixIcon: Icon(Icons.pets),
-              border: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.teal))),
-        ),
-      ),
-      Container(
-        margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
-        child: FormBuilderTextField(
-          controller: docController,
-          enabled: false,
-          name: "docOwner",
-          decoration: const InputDecoration(
-              labelText: "Documento Dueño",
-              prefixIcon: Icon(Icons.pets),
-              border: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.teal))),
-        ),
-      ),
-      Container(
-        margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
-        child: FormBuilderTextField(
           controller: ageController,
           enabled: false,
           name: "age",
@@ -143,9 +102,9 @@ class _ViewPet extends State<ViewPet> {
       Container(
         margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
         child: FormBuilderTextField(
-          controller: sexController,
+          controller: genderController,
           enabled: false,
-          name: "sex",
+          name: "gender",
           decoration: const InputDecoration(
               labelText: "Sexo",
               prefixIcon: Icon(Icons.pets),
@@ -161,6 +120,19 @@ class _ViewPet extends State<ViewPet> {
           name: "subspecies",
           decoration: const InputDecoration(
               labelText: "Subespecie",
+              prefixIcon: Icon(Icons.pets),
+              border: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.teal))),
+        ),
+      ),
+      Container(
+        margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+        child: FormBuilderTextField(
+          controller: neuteringController,
+          enabled: false,
+          name: "neutering",
+          decoration: const InputDecoration(
+              labelText: "Esterilizado",
               prefixIcon: Icon(Icons.pets),
               border: OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.teal))),
@@ -194,14 +166,12 @@ class _ViewPet extends State<ViewPet> {
     setState(() {
       //codeController.text = pet.code;
       nameController.text = pet.name;
-      nownerController.text = pet.nameOwner;
-      contactController.text = pet.contactOwner;
-      docController.text = pet.documentOwner;
+      neuteringController.text = pet.neutering;
       ageController.text = pet.age.toString();
       breedController.text = pet.breed;
       subspeciesController.text = pet.specie;
       colorController.text = pet.color;
-      sexController.text = pet.sex;
+      genderController.text = pet.gender;
     });
   }
 }

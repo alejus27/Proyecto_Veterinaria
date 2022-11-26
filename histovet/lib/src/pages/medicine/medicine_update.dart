@@ -197,7 +197,7 @@ class _Updatemedicationtate extends State<UpdateMedicine> {
       final fechaVen = values['fechaVen'];
 
       late Medicine medicine = Medicine(
-          widget.idMedicine, code, name, description, group, precio, fechaVen);
+          widget.idMedicine, name, description, group, precio, fechaVen);
       _messageUpdate(medicine);
     }
   }
@@ -225,7 +225,7 @@ class _Updatemedicationtate extends State<UpdateMedicine> {
     // await _service.getMedicine(widget.idMedicine);
     Medicine medicine = await medicineCont.getMedicine(widget.idMedicine);
     setState(() {
-      codeController.text = medicine.code.toString();
+      //codeController.text = medicine.code.toString();
       nameController.text = medicine.name;
       descriptionController.text = medicine.descripcion;
       grupoController.text = medicine.group;

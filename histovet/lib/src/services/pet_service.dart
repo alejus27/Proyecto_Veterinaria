@@ -10,27 +10,25 @@ class PetService {
   // Permite obtener la mascota que tenga el id recibido de la base de datos de Firebase
   // Retorna la mascota que se la haya especificado
   Future<Pet> getPetBD(String id) async {
-    final snapshot = await _firestore.collection('pet').doc(id).get();
+    final snapshot = await _firestore.collection('pets').doc(id).get();
     Pet pet = Pet(
         snapshot["id"],
-        snapshot["user_id"],
-        //snapshot["code"],
+        snapshot["owner"],
+        snapshot["birthday"],
         snapshot["name"],
-        snapshot["nameOwner"],
-        snapshot["contactOwner"],
-        snapshot["documentOwner"],
+        snapshot["neutering"],
         snapshot["age"],
         snapshot["breed"],
         snapshot["specie"],
         snapshot["color"],
-        snapshot["sex"]);
+        snapshot["gender"]);
     return pet;
   }
 
   // Permite agregar una mascota a la base de datos de Firebase
   // Retorna true, si se pudo agregar la mascota a la base de datos
   Future<bool> addPetBD(Pet pet) async {
-    final DocumentReference petDoc = _firestore.collection("pet").doc();
+    final DocumentReference petDoc = _firestore.collection("pets").doc();
 
     final FirebaseAuth auth = FirebaseAuth.instance;
     final User? user = auth.currentUser;
@@ -38,17 +36,15 @@ class PetService {
     try {
       await petDoc.set({
         "id": petDoc.id,
-        "user_id": user?.uid,
-        //"code": pet.code,
+        "owner": user?.uid,
+        "birthday": pet.birthday,
         "name": pet.name,
-        "nameOwner": pet.nameOwner,
-        "contactOwner": pet.contactOwner,
-        "documentOwner": pet.documentOwner,
+        "neutering": pet.neutering,
         "age": pet.age,
         "breed": pet.breed,
         "specie": pet.specie,
         "color": pet.color,
-        "sex": pet.sex
+        "gender": pet.gender
       });
       return true;
     } catch (e) {
@@ -69,25 +65,23 @@ class PetService {
 
       var collection;
       collection = FirebaseFirestore.instance
-          .collection('pet')
-          .where('user_id', isEqualTo: uid);
+          .collection('pets')
+          .where('owner', isEqualTo: uid);
 
       collection.snapshots().listen((querySnapshot) {
         for (var doc in querySnapshot.docs) {
           Map<String, dynamic> data = doc.data();
           Pet newMedicine = Pet(
               data["id"],
-              data["user_id"],
-              //data["code"],
+              data["owner"],
+              data["birthday"],
               data["name"],
-              data["nameOwner"],
-              data["contactOwner"],
-              data["documentOwner"],
+              data["neutering"],
               data["age"],
               data["breed"],
               data["specie"],
               data["color"],
-              data["sex"]);
+              data["gender"]);
           mascotas.add(newMedicine);
         }
       });
@@ -101,19 +95,17 @@ class PetService {
   // Retorna true, si se pudo actualizar la mascota en la base de datos
   Future<bool> updatePetBD(Pet pet) async {
     try {
-      await _firestore.collection("pet").doc(pet.id).set({
+      await _firestore.collection("pets").doc(pet.id).set({
         "id": pet.id,
-        "user_id": pet.user_id,
-        //"code": pet.code,
+        "owner": pet.owner,
+        "birthday": pet.birthday,
         "name": pet.name,
-        "nameOwner": pet.nameOwner,
-        "contactOwner": pet.contactOwner,
-        "documentOwner": pet.documentOwner,
+        "neutering": pet.neutering,
         "age": pet.age,
         "breed": pet.breed,
         "specie": pet.specie,
         "color": pet.color,
-        "sex": pet.sex
+        "gender": pet.gender
       }, SetOptions(merge: true));
       return true;
     } catch (e) {
@@ -125,7 +117,7 @@ class PetService {
   // Retorna true, si se pudo eliminar la mascota de la base de datos
   Future<bool> deletePetBD(String id) async {
     try {
-      await _firestore.collection("pet").doc(id).delete();
+      await _firestore.collection("pets").doc(id).delete();
       return true;
     } catch (e) {
       return false;
@@ -146,25 +138,23 @@ class PetService {
 
       var collection;
       collection = FirebaseFirestore.instance
-          .collection('pet')
-          .where('user_id', isEqualTo: uid);
+          .collection('pets')
+          .where('owner', isEqualTo: uid);
 
       collection.snapshots().listen((querySnapshot) {
         for (var doc in querySnapshot.docs) {
           Map<String, dynamic> data = doc.data();
           Pet newPet = Pet(
               data["id"],
-              data["user_id"],
-              //data["code"],
+              data["owner"],
+              data["birthday"],
               data["name"],
-              data["nameOwner"],
-              data["contactOwner"],
-              data["documentOwner"],
+              data["neutering"],
               data["age"],
               data["breed"],
               data["specie"],
               data["color"],
-              data["sex"]);
+              data["gender"]);
           mascotas.add(newPet);
         }
       });

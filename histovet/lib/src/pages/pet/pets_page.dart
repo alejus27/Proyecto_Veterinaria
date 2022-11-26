@@ -73,7 +73,7 @@ class _PetsPageState extends State<PetsPage> {
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) => UpdatePet(
-                                                  specie.id.toString(),specie.user_id.toString())));
+                                                  specie.id.toString(),specie.owner.toString())));
                                     },
                                     leading: const Icon(
                                       FontAwesomeIcons.paw,

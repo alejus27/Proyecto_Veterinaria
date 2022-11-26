@@ -107,7 +107,7 @@ class _AddSaleState extends State<AddSale> {
                           prefixIcon: Icon(Icons.article_outlined),
                           border: OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.teal))),
-                      hint: const Text("Seleccionar forma de pago"),
+                      //hint: const Text("Seleccionar forma de pago"),
                       validator: FormBuilderValidators.required(context,
                           errorText: "Seleccione una forma de pago"),
                       items: [
@@ -257,12 +257,12 @@ class _AddSaleState extends State<AddSale> {
     if (respuesta) {
       Navigator.pushNamed(context, '/home').then((_) => setState(() {}));
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-        content: Text("compra exitosa..."),
+        content: Text("Compra exitosa..."),
         backgroundColor: Colors.green,
       ));
     } else {
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-        content: Text("error en la compra, Intente de nuevo..."),
+        content: Text("Error en la compra, Intente de nuevo..."),
         backgroundColor: Color.fromARGB(255, 119, 4, 25),
       ));
     }

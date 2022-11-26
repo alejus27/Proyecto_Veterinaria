@@ -89,10 +89,6 @@ class _MedicinePageState extends State<MedicinePage> {
                                         medicine.name,
                                         style: txtStyle,
                                       ),
-                                      subtitle: Text(
-                                        medicine.code,
-                                        style: txtStyle.copyWith(fontSize: 17),
-                                      ),
                                       trailing: IconButton(
                                         icon: const Icon(Icons.delete,
                                             color: Colors.black),

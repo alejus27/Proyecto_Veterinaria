@@ -1,8 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:firebase_database/firebase_database.dart';
 
-import '../models/clinicalhistory_model.dart';
+import '../models/clinicalHistory_model.dart';
 
 // Clase encargada de realizar las operaciones con historias clínicas en la base de datos de Firebase
 class ClinicalHistoryService {
@@ -12,156 +13,46 @@ class ClinicalHistoryService {
   // Permite obtener una historia clinica de la base de datos de Firebase
   // Retorna la historia clinica que se la haya especificado
   Future<ClinicalHistory> getClinicalHistory(String id) async {
-    final snapshot = await FirebaseFirestore.instance
-        .collection('clinicalHistory')
-        .doc(id)
-        .get();
+
+     final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
+    final snapshot = await _firestore.collection('clinical_history').doc(id).get();
+
     ClinicalHistory clinicalHistory = ClinicalHistory(
         snapshot["id"],
-        snapshot["numberCH"],
+        snapshot["birth_number"],
+        snapshot["clinic"],
+        snapshot["consultation_reason"],
         snapshot["date"],
-        snapshot["time"],
-        snapshot["docOwner"],
-        snapshot["nameOwner"],
-        snapshot["contactOwner"],
-        snapshot["addressOwner"],
-        snapshot["emailAddressOwner"],
-        snapshot["name"],
-        snapshot["specie"],
-        snapshot["breed"],
-        snapshot["sex"],
-        snapshot["color"],
-        snapshot["weight"],
-        snapshot["origin"],
-        snapshot["diet"],
-        snapshot["previousIllnesses"],
-        snapshot["previousSurgeries"],
-        snapshot["sterilized"],
-        snapshot["nAnimalBirths"],
-        snapshot["vaccinationSchedule"],
-        snapshot["lastDeworming"],
-        snapshot["recentTreatments"],
-        snapshot["animalBehavior"],
-        snapshot["reasonForConsultation"],
-        snapshot["physicalCondition"],
-        snapshot["temperature"],
-        snapshot["heartFrequency"],
-        snapshot["respiratoryFrequency"],
-        snapshot["tllc"],
-        snapshot["pulse"],
-        snapshot["trcp"],
-        snapshot["percentageDehydration"],
-        snapshot["mucous"]);
+        snapshot["deworming"],
+        snapshot["diet_type"],
+        snapshot["digestive_system"],
+        snapshot["nervous_system"],
+        snapshot["observations"],
+        snapshot["owner_name"],
+        snapshot["paraclinical_tests"],
+        snapshot["parasites_control"],
+        snapshot["pet_id"],
+        snapshot["pet_name"],
+        snapshot["presumptive_diagnosis"],
+        snapshot["previous_illnesses"],
+        snapshot["previous_surgeries"],
+        snapshot["previous_treatments"],
+        snapshot["reproductive_status"],
+        snapshot["respiratory_system"],
+        snapshot["therapeutic_plan"],
+        snapshot["vaccination"]);
     return clinicalHistory;
   }
 
   CollectionReference clinicalHistoryAll =
-      FirebaseFirestore.instance.collection("clinicalHistory");
-
-  // Permite agregar una historia clinicas a la base de datos de Firebase
-  // Retorna true, si se pudo agregar la historia clinica a la base de datos
-  Future<bool> addClinicalHistory(ClinicalHistory clinicalHistory) async {
-    final DocumentReference clinicalHistoryDoc =
-        _firestore.collection("clinicalHistory").doc();
-    try {
-      await clinicalHistoryDoc.set({
-        "id": clinicalHistoryDoc.id,
-        "numberCH": clinicalHistory.numberCH,
-        "date": clinicalHistory.date,
-        "time": clinicalHistory.time,
-        "docOwner": clinicalHistory.docOwner,
-        "nameOwner": clinicalHistory.nameOwner,
-        "contactOwner": clinicalHistory.contactOwner,
-        "addressOwner": clinicalHistory.addressOwner,
-        "emailAddressOwner": clinicalHistory.emailAddressOwner,
-        "name": clinicalHistory.name,
-        "specie": clinicalHistory.specie,
-        "breed": clinicalHistory.breed,
-        "sex": clinicalHistory.sex,
-        "color": clinicalHistory.color,
-        "weight": clinicalHistory.weight,
-        "origin": clinicalHistory.origin,
-        "diet": clinicalHistory.diet,
-        "previousIllnesses": clinicalHistory.previousIllnesses,
-        "previousSurgeries": clinicalHistory.previousSurgeries,
-        "sterilized": clinicalHistory.sterilized,
-        "nAnimalBirths": clinicalHistory.nAnimalBirths,
-        "vaccinationSchedule": clinicalHistory.vaccinationSchedule,
-        "lastDeworming": clinicalHistory.lastDeworming,
-        "recentTreatments": clinicalHistory.recentTreatments,
-        "animalBehavior": clinicalHistory.animalBehavior,
-        "reasonForConsultation": clinicalHistory.reasonForConsultation,
-        "physicalCondition": clinicalHistory.physicalCondition,
-        "temperature": clinicalHistory.temperature,
-        "heartFrequency": clinicalHistory.heartFrequency,
-        "respiratoryFrequency": clinicalHistory.respiratoryFrequency,
-        "tllc": clinicalHistory.tllc,
-        "pulse": clinicalHistory.pulse,
-        "trcp": clinicalHistory.trcp,
-        "percentageDehydration": clinicalHistory.percentageDehydration,
-        "mucous": clinicalHistory.mucous
-      });
-      return true;
-    } catch (e) {
-      return false;
-    }
-  }
-
-  // Permite actualizar una historia clinica en la base de datos de Firebase
-  // Retorna true, si se pudo actualizar la historia clinica en la base de datos
-  Future<bool> updateClinicalHistory(ClinicalHistory ch) async {
-    try {
-      await FirebaseFirestore.instance
-          .collection("clinicalHistory")
-          .doc(ch.id)
-          .set({
-        "id": ch.id,
-        "numberCH": ch.numberCH,
-        "date": ch.date,
-        "time": ch.time,
-        "docOwner": ch.docOwner,
-        "nameOwner": ch.nameOwner,
-        "contactOwner": ch.contactOwner,
-        "addressOwner": ch.addressOwner,
-        "emailAddressOwner": ch.emailAddressOwner,
-        "name": ch.name,
-        "specie": ch.specie,
-        "breed": ch.breed,
-        "sex": ch.sex,
-        "color": ch.color,
-        "weight": ch.weight,
-        "origin": ch.origin,
-        "diet": ch.diet,
-        "previousIllnesses": ch.previousIllnesses,
-        "previousSurgeries": ch.previousSurgeries,
-        "sterilized": ch.sterilized,
-        "nAnimalBirths": ch.nAnimalBirths,
-        "vaccinationSchedule": ch.vaccinationSchedule,
-        "lastDeworming": ch.lastDeworming,
-        "recentTreatments": ch.recentTreatments,
-        "animalBehavior": ch.animalBehavior,
-        "reasonForConsultation": ch.reasonForConsultation,
-        "physicalCondition": ch.physicalCondition,
-        "temperature": ch.temperature,
-        "heartFrequency": ch.heartFrequency,
-        "respiratoryFrequency": ch.respiratoryFrequency,
-        "tllc": ch.tllc,
-        "pulse": ch.pulse,
-        "trcp": ch.trcp,
-        "percentageDehydration": ch.percentageDehydration,
-        "mucous": ch.mucous
-      }, SetOptions(merge: true));
-      return true;
-    } catch (e) {
-      return false;
-    }
-  }
+      FirebaseFirestore.instance.collection("clinical_history");
 
   // Permite eliminar una historia clinica indicada de la base de datos de Firebase
   // Retorna true, si se pudo eliminar la historia clinica de la base de datos
-  Future<bool> deleteHistoryBD(id) async {
+  Future<bool> deleteClinicalHistory(id) async {
     try {
-      await _firestore.collection("clinicalHistory").doc(id).delete();
+      await _firestore.collection("clinical_history").doc(id).delete();
       return true;
     } catch (e) {
       return false;
@@ -175,7 +66,7 @@ class ClinicalHistoryService {
 
     try {
       final collection =
-          FirebaseFirestore.instance.collection('clinicalHistory');
+          FirebaseFirestore.instance.collection('clinical_history');
 
       collection.snapshots().listen((querySnapshot) {
         for (var doc in querySnapshot.docs) {
@@ -183,40 +74,28 @@ class ClinicalHistoryService {
           //print(doc.data());
           ClinicalHistory newCinicalHistory = ClinicalHistory(
               data["id"],
-              data["numberCH"],
+              data["birth_number"],
+              data["clinic"],
+              data["consultation_reason"],
               data["date"],
-              data["time"],
-              data["docOwner"],
-              data["nameOwner"],
-              data["contactOwner"],
-              data["addressOwner"],
-              data["emailAddressOwner"],
-              data["name"],
-              data["specie"],
-              data["breed"],
-              data["sex"],
-              data["color"],
-              data["weight"],
-              data["origin"],
-              data["diet"],
-              data["previousIllnesses"],
-              data["previousSurgeries"],
-              data["sterilized"],
-              data["nAnimalBirths"],
-              data["vaccinationSchedule"],
-              data["lastDeworming"],
-              data["recentTreatments"],
-              data["animalBehavior"],
-              data["reasonForConsultation"],
-              data["physicalCondition"],
-              data["temperature"],
-              data["heartFrequency"],
-              data["respiratoryFrequency"],
-              data["tllc"],
-              data["pulse"],
-              data["trcp"],
-              data["percentageDehydration"],
-              data["mucous"]);
+              data["deworming"],
+              data["diet_type"],
+              data["digestive_system"],
+              data["nervous_system"],
+              data["observations"],
+              data["owner_name"],
+              data["paraclinical_tests"],
+              data["parasites_control"],
+              data["pet_id"],
+              data["pet_name"],
+              data["presumptive_diagnosis"],
+              data["previous_illnesses"],
+              data["previous_surgeries"],
+              data["previous_treatments"],
+              data["reproductive_status"],
+              data["respiratory_system"],
+              data["therapeutic_plan"],
+              data["vaccination"]);
           clinicalHistories.add(newCinicalHistory);
         }
       });
@@ -228,51 +107,41 @@ class ClinicalHistoryService {
 
   // Permite obtener todas las historias clinicas que coincidan con el nombre recibido en Firebase
   // Retorna una lista con las historias clinicas que haya encontrado
-  Future<List<ClinicalHistory>> searchHistories(String name) async {
+  Future<List<ClinicalHistory>> searchClinicalHistories(String id) async {
     List<ClinicalHistory> histories = [];
+
     try {
-      final collection = FirebaseFirestore.instance
-          .collection('clinicalHistory')
-          .where("name", isEqualTo: name);
+      var collection;
+      collection = FirebaseFirestore.instance.collection('clinical_history').where('pet_id', isEqualTo: id);
+
       collection.snapshots().listen((querySnapshot) {
         for (var doc in querySnapshot.docs) {
           Map<String, dynamic> data = doc.data();
           ClinicalHistory newMedicine = ClinicalHistory(
               data["id"],
-              data["numberCH"],
+              data["birth_number"],
+              data["clinic"],
+              data["consultation_reason"],
               data["date"],
-              data["time"],
-              data["docOwner"],
-              data["nameOwner"],
-              data["contactOwner"],
-              data["addressOwner"],
-              data["emailAddressOwner"],
-              data["name"],
-              data["specie"],
-              data["breed"],
-              data["sex"],
-              data["color"],
-              data["weight"],
-              data["origin"],
-              data["diet"],
-              data["previousIllnesses"],
-              data["previousSurgeries"],
-              data["sterilized"],
-              data["nAnimalBirths"],
-              data["vaccinationSchedule"],
-              data["lastDeworming"],
-              data["recentTreatments"],
-              data["animalBehavior"],
-              data["reasonForConsultation"],
-              data["physicalCondition"],
-              data["temperature"],
-              data["heartFrequency"],
-              data["respiratoryFrequency"],
-              data["tllc"],
-              data["pulse"],
-              data["trcp"],
-              data["percentageDehydration"],
-              data["mucous"]);
+              data["deworming"],
+              data["diet_type"],
+              data["digestive_system"],
+              data["nervous_system"],
+              data["observations"],
+              data["owner_name"],
+              data["paraclinical_tests"],
+              data["parasites_control"],
+              data["pet_id"],
+              data["pet_name"],
+              data["presumptive_diagnosis"],
+              data["previous_illnesses"],
+              data["previous_surgeries"],
+              data["previous_treatments"],
+              data["reproductive_status"],
+              data["respiratory_system"],
+              data["therapeutic_plan"],
+              data["vaccination"]);
+              
           histories.add(newMedicine);
         }
       });
