@@ -3,7 +3,6 @@
 class Pet {
   final String? id;
   final String? owner;
-  //final String code;
   final String name;
   final int age;
   final String breed;
@@ -12,6 +11,7 @@ class Pet {
   final String gender;
   final String birthday;
   final String neutering;
+  final String clinic;
 
   Pet(
       this.id,
@@ -23,5 +23,6 @@ class Pet {
       this.breed,
       this.specie,
       this.color,
-      this.gender);
+      this.gender,
+      this.clinic);
 }

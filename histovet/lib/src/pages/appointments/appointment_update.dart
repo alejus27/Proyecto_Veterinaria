@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+/*import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:histovet/src/controller/appointment_controller.dart';
@@ -22,7 +22,7 @@ class _UpdateAppointment extends State<UpdateAppointment> {
   final _formState = GlobalKey<FormBuilderState>();
   AppointmentController appointmentCont = AppointmentController();
 
-  TextEditingController codeController = TextEditingController();
+  TextEditingController vet_nameController = TextEditingController();
   TextEditingController ownerNameController = TextEditingController();
   TextEditingController petNameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
@@ -55,8 +55,8 @@ class _UpdateAppointment extends State<UpdateAppointment> {
                   margin:
                       const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
                   child: FormBuilderTextField(
-                    controller: codeController,
-                    name: "code",
+                    controller: vet_nameController,
+                    name: "vet_name",
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     decoration: const InputDecoration(
                         labelText: "Código de la cita médica",
@@ -220,7 +220,7 @@ class _UpdateAppointment extends State<UpdateAppointment> {
   getInfoAppointmentAppointment() async {
     bool validate = _formState.currentState!.saveAndValidate();
     if (validate) {
-      final code = codeController.text;
+      final vet_name = vet_nameController.text;
       final ownerName = ownerNameController.text;
       final petName = petNameController.text;
       final email = emailController.text;
@@ -228,7 +228,7 @@ class _UpdateAppointment extends State<UpdateAppointment> {
       final reason = reasonController.text;
       final fecha = fechaController.text;
 
-      late Appointment appointment = Appointment(widget.idAppointment, code, ownerName, petName, email,
+      late Appointment appointment = Appointment(widget.idAppointment, vet_name, ownerName, petName, email,
           phone, reason, fecha);
           
       messageUpdate(appointment);
@@ -258,7 +258,7 @@ class _UpdateAppointment extends State<UpdateAppointment> {
   void getInfoAppointment() async {
     Appointment appointment = await appointmentCont.getAppointment(widget.idAppointment);
     setState(() {
-      codeController.text = appointment.code;
+      vet_nameController.text = appointment.vet_name;
       ownerNameController.text = appointment.ownerName;
       petNameController.text = appointment.petName;
       emailController.text = appointment.email;
@@ -270,3 +270,4 @@ class _UpdateAppointment extends State<UpdateAppointment> {
     });
   }
 }
+*/

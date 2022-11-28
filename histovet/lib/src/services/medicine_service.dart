@@ -22,7 +22,7 @@ class MedicineService {
         snapshot["description"],
         snapshot["group"],
         snapshot["precio"],
-        snapshot["fechaVen"].toString());
+        snapshot["fechaVen"].toString(),);
     //print(medicine.toString());
     return medicine;
   }
@@ -47,7 +47,7 @@ class MedicineService {
               data["description"],
               data["group"],
               data["precio"],
-              data["fechaVen"].toString());
+              data["fechaVen"].toString(),);
           medicines.add(newMedicine);
         }
       });
@@ -70,7 +70,7 @@ class MedicineService {
       await medicineDoc.set({
         "id": medicineDoc.id,
         "name": medicine.name,
-        "description": medicine.descripcion,
+        "description": medicine.description,
         "group": medicine.group,
         "precio": medicine.precio,
         "fechaVen": medicine.fechaVen
@@ -91,7 +91,7 @@ class MedicineService {
           .set({
         "id": medicine.id,
         "name": medicine.name,
-        "description": medicine.descripcion,
+        "description": medicine.description,
         "group": medicine.group,
         "precio": medicine.precio,
         "fechaVen": medicine.fechaVen
@@ -129,7 +129,7 @@ class MedicineService {
               data["description"],
               data["group"],
               data["precio"],
-              data["fechaVen"].toString());
+              data["fechaVen"].toString(),);
           medicines.add(newMedicine);
         }
       });

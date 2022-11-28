@@ -37,14 +37,19 @@ class _PetsPageState extends State<PetsPage> {
                   icon: const Icon(Icons.refresh))
             ],
           ),
-          drawer: const MenuLateral(),
-          floatingActionButton: FloatingActionButton(
-              child: const Icon(FontAwesomeIcons.plus),
+          //drawer: const MenuLateral(),
+
+          floatingActionButton: FloatingActionButton.extended(
+              icon: const Icon(FontAwesomeIcons.plus),
+              label: const Text('Registrar nueva mascota'),
+   
               elevation: 15.0,
               backgroundColor: Colors.blue,
               onPressed: () {
                 Navigator.pushNamed(context, AddPet.id);
               }),
+
+
           body: FutureBuilder(
               future: petCont.allPets(),
               builder: (BuildContext context, AsyncSnapshot<List> snapshot) {

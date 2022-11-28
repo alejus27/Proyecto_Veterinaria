@@ -53,15 +53,8 @@ class _HomeState extends State<Home> {
                       textAlign: TextAlign.center,
                     ),
                     SizedBox(
-                      height: 25,
+                      height: 50,
                     ),
-                    Text(
-                      "Home",
-                      style: TextStyle(
-                          color: Color(0xffa29aac),
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600),
-                    )
                   ],
                 ),
                 IconButton(

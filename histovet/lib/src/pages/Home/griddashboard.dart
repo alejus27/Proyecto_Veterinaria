@@ -7,7 +7,7 @@ import 'package:histovet/src/pages/gps/gps_page.dart';
 import 'package:histovet/src/pages/medicine/medicine_page.dart';
 import 'package:histovet/src/pages/pet/consultar_mascotas.dart';
 import 'package:histovet/src/pages/sale/sale_page.dart';
-
+import 'package:hexcolor/hexcolor.dart';
 import '../../controller/auth_controller.dart';
 import '../medicine/consultar_medicamento.dart';
 import '../pet/pets_page.dart';
@@ -34,48 +34,64 @@ class _GridDashboardState extends State<GridDashboard> {
           crossAxisSpacing: 18,
           mainAxisSpacing: 18,
           children: [
-
-             
             Container(
               height: 100,
               decoration: BoxDecoration(
-                  color: const Color.fromRGBO(33, 211, 255, 1),
+                  color: HexColor("#335c67"),
                   borderRadius: BorderRadius.circular(10)),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Image.asset(
+                  Text("Mis Mascotas", style: TextStyle(color: Colors.white)),
+                  IconButton(
+                    icon: Image.asset("assets/img/pet.png"),
+                    iconSize: 145,
+                    onPressed: () async {
+                      await Navigator.pushNamed(context, ConsultarMascota.id);
+                    },
+                  ),
+
+                  /*Image.asset(
                     "assets/img/pet.png",
                     height: 120,
                   ),
+                  
                   TextButton(
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all<Color>(
                           const Color.fromRGBO(33, 150, 255, 1)),
                       foregroundColor:
-                          MaterialStateProperty.all<Color>(Colors.black),
+                          MaterialStateProperty.all<Color>(Colors.white),
                     ),
-                    onPressed: () {/*
-                      if (estado) {
-                        Navigator.pushNamed(context, PetsPage.id);
-                      } else {
-                        Navigator.pushNamed(context, ConsultarMascota.id);
-                      }*/
-                       Navigator.pushNamed(context, ConsultarMascota.id);
+                    onPressed: () {
+                 
+                      Navigator.pushNamed(context, ConsultarMascota.id);
                     },
                     child: Text("Mis Mascotas"),
-                  ),
+                    
+                  ),*/
                 ],
               ),
             ),
-
             Container(
               decoration: BoxDecoration(
-                  color: const Color.fromRGBO(33, 211, 255, 1),
+                  color: HexColor("#335c67"),
                   borderRadius: BorderRadius.circular(10)),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
+                  Text("Comprar Medicamento",
+                      style: TextStyle(color: Colors.white)),
+                  IconButton(
+                    icon: Image.asset("assets/img/medicine2.png"),
+                    iconSize: 145,
+                    onPressed: () async {
+                      await Navigator.pushNamed(
+                          context, ConsultarMedicamento.id);
+                    },
+                  ),
+
+                  /*
                   const SizedBox(
                     height: 10,
                   ),
@@ -89,33 +105,32 @@ class _GridDashboardState extends State<GridDashboard> {
                       backgroundColor: MaterialStateProperty.all<Color>(
                           const Color.fromRGBO(33, 150, 255, 1)),
                       foregroundColor:
-                          MaterialStateProperty.all<Color>(Colors.black),
+                          MaterialStateProperty.all<Color>(Colors.white),
                     ),
                     onPressed: () {
-                      /*
-                      if (estado) {
-                        Navigator.pushNamed(context, MedicinePage.id);
-                      } else {
-                        Navigator.pushNamed(context, ConsultarMedicamento.id);
-                      }
-                      */
-
                       Navigator.pushNamed(context, ConsultarMedicamento.id);
                     },
                     child: Text("Comprar Medicamento"),
-                  ),
+                  ),*/
                 ],
               ),
             ),
-            
-            /*
             Container(
               decoration: BoxDecoration(
-                  color: const Color.fromRGBO(33, 211, 255, 1),
+                  color: HexColor("#335c67"),
                   borderRadius: BorderRadius.circular(10)),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
+                  Text("Citas Médicas", style: TextStyle(color: Colors.white)),
+                  IconButton(
+                    icon: Image.asset("assets/img/appointment.png"),
+                    iconSize: 145,
+                    onPressed: () async {
+                      await Navigator.pushNamed(context, AppointmentsPage.id);
+                    },
+                  ),
+                  /*
                   const SizedBox(
                     height: 10,
                   ),
@@ -129,69 +144,39 @@ class _GridDashboardState extends State<GridDashboard> {
                       backgroundColor: MaterialStateProperty.all<Color>(
                           const Color.fromRGBO(33, 150, 255, 1)),
                       foregroundColor:
-                          MaterialStateProperty.all<Color>(Colors.black),
+                          MaterialStateProperty.all<Color>(Colors.white),
                     ),
                     onPressed: () {
+                      /*
                       if (estado) {
                         Navigator.pushNamed(context, AppointmentsPage.id);
                       } else {
                         Navigator.pushNamed(context, ConsultarAppointment.id);
-                      }
+                      }*/
+
+                      Navigator.pushNamed(context, AppointmentsPage.id);
                     },
                     child: Text(estado ? "Citas Médicas" : "Buscar Citas"),
-                  ),
-                ],
-              ),
-            )
-            
-            
-            ,
-            
-
-            
-            Container(
-              decoration: BoxDecoration(
-                  color: const Color.fromRGBO(33, 211, 255, 1),
-                  borderRadius: BorderRadius.circular(10)),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Image.asset(
-                    "assets/img/history.png",
-                    height: 110,
-                    scale: 5,
-                  ),
-                  TextButton(
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all<Color>(
-                          const Color.fromRGBO(33, 150, 255, 1)),
-                      foregroundColor:
-                          MaterialStateProperty.all<Color>(Colors.black),
-                    ),
-                    onPressed: () {
-                      if (estado) {
-                        Navigator.pushNamed(context, HistoryPage.id);
-                      } else {
-                        Navigator.pushNamed(context, ConsultarHistories.id);
-                      }
-                    },
-                    child: Text(estado
-                        ? "Historias Clínicas"
-                        : "Buscar Historia Clínica"),
-                  ),
+                  ),*/
                 ],
               ),
             ),
             Container(
               decoration: BoxDecoration(
-                  color: const Color.fromRGBO(33, 211, 255, 1),
+                  color: HexColor("#335c67"),
                   borderRadius: BorderRadius.circular(10)),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
+                  Text("Mapas", style: TextStyle(color: Colors.white)),
+                  IconButton(
+                    icon: Image.asset("assets/img/maps.png"),
+                    iconSize: 145,
+                    onPressed: () async {
+                      await Navigator.pushNamed(context, GpsPage.id);
+                    },
+                  ),
+                  /*
                   const SizedBox(
                     height: 10,
                   ),
@@ -205,19 +190,18 @@ class _GridDashboardState extends State<GridDashboard> {
                       backgroundColor: MaterialStateProperty.all<Color>(
                           const Color.fromRGBO(33, 150, 255, 1)),
                       foregroundColor:
-                          MaterialStateProperty.all<Color>(Colors.black),
+                          MaterialStateProperty.all<Color>(Colors.white),
                     ),
                     onPressed: () {
                       Navigator.pushNamed(context, GpsPage.id);
                     },
                     child: const Text("Mapas"),
-                  ),
+                  ),*/
                 ],
               ),
             ),
-            
-           
-            
+
+            /*
             Visibility(
               visible: estado,
               child: Container(
@@ -253,13 +237,8 @@ class _GridDashboardState extends State<GridDashboard> {
             )
 
             */
-          ]
-          
-          
-          ),
+          ]),
     );
-
-    
   }
 
   @override

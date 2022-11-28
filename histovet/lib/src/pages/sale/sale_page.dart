@@ -36,7 +36,7 @@ class _SalesPAgeState extends State<SalesPage> {
                   icon: const Icon(Icons.refresh))
             ],
           ),
-          drawer: const MenuLateral(),
+          //drawer: const MenuLateral(),
           body: FutureBuilder(
               future: saleController.allSales(),
               builder: (BuildContext context, AsyncSnapshot<List> snapshot) {
@@ -73,12 +73,13 @@ class _SalesPAgeState extends State<SalesPage> {
                                     color: Colors.black,
                                   ),
                                   title: Text(
-                                    sale.name,
-                                    style: txtStyle,
+                                    'Producto: '+sale.name,
+                                    style: txtStyle.copyWith(fontSize: 18),
                                   ),
                                   subtitle: Text(
-                                    sale.total.toString(),
-                                    style: txtStyle.copyWith(fontSize: 17),
+                                  
+                                    'Total pagado: \$'+sale.total.toString(),
+                                    style: txtStyle.copyWith(fontSize: 18),
                                   ),
                                 )),
                           )

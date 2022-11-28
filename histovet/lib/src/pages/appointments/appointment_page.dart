@@ -4,6 +4,7 @@ import 'package:histovet/src/controller/appointment_controller.dart';
 import 'package:histovet/src/models/appointment.dart';
 import 'package:histovet/src/pages/appointments/add_appointment.dart';
 import 'package:histovet/src/pages/appointments/appointment_update.dart';
+import 'package:histovet/src/pages/appointments/appointment_view.dart';
 
 import 'package:histovet/src/pages/widgets/menu_lateral.dart';
 
@@ -39,14 +40,17 @@ class _AppointmentsPageState extends State<AppointmentsPage> {
                   icon: const Icon(Icons.refresh))
             ],
           ),
-          drawer: const MenuLateral(),
-          floatingActionButton: FloatingActionButton(
-              child: const Icon(FontAwesomeIcons.plus),
+          //drawer: const MenuLateral(),
+          floatingActionButton: FloatingActionButton.extended(
+              icon: const Icon(FontAwesomeIcons.plus),
+              label: const Text('Agendar nueva cita médica'),
+   
               elevation: 15.0,
               backgroundColor: Colors.blue,
               onPressed: () {
                 Navigator.pushNamed(context, AddAppointment.id);
               }),
+
           body: FutureBuilder(
               future: appointmentCont.allAppointments(),
               builder: (BuildContext context, AsyncSnapshot<List> snapshot) {
@@ -72,9 +76,10 @@ class _AppointmentsPageState extends State<AppointmentsPage> {
                                 child: ListTile(
                                     onLongPress: () {
                                       Navigator.push(
+                                          
                                           context,
                                           MaterialPageRoute(
-                                              builder: (context) => UpdateAppointment(
+                                              builder: (context) => ViewAppointment(
                                                   appoint.id.toString())));
                                     },
                                     leading: const Icon(
@@ -82,12 +87,13 @@ class _AppointmentsPageState extends State<AppointmentsPage> {
                                       color: Colors.black,
                                     ),
                                     title: Text(
-                                      appoint.code,
-                                      style: txtStyle,
+                                      "Centro Clinico: "+appoint.vet_name,
+                                      style: txtStyle.copyWith(fontSize: 18),
                                     ),
                                     subtitle: Text(
-                                      appoint.petName,
-                                      style: txtStyle.copyWith(fontSize: 17),
+                                      "Doctor: "+appoint.doctor,
+                                      style: txtStyle.copyWith(fontSize: 18),
+                            
                                     ),
                                     trailing: IconButton(
                                       icon: const Icon(Icons.delete,

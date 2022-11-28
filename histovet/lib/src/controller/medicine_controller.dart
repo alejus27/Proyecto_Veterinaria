@@ -65,4 +65,9 @@ class MedicineController {
     Medicine medicine = await _service.getMedicine(id);
     return medicine;
   }
+
+   
+
+
+
 }

@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
@@ -11,7 +12,6 @@ class UpdatePet extends StatefulWidget {
   final String idPet;
   final String idOwner;
 
-
   const UpdatePet(this.idPet, this.idOwner,{Key? key}) : super(key: key);
 
   @override
@@ -22,6 +22,8 @@ class _UpdatePet extends State<UpdatePet> {
   final _formState = GlobalKey<FormBuilderState>();
   PetController petCont = PetController();
 
+    String vet_name = "";
+
   TextEditingController birthdayController = TextEditingController();
   TextEditingController nameController = TextEditingController();
   TextEditingController neuteringController = TextEditingController();
@@ -30,7 +32,7 @@ class _UpdatePet extends State<UpdatePet> {
   TextEditingController subspeciesController = TextEditingController();
   TextEditingController colorController = TextEditingController();
   TextEditingController genderController = TextEditingController();
-
+  
   bool respuesta = false;
   @override
   Widget build(BuildContext context) {
@@ -217,7 +219,42 @@ class _UpdatePet extends State<UpdatePet> {
                     validator: FormBuilderValidators.required(context,
                         errorText: "Valor requerido"),
                   ),
-                )
+                ),
+
+                Container(
+                  margin:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+                  child: FutureBuilder<QuerySnapshot>(
+                    future:
+                        FirebaseFirestore.instance.collection('vet_list').get(),
+                    builder: (context, snapshot) {
+                      if (!snapshot.hasData) {
+                        return const SizedBox(
+                          height: 15.0,
+                          width: 15.0,
+                          child: Center(
+                            child: CircularProgressIndicator(),
+                          ),
+                        );
+                      }
+                      return DropdownButton(
+                        onChanged: (newValue) {
+                          setState(() {
+                            vet_name = newValue.toString();
+                          });
+                        },
+                        hint: Text("Seleccionar veterinaria: " + vet_name),
+                        items: snapshot.data!.docs
+                            .map((DocumentSnapshot document) {
+                          return DropdownMenuItem<String>(
+                            value: document['name'],
+                            child: Text(document['name']),
+                          );
+                        }).toList(),
+                      );
+                    },
+                  ),
+                ),
               ],
             ),
           )),
@@ -243,8 +280,10 @@ class _UpdatePet extends State<UpdatePet> {
       final color = colorController.text;
       final gender = genderController.text;
       final birthday = birthdayController.text;
+
+      final vet_name_ = vet_name;
       late Pet pet = Pet(widget.idPet, widget.idOwner, birthday, name, neutering, 
-           age, breed, subspecies, color, gender);
+           age, breed, subspecies, color, gender,vet_name_);
       messageUpdate(pet);
     }
   }

@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
@@ -19,6 +20,7 @@ class _AddPetState extends State<AddPet> {
   final _formState = GlobalKey<FormBuilderState>();
   bool answer = false;
   PetController petCont = PetController();
+  String vet_name = "";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -82,7 +84,7 @@ class _AddPetState extends State<AddPet> {
                           FormBuilderValidators.required(context,
                               errorText: "Valor requerido")
                         ]))),
-                  Container(
+                Container(
                   margin:
                       const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
                   child: FormBuilderTextField(
@@ -205,20 +207,55 @@ class _AddPetState extends State<AddPet> {
                 Container(
                   margin:
                       const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
-                  child: FormBuilderTextField(
-                    name: "birthday",
-                    autovalidateMode: AutovalidateMode.onUserInteraction,
-                    decoration: const InputDecoration(
-                        labelText: "Fecha de Nacimiento",
-                        hintText: "AAAA-MM-DD",
-                        prefixIcon: Icon(Icons.date_range),
-                        border: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.teal))),
-                    maxLength: 20,
-                    validator: FormBuilderValidators.required(context,
-                        errorText: "Valor requerido"),
+                  child: FormBuilderDateTimePicker(
+                      inputType: InputType.date,
+                      keyboardType: TextInputType.datetime,
+                      name: "birthday",
+                      firstDate: DateTime(2000),
+                      lastDate: DateTime(2026),
+                      //format: DateFormat('dd/MM/yyyy'),
+                      initialEntryMode: DatePickerEntryMode.input,
+                      enabled: true,
+                      decoration: const InputDecoration(
+                          prefixIcon: Icon(Icons.calendar_month),
+                          labelText: 'Seleccione fecha de nacimiento',
+                          border: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.teal)))),
+                ),
+                Container(
+                  margin:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+                  child: FutureBuilder<QuerySnapshot>(
+                    future:
+                        FirebaseFirestore.instance.collection('vet_list').get(),
+                    builder: (context, snapshot) {
+                      if (!snapshot.hasData) {
+                        return const SizedBox(
+                          height: 15.0,
+                          width: 15.0,
+                          child: Center(
+                            child: CircularProgressIndicator(),
+                          ),
+                        );
+                      }
+                      return DropdownButton(
+                        onChanged: (newValue) {
+                          setState(() {
+                            vet_name = newValue.toString();
+                          });
+                        },
+                        hint: Text("Seleccionar veterinaria: " + vet_name),
+                        items: snapshot.data!.docs
+                            .map((DocumentSnapshot document) {
+                          return DropdownMenuItem<String>(
+                            value: document['name'],
+                            child: Text(document['name']),
+                          );
+                        }).toList(),
+                      );
+                    },
                   ),
-                )
+                ),
               ],
             ),
           )),
@@ -231,18 +268,18 @@ class _AddPetState extends State<AddPet> {
     bool validate = _formState.currentState!.saveAndValidate();
     if (validate) {
       final values = _formState.currentState!.value;
-      //final code = values['code'];
       final name = values['name'];
       final age = int.parse(values['age']);
       final breed = values['breed'];
       final specie = values['subespecie'];
       final color = values['color'];
       final gender = values['gender'];
-      final birthday = values['birthday'];
+      final birthday = values['birthday'].toString();
       final neutering = values['neutering'];
-  
-      late Pet pet = Pet("", "",birthday, name, neutering, age,
-          breed, specie, color, gender);
+      final vet_name_ = vet_name;
+
+      late Pet pet = Pet("", "", birthday, name, neutering, age, breed, specie,
+          color, gender, vet_name_);
       messageAdd(pet);
     }
   }

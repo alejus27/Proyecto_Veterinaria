@@ -14,14 +14,15 @@ class PetService {
     Pet pet = Pet(
         snapshot["id"],
         snapshot["owner"],
-        snapshot["birthday"],
+        snapshot["birthday"].toString(),
         snapshot["name"],
         snapshot["neutering"],
         snapshot["age"],
         snapshot["breed"],
         snapshot["specie"],
         snapshot["color"],
-        snapshot["gender"]);
+        snapshot["gender"],
+        snapshot["clinic"]);
     return pet;
   }
 
@@ -37,14 +38,15 @@ class PetService {
       await petDoc.set({
         "id": petDoc.id,
         "owner": user?.uid,
-        "birthday": pet.birthday,
+        "birthday": pet.birthday.toString(),
         "name": pet.name,
         "neutering": pet.neutering,
         "age": pet.age,
         "breed": pet.breed,
         "specie": pet.specie,
         "color": pet.color,
-        "gender": pet.gender
+        "gender": pet.gender,
+        "clinic":pet.clinic
       });
       return true;
     } catch (e) {
@@ -74,14 +76,15 @@ class PetService {
           Pet newMedicine = Pet(
               data["id"],
               data["owner"],
-              data["birthday"],
+              data["birthday"].toString(),
               data["name"],
               data["neutering"],
               data["age"],
               data["breed"],
               data["specie"],
               data["color"],
-              data["gender"]);
+              data["gender"],
+              data["clinic"]);
           mascotas.add(newMedicine);
         }
       });
@@ -98,14 +101,15 @@ class PetService {
       await _firestore.collection("pets").doc(pet.id).set({
         "id": pet.id,
         "owner": pet.owner,
-        "birthday": pet.birthday,
+        "birthday": pet.birthday.toString(),
         "name": pet.name,
         "neutering": pet.neutering,
         "age": pet.age,
         "breed": pet.breed,
         "specie": pet.specie,
         "color": pet.color,
-        "gender": pet.gender
+        "gender": pet.gender,
+        "clinic": pet.clinic
       }, SetOptions(merge: true));
       return true;
     } catch (e) {
@@ -147,14 +151,15 @@ class PetService {
           Pet newPet = Pet(
               data["id"],
               data["owner"],
-              data["birthday"],
+              data["birthday"].toString(),
               data["name"],
               data["neutering"],
               data["age"],
               data["breed"],
               data["specie"],
               data["color"],
-              data["gender"]);
+              data["gender"],
+              data["clinic"]);
           mascotas.add(newPet);
         }
       });

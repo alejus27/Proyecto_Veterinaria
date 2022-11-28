@@ -112,7 +112,7 @@ class _ConsultarAppointmentState extends State<ConsultarAppointment> {
                                         ),
                                         Row(
                                           children: [
-                                            Text("  " + appointment.code),
+                                            Text("  " + appointment.vet_name),
                                           ],
                                         ),
                                         const SizedBox(

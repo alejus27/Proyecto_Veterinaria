@@ -227,7 +227,7 @@ class _Updatemedicationtate extends State<UpdateMedicine> {
     setState(() {
       //codeController.text = medicine.code.toString();
       nameController.text = medicine.name;
-      descriptionController.text = medicine.descripcion;
+      descriptionController.text = medicine.description;
       grupoController.text = medicine.group;
       precioController.text = medicine.precio.toString();
       fechaVenController.text = medicine.fechaVen;

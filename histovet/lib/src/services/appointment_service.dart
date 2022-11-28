@@ -9,22 +9,24 @@ class AppointmentService {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final databaseRef = FirebaseDatabase.instance.ref();
 
-  Appointment appointment = Appointment("", "", "", "", "", 0, "","");
+  Appointment appointment = Appointment("", "", "", "", "", "", "", "");
 
   // Permite obtener una medicina de la base de datos de Firebase
   // Retorna la medicina que se la haya especificado
   Future<Appointment> getAppointment(String id) async {
-    final snapshot =
-        await FirebaseFirestore.instance.collection('appointment').doc(id).get();
+    final snapshot = await FirebaseFirestore.instance
+        .collection('appointment')
+        .doc(id)
+        .get();
     Appointment appointment = Appointment(
         snapshot["id"],
-        snapshot["code"],
         snapshot["ownerName"],
         snapshot["petName"],
-        snapshot["email"],
-        snapshot["phone"],
         snapshot["reason"],
-        snapshot["fecha"]);
+        snapshot["fecha"].toString(),
+        snapshot["vet_name"],
+        snapshot["doctor"],
+        snapshot["time"]);
     //print(appointment.toString());
     return appointment;
   }
@@ -44,13 +46,13 @@ class AppointmentService {
           // print(doc.data());
           Appointment newAppointment = Appointment(
               data["id"],
-              data["code"],
-              data["onerName"],
+              data["ownerName"],
               data["petName"],
-              data["email"],
-              data["phone"],
               data["reason"],
-              data["fecha"]);
+              data["fecha"].toString(),
+              data["vet_name"],
+              data["doctor"],
+              data["time"]);
           appointments.add(newAppointment);
         }
       });
@@ -72,13 +74,13 @@ class AppointmentService {
     try {
       await appointmentDoc.set({
         "id": appointmentDoc.id,
-        "code": appointment.code,
         "ownerName": appointment.ownerName,
         "petName": appointment.petName,
-        "email": appointment.email,
-        "phone": appointment.phone,
         "reason": appointment.reason,
-        "fecha": appointment.fecha
+        "fecha": appointment.fecha,
+        "vet_name": appointment.vet_name,
+        "doctor": appointment.doctor,
+        "time": appointment.time,
       });
       return true;
     } catch (e) {
@@ -95,13 +97,13 @@ class AppointmentService {
           .doc(appointment.id)
           .set({
         "id": appointment.id,
-        "code": appointment.code,
         "ownerName": appointment.ownerName,
         "petName": appointment.petName,
-        "email": appointment.email,
-        "phone": appointment.phone,
         "reason": appointment.reason,
-        "fecha": appointment.fecha
+        "fecha": appointment.fecha,
+        "vet_name": appointment.vet_name,
+        "doctor": appointment.doctor,
+        "time": appointment.time,
       }, SetOptions(merge: true));
       return true;
     } catch (e) {
@@ -132,13 +134,13 @@ class AppointmentService {
           //print(doc.data());
           Appointment newAppointment = Appointment(
               data["id"],
-              data["code"],
               data["ownerName"],
               data["petName"],
-              data["email"],
-              data["phone"],
               data["reason"],
-              data["fecha"]);
+              data["fecha"].toString(),
+              data["vet_name"],
+              data["doctor"],
+              data["time"]);
           appointments.add(newAppointment);
         }
       });

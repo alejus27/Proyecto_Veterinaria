@@ -62,8 +62,10 @@ class MyApp extends StatelessWidget {
 
             AppointmentsPage.id: (context) => const AppointmentsPage(),
             '/appointments': (context) => const AppointmentsPage(),
+
             AddAppointment.id: (context) => const AddAppointment(),
-            UpdateAppointment.id: (context) => const UpdateAppointment(""),
+
+            //UpdateAppointment.id: (context) => const UpdateAppointment(""),
 
             ConsultarAppointment.id: (context) => const ConsultarAppointment(),
             '/buscarMedicamento': (context) => const ConsultarAppointment(),

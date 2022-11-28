@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
@@ -21,13 +22,16 @@ class _AddAppointment extends State<AddAppointment> {
   final AppointmentService _service = AppointmentService();
   final _formState = GlobalKey<FormBuilderState>();
   bool respuesta = false;
+  String vet_name = "";
+  String profile_vetName = "";
+  String time = "";
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: const Text("Registrar cita"),
+        title: const Text("Citas Médicas"),
       ),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.save),
@@ -41,118 +45,7 @@ class _AddAppointment extends State<AddAppointment> {
             padding: const EdgeInsets.all(8.0),
             child: ListView(
               children: [
-                Container(
-                  margin:
-                      const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
-                  child: FormBuilderTextField(
-                    name: "code",
-                    autovalidateMode: AutovalidateMode.onUserInteraction,
-                    decoration: const InputDecoration(
-                        labelText: "Código de la cita médica",
-                        hintText: "Ingrese el código de la cita",
-                        prefixIcon: Icon(Icons.code),
-                        border: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.teal))),
-                    keyboardType: TextInputType.number,
-                    maxLength: 4,
-                    validator: FormBuilderValidators.compose([
-                      FormBuilderValidators.required(context,
-                          errorText: "Valor requerido"),
-                      FormBuilderValidators.integer(context,
-                          errorText: "No puede tener decimales"),
-                      FormBuilderValidators.min(context, 1,
-                          errorText: "Debe ser un número mayor que 0"),
-                      FormBuilderValidators.minLength(context, 4,
-                          errorText: "La longitud del documento es de 4")
-                    ]),
-                  ),
-                ),
-                Container(
-                  margin:
-                      const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
-                  child: FormBuilderTextField(
-                      name: "ownerName",
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
-                      decoration: const InputDecoration(
-                          labelText: "Nombre del dueño de la mascota",
-                          hintText: "Ingrese el nombre del dueño de la mascota",
-                          prefixIcon: Icon(Icons.people),
-                          border: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.teal))),
-                      keyboardType: TextInputType.text,
-                      maxLength: 20,
-                      validator: FormBuilderValidators.compose([
-                        FormBuilderValidators.required(context,
-                            errorText: "Valor requerido")
-                      ])),
-                ),
-                Container(
-                  margin:
-                      const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
-                  child: FormBuilderTextField(
-                      name: "petName",
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
-                      decoration: const InputDecoration(
-                          labelText: "Nombre de la mascota",
-                          hintText: "Ingrese el nombre de la mascota",
-                          prefixIcon: Icon(Icons.pets_sharp),
-                          border: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.teal))),
-                      keyboardType: TextInputType.text,
-                      maxLength: 50,
-                      validator: FormBuilderValidators.compose([
-                        FormBuilderValidators.required(context,
-                            errorText: "Valor requerido")
-                      ])),
-                ),
-                Container(
-                  margin:
-                      const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
-                  child: FormBuilderTextField(
-                    name: "email",
-                    autovalidateMode: AutovalidateMode.onUserInteraction,
-                    decoration: const InputDecoration(
-                        labelText: "Correo electrónico",
-                        hintText:
-                            "Ingrese el correo electrónico del dueño de la mascota",
-                        prefixIcon: Icon(Icons.person_outline_outlined),
-                        border: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.teal))),
-                    keyboardType: TextInputType.text,
-                    maxLength: 20,
-                    validator: FormBuilderValidators.compose([
-                      FormBuilderValidators.required(context,
-                          errorText: "Valor requerido"),
-                      FormBuilderValidators.email(context,
-                          errorText: "Debe tener formato de correo")
-                    ]),
-                  ),
-                ),
-                Container(
-                  margin:
-                      const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
-                  child: FormBuilderTextField(
-                    name: "phone",
-                    autovalidateMode: AutovalidateMode.onUserInteraction,
-                    decoration: const InputDecoration(
-                        labelText: "Telefono de contacto",
-                        hintText:
-                            "Ingrese el telefo de contacto del dueño de la mascota",
-                        prefixIcon: Icon(Icons.phone_android),
-                        border: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.teal))),
-                    keyboardType: TextInputType.number,
-                    maxLength: 10,
-                    validator: FormBuilderValidators.compose([
-                      FormBuilderValidators.required(context,
-                          errorText: "Valor requerido"),
-                      FormBuilderValidators.numeric(context,
-                          errorText: "Debe ser un numero"),
-                      FormBuilderValidators.min(context, 1,
-                          errorText: "Debe ser un número mayor que 0"),
-                    ]),
-                  ),
-                ),
+      
                 Container(
                   margin:
                       const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
@@ -172,12 +65,35 @@ class _AddAppointment extends State<AddAppointment> {
                             errorText: "Valor requerido")
                       ])),
                 ),
-                
                 Container(
                   margin:
                       const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
-                      
+                  child: FormBuilderTextField(
+                    name: "phone",
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    decoration: const InputDecoration(
+                        labelText: "Telefono de contacto",
+                        hintText: "Ingrese telefono de contacto",
+                        prefixIcon: Icon(Icons.phone_android),
+                        border: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.teal))),
+                    keyboardType: TextInputType.number,
+                    maxLength: 10,
+                    validator: FormBuilderValidators.compose([
+                      FormBuilderValidators.required(context,
+                          errorText: "Valor requerido"),
+                      FormBuilderValidators.numeric(context,
+                          errorText: "Debe ser un numero"),
+                      FormBuilderValidators.min(context, 1,
+                          errorText: "Debe ser un número mayor que 0"),
+                    ]),
+                  ),
+                ),
+                Container(
+                  margin:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
                   child: FormBuilderDateTimePicker(
+                      inputType: InputType.date,
                       keyboardType: TextInputType.datetime,
                       name: "fecha",
                       firstDate: DateTime(2000),
@@ -191,6 +107,115 @@ class _AddAppointment extends State<AddAppointment> {
                           border: OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.teal)))),
                 ),
+                Container(
+                  margin:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+                  child: FutureBuilder<QuerySnapshot>(
+                    future:
+                        FirebaseFirestore.instance.collection('vet_list').get(),
+                    builder: (context, snapshot) {
+                      if (!snapshot.hasData) {
+                        return const SizedBox(
+                          height: 15.0,
+                          width: 15.0,
+                          child: Center(
+                            child: CircularProgressIndicator(),
+                          ),
+                        );
+                      }
+                      return DropdownButton(
+                        onChanged: (newValue) {
+                          setState(() {
+                            vet_name = newValue.toString();
+                            profile_vetName = "";
+                            time = "";
+                          });
+                        },
+                        hint: Text("Clinica Veterinaria: " + vet_name),
+                        items: snapshot.data!.docs
+                            .map((DocumentSnapshot document) {
+                          return DropdownMenuItem<String>(
+                            value: document['name'],
+                            child: Text(document['name']),
+                          );
+                        }).toList(),
+                      );
+                    },
+                  ),
+                ),
+                Container(
+                  margin:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+                  child: FutureBuilder<QuerySnapshot>(
+                    future: FirebaseFirestore.instance
+                        .collection('profiles')
+                        .where("clinic", isEqualTo: vet_name)
+                        .get(),
+                    builder: (context, snapshot) {
+                      if (!snapshot.hasData) {
+                        return const SizedBox(
+                          height: 15.0,
+                          width: 15.0,
+                          child: Center(
+                            child: CircularProgressIndicator(),
+                          ),
+                        );
+                      }
+                      return DropdownButton(
+                        onChanged: (newValue) {
+                          setState(() {
+                            profile_vetName = newValue.toString();
+                            time = "";
+                          });
+                        },
+                        hint: Text("Doctor: " + profile_vetName),
+                        items: snapshot.data!.docs
+                            .map((DocumentSnapshot document) {
+                          return DropdownMenuItem<String>(
+                            value: document['first_name'],
+                            child: Text(document['first_name']),
+                          );
+                        }).toList(),
+                      );
+                    },
+                  ),
+                ),
+                Container(
+                  margin:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+                  child: FutureBuilder<QuerySnapshot>(
+                    future: FirebaseFirestore.instance
+                        .collection('attention_ schedule')
+                        .where("first_name", isEqualTo: profile_vetName)
+                        .get(),
+                    builder: (context, snapshot) {
+                      if (!snapshot.hasData) {
+                        return const SizedBox(
+                          height: 15.0,
+                          width: 15.0,
+                          child: Center(
+                            child: CircularProgressIndicator(),
+                          ),
+                        );
+                      }
+                      return DropdownButton(
+                        onChanged: (newValue) {
+                          setState(() {
+                            time = newValue.toString();
+                          });
+                        },
+                        hint: Text("Horario: " + time),
+                        items: snapshot.data!.docs
+                            .map((DocumentSnapshot document) {
+                          return DropdownMenuItem<String>(
+                            value: document['time'],
+                            child: Text(document['time']),
+                          );
+                        }).toList(),
+                      );
+                    },
+                  ),
+                ),
               ],
             ),
           )),
@@ -203,20 +228,14 @@ class _AddAppointment extends State<AddAppointment> {
     bool validate = _formState.currentState!.saveAndValidate();
     if (validate) {
       final values = _formState.currentState!.value;
-      final code = values['code'];
-      final ownerName = values['ownerName'];
-      final petName = values['petName'];
-      final reason = values['reason'];
-      final phone = int.parse(values['phone']);
-      final email = values['email'];
 
+      final reason = values['reason']; //values['reason'];
+      final phone = int.parse(values['phone']);
       var fecha = values['fecha'].toString();
-      //0List<String> fechas = fechaAux.split("00:00:00.000");
-      //print("fecha " + fechas[0]);
-      //final fecha = fechas[0] + fechas[1];
 
       late Appointment appointment = Appointment(
-          "", code, ownerName, petName,email, phone,  reason, fecha);
+          "", "", "", reason, fecha, vet_name, profile_vetName, time);
+
       addAppointment(appointment);
     }
   }

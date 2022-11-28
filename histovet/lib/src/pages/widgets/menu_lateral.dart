@@ -42,7 +42,7 @@ class _MenuLateralState extends State<MenuLateral> {
               child: Column(
                 children: [
                   Expanded(child: Image.asset('assets/img/vet.png')),
-                  const Text("HistoVet"),
+                  const Text("HistoVet",style: TextStyle(color: Colors.white)),
                   const SizedBox(
                     height: 10.0,
                   )
@@ -65,23 +65,23 @@ class _MenuLateralState extends State<MenuLateral> {
             ListTile(
               leading: const Icon(Icons.house),
               title: const Text("Inicio"),
-              onTap: () {
-                Navigator.pushNamed(context, Home.id);
+              onTap: () async{
+                await Navigator.pushNamed(context, Home.id);
               },
             ),
             ListTile(
               leading: const Icon(Icons.pets, color: Colors.amber),
               title: const Text("Administrar Mascotas"),
-              onTap: () {
-                Navigator.pushNamed(context, PetsPage.id);
+              onTap: () async{
+                await Navigator.pushNamed(context, PetsPage.id);
               },
             ),
             ListTile(
               leading: const Icon(Icons.content_paste_search_rounded,
                   color: Colors.amber),
               title: const Text("Mis Mascotas"),
-              onTap: () {
-                Navigator.pushNamed(context, ConsultarMascota.id);
+              onTap: () async{
+                 await Navigator.pushNamed(context, ConsultarMascota.id);
               },
             ),
             Container(height: 1, color: Colors.grey),
@@ -89,16 +89,16 @@ class _MenuLateralState extends State<MenuLateral> {
               leading:
                   const Icon(Icons.shopping_cart, color: Colors.blueAccent),
               title: const Text("Comprar Medicamentos"),
-              onTap: () {
-                Navigator.pushNamed(context, ConsultarMedicamento.id);
+              onTap: () async{
+                 await Navigator.pushNamed(context, ConsultarMedicamento.id);
               },
             ),
             ListTile(
               leading: const Icon(Icons.point_of_sale_outlined,
                   color: Colors.blueAccent),
               title: const Text("Mis Compras"),
-              onTap: () {
-                Navigator.pushNamed(context, SalesPage.id);
+              onTap: () async{
+                 await Navigator.pushNamed(context, SalesPage.id);
               },
             ),
             

@@ -131,17 +131,14 @@ class _ConsultarMedicamentoState extends State<ConsultarMedicamento> {
                                         Text("  Precio unitario:",
                                             style: TextStyle(
                                                 fontWeight: FontWeight.bold)),
-                                        Text("  " + medicine.precio.toString()),
+                                        Text('  \$' + medicine.precio.toString()),
                                         const SizedBox(
                                           height: 5,
                                         ),
                                         const SizedBox(
                                           height: 5,
                                         ),
-                                        Text("  Descripción: ",
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.bold)),
-                                        Text("  " + medicine.descripcion),
+                                        
                                         const SizedBox(
                                           height: 16,
                                         ),

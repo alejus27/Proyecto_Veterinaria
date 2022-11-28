@@ -3,7 +3,6 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import '../../controller/appointment_controller.dart';
 import '../../models/appointment.dart';
 
-
 // Clases encargadas de la vista donde se muestra la información de la mascota
 
 class ViewAppointment extends StatefulWidget {
@@ -20,14 +19,15 @@ class _ViewAppointment extends State<ViewAppointment> {
   final _formState = GlobalKey<FormBuilderState>();
   AppointmentController appointmentCont = AppointmentController();
 
-  TextEditingController codeController = TextEditingController();
   TextEditingController ownerNameController = TextEditingController();
   TextEditingController petNameController = TextEditingController();
-  TextEditingController emailController = TextEditingController();
+
   TextEditingController fechaController = TextEditingController();
-  TextEditingController phoneController = TextEditingController();
+
   TextEditingController reasonController = TextEditingController();
-  
+  TextEditingController vet_nameController = TextEditingController();
+  TextEditingController doctorController = TextEditingController();
+  TextEditingController timeController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -50,25 +50,12 @@ class _ViewAppointment extends State<ViewAppointment> {
       Container(
         margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
         child: FormBuilderTextField(
-          controller: codeController,
-          enabled: false,
-          name: "code",
-          decoration: const InputDecoration(
-              labelText: "Código",
-              prefixIcon: Icon(Icons.abc_sharp),
-              border: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.teal))),
-        ),
-      ),
-      Container(
-        margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
-        child: FormBuilderTextField(
           controller: ownerNameController,
           enabled: false,
           name: "ownerName",
           decoration: const InputDecoration(
               labelText: "Nombre del dueño",
-              prefixIcon: Icon(Icons.abc_sharp),
+              prefixIcon: Icon(Icons.document_scanner_sharp),
               border: OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.teal))),
         ),
@@ -81,20 +68,7 @@ class _ViewAppointment extends State<ViewAppointment> {
           name: "petName",
           decoration: const InputDecoration(
               labelText: "Nombre Mascota",
-              prefixIcon: Icon(Icons.abc_sharp),
-              border: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.teal))),
-        ),
-      ),
-      Container(
-        margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
-        child: FormBuilderTextField(
-          controller: emailController,
-          enabled: false,
-          name: "email",
-          decoration: const InputDecoration(
-              labelText: "email",
-              prefixIcon: Icon(Icons.abc_sharp),
+              prefixIcon: Icon(Icons.document_scanner_sharp),
               border: OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.teal))),
         ),
@@ -107,21 +81,7 @@ class _ViewAppointment extends State<ViewAppointment> {
           name: "fecha",
           decoration: const InputDecoration(
               labelText: "Fecha",
-              prefixIcon: Icon(Icons.abc_sharp),
-              border: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.teal))),
-        ),
-      ),
-      Container(
-        margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
-        child: FormBuilderTextField(
-          controller: phoneController,
-          enabled: false,
-          name: "phone",
-          autovalidateMode: AutovalidateMode.onUserInteraction,
-          decoration: const InputDecoration(
-              labelText: "Telefono",
-              prefixIcon: Icon(Icons.abc_sharp),
+              prefixIcon: Icon(Icons.document_scanner_sharp),
               border: OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.teal))),
         ),
@@ -134,7 +94,46 @@ class _ViewAppointment extends State<ViewAppointment> {
           name: "reason",
           decoration: const InputDecoration(
               labelText: "Motivo",
-              prefixIcon: Icon(Icons.abc_sharp),
+              prefixIcon: Icon(Icons.document_scanner_sharp),
+              border: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.teal))),
+        ),
+      ),
+      Container(
+        margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+        child: FormBuilderTextField(
+          controller: vet_nameController,
+          enabled: false,
+          name: "vet_name",
+          decoration: const InputDecoration(
+              labelText: "Nombre veterinaria",
+              prefixIcon: Icon(Icons.document_scanner_sharp),
+              border: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.teal))),
+        ),
+      ),
+      Container(
+        margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+        child: FormBuilderTextField(
+          controller: doctorController,
+          enabled: false,
+          name: "doctor",
+          decoration: const InputDecoration(
+              labelText: "Doctor",
+              prefixIcon: Icon(Icons.document_scanner_sharp),
+              border: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.teal))),
+        ),
+      ),
+      Container(
+        margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+        child: FormBuilderTextField(
+          controller: timeController,
+          enabled: false,
+          name: "time",
+          decoration: const InputDecoration(
+              labelText: "Hora de atención",
+              prefixIcon: Icon(Icons.document_scanner_sharp),
               border: OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.teal))),
         ),
@@ -150,15 +149,18 @@ class _ViewAppointment extends State<ViewAppointment> {
 
   /// Obtiene la información de la mascota
   void getInfoAppointment() async {
-    Appointment appointment = await appointmentCont.getAppointment(widget.idAppointment);
+    Appointment appointment =
+        await appointmentCont.getAppointment(widget.idAppointment);
     setState(() {
-      codeController.text = appointment.code;
+      
       ownerNameController.text = appointment.ownerName;
       petNameController.text = appointment.petName;
-      emailController.text = appointment.email;
       fechaController.text = appointment.fecha;
-      phoneController.text = appointment.phone.toString();
       reasonController.text = appointment.reason;
+
+      vet_nameController.text = appointment.vet_name;
+      doctorController.text = appointment.doctor;
+      timeController.text = appointment.time;
     });
   }
 }

@@ -27,6 +27,7 @@ class _ViewPet extends State<ViewPet> {
   TextEditingController subspeciesController = TextEditingController();
   TextEditingController colorController = TextEditingController();
   TextEditingController genderController = TextEditingController();
+  TextEditingController clinicController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -150,6 +151,19 @@ class _ViewPet extends State<ViewPet> {
               border: OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.teal))),
         ),
+      ),
+      Container(
+        margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+        child: FormBuilderTextField(
+          controller: clinicController,
+          enabled: false,
+          name: "clinic",
+          decoration: const InputDecoration(
+              labelText: "Clinica veterinaria",
+              prefixIcon: Icon(Icons.pets),
+              border: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.teal))),
+        ),
       )
     ];
   }
@@ -172,6 +186,7 @@ class _ViewPet extends State<ViewPet> {
       subspeciesController.text = pet.specie;
       colorController.text = pet.color;
       genderController.text = pet.gender;
+      clinicController.text = pet.clinic;
     });
   }
 }
