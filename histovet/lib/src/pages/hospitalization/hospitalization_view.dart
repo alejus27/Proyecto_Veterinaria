@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:histovet/src/controller/hospitalization_controller.dart';
-import 'package:histovet/src/models/Hospitalization_model.dart';
+import 'package:histovet/src/models/hospitalization_model.dart';
 
 
 // Clases encargadas de la vista donde se muestra la información de la historia clínica
@@ -29,10 +29,6 @@ class _ViewHospitalizationState extends State<ViewHospitalization> {
   TextEditingController dehydrationController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
   TextEditingController fecalController = TextEditingController();
-  TextEditingController medicineController = TextEditingController();
-  TextEditingController medicine_frequencyController = TextEditingController();
-  TextEditingController medicine_quantityController = TextEditingController();
-  TextEditingController medicine_viaController = TextEditingController();
   TextEditingController mucousController = TextEditingController();
   TextEditingController pet_nameController = TextEditingController();
   TextEditingController owner_nameController = TextEditingController();
@@ -43,6 +39,13 @@ class _ViewHospitalizationState extends State<ViewHospitalization> {
   TextEditingController temperatureController = TextEditingController();
   TextEditingController tllcController = TextEditingController();
   TextEditingController urineController = TextEditingController();
+
+  TextEditingController medicineController = TextEditingController();
+  TextEditingController medicine_quantityController = TextEditingController();
+  TextEditingController medicine2Controller = TextEditingController();
+  TextEditingController medicine_quantity2Controller = TextEditingController();
+  TextEditingController medicine3Controller = TextEditingController();
+  TextEditingController medicine_quantity3Controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -69,7 +72,7 @@ class _ViewHospitalizationState extends State<ViewHospitalization> {
         child: FormBuilderTextField(
           controller: owner_nameController,
           enabled: false,
-          name: "ownerName",
+          name: "owner_name",
           decoration: const InputDecoration(
               labelText: "Nombre del dueño de la mascota",
               prefixIcon: Icon(Icons.document_scanner_outlined),
@@ -77,6 +80,7 @@ class _ViewHospitalizationState extends State<ViewHospitalization> {
                   borderSide: BorderSide(color: Colors.teal))),
         ),
       ),
+      
       Container(
         margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
         child: FormBuilderTextField(
@@ -246,7 +250,6 @@ class _ViewHospitalizationState extends State<ViewHospitalization> {
                   borderSide: BorderSide(color: Colors.teal))),
         ),
       ),
-      
       Container(
         margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
         child: FormBuilderTextField(
@@ -280,20 +283,7 @@ class _ViewHospitalizationState extends State<ViewHospitalization> {
           enabled: false,
           name: "medicine",
           decoration: const InputDecoration(
-              labelText: "Medicinas aplicadas",
-              prefixIcon: Icon(Icons.document_scanner_outlined),
-              border: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.teal))),
-        ),
-      ),
-      Container(
-        margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
-        child: FormBuilderTextField(
-          controller: medicine_frequencyController,
-          enabled: false,
-          name: "medicine_frequency",
-          decoration: const InputDecoration(
-              labelText: "Frecuencia de aplicación",
+              labelText: "1. Medicina aplicada",
               prefixIcon: Icon(Icons.document_scanner_outlined),
               border: OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.teal))),
@@ -315,11 +305,50 @@ class _ViewHospitalizationState extends State<ViewHospitalization> {
       Container(
         margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
         child: FormBuilderTextField(
-          controller: medicine_viaController,
+          controller: medicine2Controller,
           enabled: false,
-          name: "medicine_via",
+          name: "medicine2",
           decoration: const InputDecoration(
-              labelText: "Via de aplicación",
+              labelText: "2. Medicina aplicada",
+              prefixIcon: Icon(Icons.document_scanner_outlined),
+              border: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.teal))),
+        ),
+      ),
+      Container(
+        margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+        child: FormBuilderTextField(
+          controller: medicine_quantity2Controller,
+          enabled: false,
+          name: "medicine_quantity2",
+          decoration: const InputDecoration(
+              labelText: "Cantidad aplicada",
+              prefixIcon: Icon(Icons.document_scanner_outlined),
+              border: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.teal))),
+        ),
+      ),
+      Container(
+        margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+        child: FormBuilderTextField(
+          controller: medicine3Controller,
+          enabled: false,
+          name: "medicine3",
+          decoration: const InputDecoration(
+              labelText: "3. Medicina aplicada",
+              prefixIcon: Icon(Icons.document_scanner_outlined),
+              border: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.teal))),
+        ),
+      ),
+      Container(
+        margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+        child: FormBuilderTextField(
+          controller: medicine_quantity3Controller,
+          enabled: false,
+          name: "medicine_quantity3",
+          decoration: const InputDecoration(
+              labelText: "Cantidad aplicada",
               prefixIcon: Icon(Icons.document_scanner_outlined),
               border: OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.teal))),
@@ -362,10 +391,6 @@ class _ViewHospitalizationState extends State<ViewHospitalization> {
       dehydrationController.text = hospitalization.dehydration;
       descriptionController.text = hospitalization.description;
       fecalController.text = hospitalization.fecal;
-      medicineController.text = hospitalization.medicine;
-      medicine_frequencyController.text = hospitalization.medicine_frequency;
-      medicine_quantityController.text = hospitalization.medicine_quantity;
-      medicine_viaController.text = hospitalization.medicine_via;
       mucousController.text = hospitalization.mucous;
       prognosisController.text = hospitalization.prognosis;
       pulseController.text = hospitalization.pulse;
@@ -374,6 +399,12 @@ class _ViewHospitalizationState extends State<ViewHospitalization> {
       temperatureController.text = hospitalization.temperature;
       tllcController.text = hospitalization.tllc;
       urineController.text = hospitalization.urine;
+      medicineController.text = hospitalization.medicine;
+      medicine_quantityController.text = hospitalization.medicine_quantity;
+      medicine2Controller.text = hospitalization.medicine2;
+      medicine_quantity2Controller.text = hospitalization.medicine_quantity2;
+      medicine3Controller.text = hospitalization.medicine3;
+      medicine_quantity3Controller.text = hospitalization.medicine_quantity3;
     });
   }
 }

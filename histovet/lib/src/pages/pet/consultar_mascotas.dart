@@ -110,10 +110,10 @@ class _ConsultarMascotaState extends State<ConsultarMascota> {
                                       const SizedBox(
                                         height: 10,
                                       ),
-                                      Image.asset(
-                                        "assets/img/dogcat.png",
-                                        height: 100,
-                                      ),
+                                       Image.network(
+                                          pet.record,
+                                          height: 100,
+                                        ),
                                       const SizedBox(
                                         height: 5,
                                       ),

@@ -9,7 +9,7 @@ class MedicineService {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final databaseRef = FirebaseDatabase.instance.ref();
 
-  Medicine medicine = Medicine("", "", "", "", 0, "");
+  Medicine medicine = Medicine("", "", "", "", 0, "","");
 
   // Permite obtener una medicina de la base de datos de Firebase
   // Retorna la medicina que se la haya especificado
@@ -22,7 +22,9 @@ class MedicineService {
         snapshot["description"],
         snapshot["group"],
         snapshot["precio"],
-        snapshot["fechaVen"].toString(),);
+        snapshot["fechaVen"].toString(),
+        snapshot
+        ["record"]);
     //print(medicine.toString());
     return medicine;
   }
@@ -47,7 +49,8 @@ class MedicineService {
               data["description"],
               data["group"],
               data["precio"],
-              data["fechaVen"].toString(),);
+              data["fechaVen"].toString(),
+              data["record"]);
           medicines.add(newMedicine);
         }
       });
@@ -129,7 +132,8 @@ class MedicineService {
               data["description"],
               data["group"],
               data["precio"],
-              data["fechaVen"].toString(),);
+              data["fechaVen"].toString(),
+              data["record"]);
           medicines.add(newMedicine);
         }
       });

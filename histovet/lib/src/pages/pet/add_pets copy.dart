@@ -1,15 +1,9 @@
-import 'dart:io';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import '../../controller/pet_controller.dart';
 import '../../models/pet_model.dart';
-import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:permission_handler/permission_handler.dart';
 
 // Clases encargadas de la vista que le permite al usuario
 // ingresar datos para agregar una mascota
@@ -27,9 +21,6 @@ class _AddPetState extends State<AddPet> {
   bool answer = false;
   PetController petCont = PetController();
   String vet_name = "";
-
-  String imageUrl='https://i.imgur.com/Qcx10BF.png';
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,63 +66,6 @@ class _AddPetState extends State<AddPet> {
                     ]),
                   ),
                 ),*/
-
-                Container(
-                  color: Colors.white,
-                  child: Column(
-                    children: <Widget>[
-                      Container(
-                          margin: EdgeInsets.all(15),
-                          padding: EdgeInsets.all(15),
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(15),
-                            ),
-                            border: Border.all(color: Colors.white),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black12,
-                                offset: Offset(1, 1),
-                                spreadRadius: 1,
-                                blurRadius: 1,
-                              ),
-                            ],
-                          ),
-                          child: (imageUrl != null)
-                              ? Image.network(imageUrl)
-                              : Image.network(
-                                  'https://i.imgur.com/Qcx10BF.png')),
-                    ],
-                  ),
-                ),
-               
-                SizedBox(
-                  height: 20.0,
-                ),
-                RaisedButton(
-                  child: Text("Cargar foto de mascota",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
-                          )),
-                  onPressed: () {
-                    uploadImage();
-                  },
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(18.0),
-                      side: BorderSide(color: Colors.blue)),
-                  elevation: 5.0,
-                  color: Colors.blue,
-                  textColor: Colors.white,
-                  padding: EdgeInsets.fromLTRB(15, 15, 15, 15),
-                  splashColor: Colors.grey,
-                ),
-
-                  SizedBox(
-                      height: 50,
-                    ),
                 Container(
                     margin: const EdgeInsets.symmetric(
                         horizontal: 10, vertical: 15),
@@ -345,7 +279,7 @@ class _AddPetState extends State<AddPet> {
       final vet_name_ = vet_name;
 
       late Pet pet = Pet("", "", birthday, name, neutering, age, breed, specie,
-          color, gender, vet_name_, imageUrl);
+          color, gender, vet_name_,"");
       messageAdd(pet);
     }
   }
@@ -364,37 +298,6 @@ class _AddPetState extends State<AddPet> {
         content: Text("No se guardó la información"),
         backgroundColor: Colors.green,
       ));
-    }
-  }
-
-  uploadImage() async {
-    final _firebaseStorage = FirebaseStorage.instance;
-    final _imagePicker = ImagePicker();
-
-    PickedFile? image;
-    //Check Permissions
-    await Permission.photos.request();
-    var permissionStatus = await Permission.photos.status;
-
-    if (permissionStatus.isGranted) {
-      //Select Image
-      image = await _imagePicker.getImage(source: ImageSource.gallery);
-      var file = File(image!.path);
-
-      if (image != null) {
-        //Upload to Firebase
-        var snapshot =
-            await _firebaseStorage.ref().child('images/imageName').putFile(file);
-        var downloadUrl = await snapshot.ref.getDownloadURL();
-
-        setState(() {
-          imageUrl = downloadUrl;
-        });
-      } else {
-        print('No Image Path Received');
-      }
-    } else {
-      print('Permission not granted. Try Again with permission access');
     }
   }
 }

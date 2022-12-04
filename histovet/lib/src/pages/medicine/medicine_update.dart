@@ -197,7 +197,7 @@ class _Updatemedicationtate extends State<UpdateMedicine> {
       final fechaVen = values['fechaVen'];
 
       late Medicine medicine = Medicine(
-          widget.idMedicine, name, description, group, precio, fechaVen);
+          widget.idMedicine, name, description, group, precio, fechaVen,"");
       _messageUpdate(medicine);
     }
   }

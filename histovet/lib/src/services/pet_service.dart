@@ -22,7 +22,8 @@ class PetService {
         snapshot["specie"],
         snapshot["color"],
         snapshot["gender"],
-        snapshot["clinic"]);
+        snapshot["clinic"],
+        snapshot["record"]);
     return pet;
   }
 
@@ -46,7 +47,8 @@ class PetService {
         "specie": pet.specie,
         "color": pet.color,
         "gender": pet.gender,
-        "clinic":pet.clinic
+        "clinic": pet.clinic,
+        "record": pet.record
       });
       return true;
     } catch (e) {
@@ -84,7 +86,8 @@ class PetService {
               data["specie"],
               data["color"],
               data["gender"],
-              data["clinic"]);
+              data["clinic"],
+              data["record"]);
           mascotas.add(newMedicine);
         }
       });
@@ -109,7 +112,8 @@ class PetService {
         "specie": pet.specie,
         "color": pet.color,
         "gender": pet.gender,
-        "clinic": pet.clinic
+        "clinic": pet.clinic,
+        "record": pet.record
       }, SetOptions(merge: true));
       return true;
     } catch (e) {
@@ -128,6 +132,8 @@ class PetService {
     }
   }
 
+
+
   // Permite obtener todas las mascotas de la base de datos de de Firebase
   // Retorna una lista con las mascotas que haya encontrado
   Future<List<Pet>> getPetsBD() async {
@@ -138,10 +144,7 @@ class PetService {
     final uid = user?.uid;
 
     try {
-      //final collection = _firestore.collection('pet');
-
-      var collection;
-      collection = FirebaseFirestore.instance
+      final collection = FirebaseFirestore.instance
           .collection('pets')
           .where('owner', isEqualTo: uid);
 
@@ -159,11 +162,12 @@ class PetService {
               data["specie"],
               data["color"],
               data["gender"],
-              data["clinic"]);
+              data["clinic"],
+              data["record"]);
           mascotas.add(newPet);
         }
       });
-      return mascotas;
+      return await mascotas;
     } catch (e) {
       return mascotas;
     }

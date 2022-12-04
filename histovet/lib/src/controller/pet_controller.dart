@@ -52,8 +52,16 @@ class PetController {
   // Permite usar el servicio para obtener todas las mascotas de la base de datos
   // Retorna las mascotas que se encuentren
   Future<List<Pet>> allPets() async {
-    _pets = await _service.getPetsBD();
+
+    try{
+      _pets = await _service.getPetsBD();
     return _pets;
+    
+    } catch (e) {
+      return _pets;
+    }
+    
+    
   }
 
   // Permite usar el servicio para obtener una mascota de la base de datos usando el id

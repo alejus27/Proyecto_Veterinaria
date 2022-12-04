@@ -69,13 +69,18 @@ class _MenuLateralState extends State<MenuLateral> {
                 await Navigator.pushNamed(context, Home.id);
               },
             ),
+
+
             ListTile(
               leading: const Icon(Icons.pets, color: Colors.amber),
               title: const Text("Administrar Mascotas"),
-              onTap: () async{
+              onTap: () async
+              {
                 await Navigator.pushNamed(context, PetsPage.id);
               },
             ),
+
+
             ListTile(
               leading: const Icon(Icons.content_paste_search_rounded,
                   color: Colors.amber),

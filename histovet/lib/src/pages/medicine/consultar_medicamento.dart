@@ -111,8 +111,8 @@ class _ConsultarMedicamentoState extends State<ConsultarMedicamento> {
                                         const SizedBox(
                                           height: 10,
                                         ),
-                                        Image.asset(
-                                          "assets/img/medicine.png",
+                                        Image.network(
+                                          medicine.record,
                                           height: 100,
                                         ),
                                         const SizedBox(

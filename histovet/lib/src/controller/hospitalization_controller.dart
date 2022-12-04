@@ -1,8 +1,9 @@
 
-import 'package:histovet/src/models/Hospitalization_model.dart';
+
+import 'package:histovet/src/models/hospitalization_model.dart';
 import 'package:histovet/src/services/hospitalization_service%20.dart';
 
-import '../models/clinicalHistory_model.dart';
+
 
 // Clase encargada de comunicar las vistas con los servicios de historia clínica
 class HospitalizationController {

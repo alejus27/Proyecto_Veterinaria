@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
+import 'package:histovet/src/models/extra.dart';
 import '../../controller/appointment_controller.dart';
 import '../../models/appointment.dart';
 import '../../services/appointment_service.dart';
@@ -26,6 +27,8 @@ class _AddAppointment extends State<AddAppointment> {
   String profile_vetName = "";
   String time = "";
 
+  String str = "";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,7 +48,6 @@ class _AddAppointment extends State<AddAppointment> {
             padding: const EdgeInsets.all(8.0),
             child: ListView(
               children: [
-      
                 Container(
                   margin:
                       const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
@@ -94,11 +96,12 @@ class _AddAppointment extends State<AddAppointment> {
                       const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
                   child: FormBuilderDateTimePicker(
                       inputType: InputType.date,
+
                       keyboardType: TextInputType.datetime,
                       name: "fecha",
                       firstDate: DateTime(2000),
                       lastDate: DateTime(2026),
-                      //format: DateFormat('dd/MM/yyyy'),
+                      format: DateFormat('dd/MM/yyyy'),
                       initialEntryMode: DatePickerEntryMode.input,
                       enabled: true,
                       decoration: const InputDecoration(
@@ -172,7 +175,7 @@ class _AddAppointment extends State<AddAppointment> {
                         items: snapshot.data!.docs
                             .map((DocumentSnapshot document) {
                           return DropdownMenuItem<String>(
-                            value: document['first_name'],
+                            value: document['userId'],
                             child: Text(document['first_name']),
                           );
                         }).toList(),
@@ -186,7 +189,7 @@ class _AddAppointment extends State<AddAppointment> {
                   child: FutureBuilder<QuerySnapshot>(
                     future: FirebaseFirestore.instance
                         .collection('attention_ schedule')
-                        .where("first_name", isEqualTo: profile_vetName)
+                        .where("doctor_id", isEqualTo: profile_vetName)
                         .get(),
                     builder: (context, snapshot) {
                       if (!snapshot.hasData) {
@@ -201,6 +204,7 @@ class _AddAppointment extends State<AddAppointment> {
                       return DropdownButton(
                         onChanged: (newValue) {
                           setState(() {
+                            print(profile_vetName);
                             time = newValue.toString();
                           });
                         },
@@ -231,6 +235,8 @@ class _AddAppointment extends State<AddAppointment> {
 
       final reason = values['reason']; //values['reason'];
       final phone = int.parse(values['phone']);
+
+
       var fecha = values['fecha'].toString();
 
       late Appointment appointment = Appointment(
@@ -257,4 +263,17 @@ class _AddAppointment extends State<AddAppointment> {
       ));
     }
   }
+
+  getName(id) async {
+    var doc = await FirebaseFirestore.instance
+        .collection('profiles')
+        .where("userId", isEqualTo: id)
+        .get();
+
+    print(doc);
+
+    return doc;
+  }
+
+  
 }

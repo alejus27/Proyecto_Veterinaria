@@ -12,7 +12,7 @@ class UpdatePet extends StatefulWidget {
   final String idPet;
   final String idOwner;
 
-  const UpdatePet(this.idPet, this.idOwner,{Key? key}) : super(key: key);
+  const UpdatePet(this.idPet, this.idOwner, {Key? key}) : super(key: key);
 
   @override
   State<UpdatePet> createState() => _UpdatePet();
@@ -22,7 +22,7 @@ class _UpdatePet extends State<UpdatePet> {
   final _formState = GlobalKey<FormBuilderState>();
   PetController petCont = PetController();
 
-    String vet_name = "";
+  String vet_name = "";
 
   TextEditingController birthdayController = TextEditingController();
   TextEditingController nameController = TextEditingController();
@@ -32,7 +32,8 @@ class _UpdatePet extends State<UpdatePet> {
   TextEditingController subspeciesController = TextEditingController();
   TextEditingController colorController = TextEditingController();
   TextEditingController genderController = TextEditingController();
-  
+  TextEditingController recordController = TextEditingController();
+
   bool respuesta = false;
   @override
   Widget build(BuildContext context) {
@@ -95,7 +96,6 @@ class _UpdatePet extends State<UpdatePet> {
                         errorText: "Valor requerido"),
                   ),
                 ),
-        
                 Container(
                   margin:
                       const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
@@ -202,7 +202,6 @@ class _UpdatePet extends State<UpdatePet> {
                         errorText: "Valor requerido"),
                   ),
                 ),
-                
                 Container(
                   margin:
                       const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
@@ -220,7 +219,6 @@ class _UpdatePet extends State<UpdatePet> {
                         errorText: "Valor requerido"),
                   ),
                 ),
-
                 Container(
                   margin:
                       const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
@@ -255,6 +253,8 @@ class _UpdatePet extends State<UpdatePet> {
                     },
                   ),
                 ),
+
+               
               ],
             ),
           )),
@@ -280,10 +280,11 @@ class _UpdatePet extends State<UpdatePet> {
       final color = colorController.text;
       final gender = genderController.text;
       final birthday = birthdayController.text;
+      final record = recordController.text;
 
       final vet_name_ = vet_name;
-      late Pet pet = Pet(widget.idPet, widget.idOwner, birthday, name, neutering, 
-           age, breed, subspecies, color, gender,vet_name_);
+      late Pet pet = Pet(widget.idPet, widget.idOwner, birthday, name,
+          neutering, age, breed, subspecies, color, gender, vet_name_, record);
       messageUpdate(pet);
     }
   }
@@ -319,6 +320,7 @@ class _UpdatePet extends State<UpdatePet> {
       subspeciesController.text = pet.specie;
       colorController.text = pet.color;
       genderController.text = pet.gender;
+      recordController.text = pet.record;
     });
   }
 }

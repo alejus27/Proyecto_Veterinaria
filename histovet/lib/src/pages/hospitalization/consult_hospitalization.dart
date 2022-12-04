@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:histovet/src/controller/hospitalization_controller.dart';
-import 'package:histovet/src/models/Hospitalization_model.dart';
+
 import 'package:histovet/src/pages/hospitalization/hospitalization_view.dart';
 
 import 'package:hexcolor/hexcolor.dart';
 import '../../controller/auth_controller.dart';
+import '../../models/hospitalization_model.dart';
 
 // Clases encargadas de la vista que le permite al usuario
 // buscar historias clínicas de una mascota

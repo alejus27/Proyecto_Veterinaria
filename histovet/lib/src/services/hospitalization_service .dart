@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:firebase_database/firebase_database.dart';
-import 'package:histovet/src/models/Hospitalization_model.dart';
+import 'package:histovet/src/models/hospitalization_model.dart';
 
 // Clase encargada de realizar las operaciones con historias clínicas en la base de datos de Firebase
 class HospitalizationService {
@@ -18,29 +18,32 @@ class HospitalizationService {
         await _firestore.collection('hospitalization').doc(id).get();
 
     Hospitalization hospitalization = Hospitalization(
-        snapshot["id"],
-        snapshot["apetite"],
-        snapshot["cardiac"],
-        snapshot["clinic"],
-        snapshot["date"].toDate().toString(),
-        snapshot["dehydration"],
-        snapshot["description"],
-        snapshot["fecal"],
-        snapshot["medicine"],
-        snapshot["medicine_frequency"],
-        snapshot["medicine_quantity"],
-        snapshot["medicine_via"],
-        snapshot["mucous"],
-        snapshot["owner_name"],
-        snapshot["pet_id"],
-        snapshot["pet_name"],
-        snapshot["prognosis"],
-        snapshot["pulse"],
-        snapshot["remark"],
-        snapshot["respiratory"],
-        snapshot["temperature"],
-        snapshot["tllc"],
-        snapshot["urine"]);
+      snapshot["id"],
+      snapshot["owner_name"],
+      snapshot["pet_name"],
+      snapshot["pet_id"],
+      snapshot["date"].toDate().toString(),
+      snapshot["clinic"],
+      snapshot["description"],
+      snapshot["prognosis"],
+      snapshot["cardiac"],
+      snapshot["respiratory"],
+      snapshot["pulse"],
+      snapshot["temperature"],
+      snapshot["mucous"],
+      snapshot["tllc"],
+      snapshot["dehydration"],
+      snapshot["apetite"],
+      snapshot["urine"],
+      snapshot["fecal"],
+      snapshot["medicine"],
+      snapshot["medicine_quantity"],
+      snapshot["medicine2"],
+      snapshot["medicine_quantity2"],
+      snapshot["medicine3"],
+      snapshot["medicine_quantity3"],
+      snapshot["remark"],
+    );
     return hospitalization;
   }
 
@@ -72,29 +75,32 @@ class HospitalizationService {
           Map<String, dynamic> data = doc.data();
           //print(doc.data());
           Hospitalization newCinicalHistory = Hospitalization(
-              data["id"],
-              data["apetite"],
-              data["cardiac"],
-              data["clinic"],
-              data["date"].toDate().toString(),
-              data["dehydration"],
-              data["description"],
-              data["fecal"],
-              data["medicine"],
-              data["medicine_frequency"],
-              data["medicine_quantity"],
-              data["medicine_via"],
-              data["mucous"],
-              data["owner_name"],
-              data["pet_id"],
-              data["pet_name"],
-              data["prognosis"],
-              data["pulse"],
-              data["remark"],
-              data["respiratory"],
-              data["temperature"],
-              data["tllc"],
-              data["urine"]);
+            data["id"],
+            data["owner_name"],
+            data["pet_name"],
+            data["pet_id"],
+            data["date"].toDate().toString(),
+            data["clinic"],
+            data["description"],
+            data["prognosis"],
+            data["cardiac"],
+            data["respiratory"],
+            data["pulse"],
+            data["temperature"],
+            data["mucous"],
+            data["tllc"],
+            data["dehydration"],
+            data["apetite"],
+            data["urine"],
+            data["fecal"],
+            data["medicine"],
+            data["medicine_quantity"],
+            data["medicine2"],
+            data["medicine_quantity2"],
+            data["medicine3"],
+            data["medicine_quantity3"],
+            data["remark"],
+          );
           clinicalHistories.add(newCinicalHistory);
         }
       });
@@ -119,29 +125,32 @@ class HospitalizationService {
         for (var doc in querySnapshot.docs) {
           Map<String, dynamic> data = doc.data();
           Hospitalization newMedicine = Hospitalization(
-              data["id"],
-              data["apetite"],
-              data["cardiac"],
-              data["clinic"],
-              data["date"].toDate().toString(),
-              data["dehydration"],
-              data["description"],
-              data["fecal"],
-              data["medicine"],
-              data["medicine_frequency"],
-              data["medicine_quantity"],
-              data["medicine_via"],
-              data["mucous"],
-              data["owner_name"],
-              data["pet_id"],
-              data["pet_name"],
-              data["prognosis"],
-              data["pulse"],
-              data["remark"],
-              data["respiratory"],
-              data["temperature"],
-              data["tllc"],
-              data["urine"]);
+            data["id"],
+            data["owner_name"],
+            data["pet_name"],
+            data["pet_id"],
+            data["date"].toDate().toString(),
+            data["clinic"],
+            data["description"],
+            data["prognosis"],
+            data["cardiac"],
+            data["respiratory"],
+            data["pulse"],
+            data["temperature"],
+            data["mucous"],
+            data["tllc"],
+            data["dehydration"],
+            data["apetite"],
+            data["urine"],
+            data["fecal"],
+            data["medicine"],
+            data["medicine_quantity"],
+            data["medicine2"],
+            data["medicine_quantity2"],
+            data["medicine3"],
+            data["medicine_quantity3"],
+            data["remark"],
+          );
 
           hospitalizations.add(newMedicine);
         }

@@ -56,6 +56,7 @@ class MyApp extends StatelessWidget {
 
             PetsPage.id: (context) => const PetsPage(),
             '/pets': (context) => const PetsPage(),
+
             AddPet.id: (context) => const AddPet(),
             UpdatePet.id: (context) => const UpdatePet("",""),
 

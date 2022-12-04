@@ -19,8 +19,16 @@ class PetsPage extends StatefulWidget {
 class _PetsPageState extends State<PetsPage> {
   TextStyle txtStyle = const TextStyle(
       fontWeight: FontWeight.w900, fontSize: 30, color: Colors.black);
+
+  late Future<List<Pet>> _future;
   PetController petCont = PetController();
   bool answer = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _future = petCont.allPets();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +40,9 @@ class _PetsPageState extends State<PetsPage> {
             actions: [
               IconButton(
                   onPressed: () {
-                    setState(() {});
+                    setState(() {
+                      _future = petCont.allPets();
+                    });
                   },
                   icon: const Icon(Icons.refresh))
             ],
@@ -42,7 +52,6 @@ class _PetsPageState extends State<PetsPage> {
           floatingActionButton: FloatingActionButton.extended(
               icon: const Icon(FontAwesomeIcons.plus),
               label: const Text('Registrar nueva mascota'),
-   
               elevation: 15.0,
               backgroundColor: Colors.blue,
               onPressed: () {
@@ -51,12 +60,16 @@ class _PetsPageState extends State<PetsPage> {
 
 
           body: FutureBuilder(
-              future: petCont.allPets(),
+              future: _future,
+              
               builder: (BuildContext context, AsyncSnapshot<List> snapshot) {
                 if (snapshot.hasError) {
                   return const Text('Error');
                 } else if (snapshot.hasData) {
                   List species = snapshot.data ?? [];
+
+                  print(species);
+
                   return Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: ListView(
@@ -78,7 +91,8 @@ class _PetsPageState extends State<PetsPage> {
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) => UpdatePet(
-                                                  specie.id.toString(),specie.owner.toString())));
+                                                  specie.id.toString(),
+                                                  specie.owner.toString())));
                                     },
                                     leading: const Icon(
                                       FontAwesomeIcons.paw,
@@ -105,9 +119,8 @@ class _PetsPageState extends State<PetsPage> {
                       ],
                     ),
                   );
-                } else {
-                  return const Text('Empty data');
                 }
+                return const CircularProgressIndicator();
               })),
     );
   }

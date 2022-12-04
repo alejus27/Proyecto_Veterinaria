@@ -12,17 +12,8 @@ class Pet {
   final String birthday;
   final String neutering;
   final String clinic;
+  final String record;
 
-  Pet(
-      this.id,
-      this.owner,
-      this.birthday,
-      this.name,
-      this.neutering,
-      this.age,
-      this.breed,
-      this.specie,
-      this.color,
-      this.gender,
-      this.clinic);
+  Pet(this.id, this.owner, this.birthday, this.name, this.neutering, this.age,
+      this.breed, this.specie, this.color, this.gender, this.clinic, this.record);
 }

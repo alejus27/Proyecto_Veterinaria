@@ -6,7 +6,8 @@ class Medicine {
   final String group;
   final num precio;
   final String fechaVen;
+  final String record;
 
   Medicine(this.id,this.name, this.description, this.group,
-      this.precio, this.fechaVen);
+      this.precio, this.fechaVen, this.record);
 }
