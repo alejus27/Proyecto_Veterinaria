@@ -52,15 +52,17 @@ class DefaultFirebaseOptions {
     messagingSenderId: '298862813372',
     projectId: 'veterinaria-11f1a',
     authDomain: 'veterinaria-11f1a.firebaseapp.com',
+    databaseURL: 'https://veterinaria-11f1a-default-rtdb.firebaseio.com',
     storageBucket: 'veterinaria-11f1a.appspot.com',
     measurementId: 'G-JKKF8FT2VX',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyAHv0a6pP1liW8cCw_wkX2SS1vP4mwzCJM',
+    apiKey: 'AIzaSyAB_O-AxDcfM2kFbTrbSK6pEzoY2n3phKw',
     appId: '1:298862813372:android:5d35d5e3fc10a5bd12f0b9',
     messagingSenderId: '298862813372',
     projectId: 'veterinaria-11f1a',
+    databaseURL: 'https://veterinaria-11f1a-default-rtdb.firebaseio.com',
     storageBucket: 'veterinaria-11f1a.appspot.com',
   );
 
@@ -69,6 +71,7 @@ class DefaultFirebaseOptions {
     appId: '1:298862813372:ios:c56154d91780d64b12f0b9',
     messagingSenderId: '298862813372',
     projectId: 'veterinaria-11f1a',
+    databaseURL: 'https://veterinaria-11f1a-default-rtdb.firebaseio.com',
     storageBucket: 'veterinaria-11f1a.appspot.com',
     iosClientId: '298862813372-hu2f5nrjsqk6tfd24ihish5bdsjuoodt.apps.googleusercontent.com',
     iosBundleId: 'com.histovet.histovet',

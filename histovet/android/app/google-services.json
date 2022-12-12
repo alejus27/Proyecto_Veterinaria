@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "298862813372",
+    "firebase_url": "https://veterinaria-11f1a-default-rtdb.firebaseio.com",
     "project_id": "veterinaria-11f1a",
     "storage_bucket": "veterinaria-11f1a.appspot.com"
   },
@@ -20,7 +21,7 @@
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDs4NXQSmiGC-O_TSrtwO4hIwdZeNkCrdY"
+          "current_key": "AIzaSyAB_O-AxDcfM2kFbTrbSK6pEzoY2n3phKw"
         }
       ],
       "services": {
@@ -29,6 +30,13 @@
             {
               "client_id": "298862813372-sueg35ohi540f221iam49dve9is1fddd.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "298862813372-hu2f5nrjsqk6tfd24ihish5bdsjuoodt.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.histovet.histovet"
+              }
             }
           ]
         }
