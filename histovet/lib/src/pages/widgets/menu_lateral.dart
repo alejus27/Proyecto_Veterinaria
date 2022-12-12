@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:histovet/src/pages/Login/signin_screen.dart';
+import 'package:histovet/src/pages/appointments/add_appointment.dart';
 import 'package:histovet/src/pages/appointments/appointment_page.dart';
 import 'package:histovet/src/pages/appointments/consultar_appointment.dart';
 //import 'package:histovet/src/pages/clinicalHistory/clinicalhistory_page.dart';
@@ -89,6 +90,16 @@ class _MenuLateralState extends State<MenuLateral> {
                  await Navigator.pushNamed(context, ConsultarMascota.id);
               },
             ),
+            Container(height: 1, color: Colors.grey),
+            ListTile(
+              leading:
+                  const Icon(Icons.medical_information_rounded, color: Colors.deepPurple),
+              title: const Text("Citas Médicas"),
+              onTap: () async{
+                 await Navigator.pushNamed(context, AppointmentsPage.id);
+              },
+            ),
+
             Container(height: 1, color: Colors.grey),
             ListTile(
               leading:

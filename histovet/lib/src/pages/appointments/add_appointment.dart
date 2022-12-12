@@ -24,10 +24,18 @@ class _AddAppointment extends State<AddAppointment> {
   final _formState = GlobalKey<FormBuilderState>();
   bool respuesta = false;
   String vet_name = "";
+  String pet_name = "";
   String profile_vetName = "";
   String time = "";
 
-  String str = "";
+  String nameDoctor_ = "";
+  String name_ = "";
+
+  @override
+  void initState() {
+    super.initState();
+    getName();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -96,7 +104,6 @@ class _AddAppointment extends State<AddAppointment> {
                       const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
                   child: FormBuilderDateTimePicker(
                       inputType: InputType.date,
-
                       keyboardType: TextInputType.datetime,
                       name: "fecha",
                       firstDate: DateTime(2000),
@@ -109,6 +116,42 @@ class _AddAppointment extends State<AddAppointment> {
                           labelText: 'Seleccione fecha',
                           border: OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.teal)))),
+                ),
+                Container(
+                  margin:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+                  child: FutureBuilder<QuerySnapshot>(
+                    future: FirebaseFirestore.instance
+                        .collection('pets')
+                        .where('owner', isEqualTo: _service.getId())
+                        .get(),
+                    builder: (context, snapshot) {
+                      if (!snapshot.hasData) {
+                        return const SizedBox(
+                          height: 15.0,
+                          width: 15.0,
+                          child: Center(
+                            child: CircularProgressIndicator(),
+                          ),
+                        );
+                      }
+                      return DropdownButton(
+                        onChanged: (newValue) {
+                          setState(() {
+                            pet_name = newValue.toString();
+                          });
+                        },
+                        hint: Text("Mascota: " + pet_name),
+                        items: snapshot.data!.docs
+                            .map((DocumentSnapshot document) {
+                          return DropdownMenuItem<String>(
+                            value: document['name'],
+                            child: Text(document['name']),
+                          );
+                        }).toList(),
+                      );
+                    },
+                  ),
                 ),
                 Container(
                   margin:
@@ -167,6 +210,7 @@ class _AddAppointment extends State<AddAppointment> {
                       return DropdownButton(
                         onChanged: (newValue) {
                           setState(() {
+                            getDoctorName(newValue);
                             profile_vetName = newValue.toString();
                             time = "";
                           });
@@ -204,7 +248,7 @@ class _AddAppointment extends State<AddAppointment> {
                       return DropdownButton(
                         onChanged: (newValue) {
                           setState(() {
-                            print(profile_vetName);
+                           
                             time = newValue.toString();
                           });
                         },
@@ -235,12 +279,10 @@ class _AddAppointment extends State<AddAppointment> {
 
       final reason = values['reason']; //values['reason'];
       final phone = int.parse(values['phone']);
-
-
       var fecha = values['fecha'].toString();
 
       late Appointment appointment = Appointment(
-          "", "", "", reason, fecha, vet_name, profile_vetName, time);
+          "", name_, pet_name, reason, fecha, vet_name, nameDoctor_, time);
 
       addAppointment(appointment);
     }
@@ -264,16 +306,35 @@ class _AddAppointment extends State<AddAppointment> {
     }
   }
 
-  getName(id) async {
-    var doc = await FirebaseFirestore.instance
-        .collection('profiles')
-        .where("userId", isEqualTo: id)
-        .get();
+  getName() {
+    final uid = _service.getId();
 
-    print(doc);
+    try {
+      var collection = FirebaseFirestore.instance
+          .collection('profiles')
+          .where("userId", isEqualTo: uid);
 
-    return doc;
+      collection.snapshots().listen((querySnapshot) {
+        for (var doc in querySnapshot.docs) {
+          Map<String, dynamic> data = doc.data();
+          name_ = (data["first_name"]);
+        }
+      });
+    } catch (e) {}
   }
 
-  
+  getDoctorName(id) {
+    try {
+      var collection = FirebaseFirestore.instance
+          .collection('profiles')
+          .where("userId", isEqualTo: id);
+
+      collection.snapshots().listen((querySnapshot) {
+        for (var doc in querySnapshot.docs) {
+          Map<String, dynamic> data = doc.data();
+          nameDoctor_ = (data["first_name"]);
+        }
+      });
+    } catch (e) {}
+  }
 }

@@ -57,11 +57,8 @@ class _PetsPageState extends State<PetsPage> {
               onPressed: () {
                 Navigator.pushNamed(context, AddPet.id);
               }),
-
-
           body: FutureBuilder(
               future: _future,
-              
               builder: (BuildContext context, AsyncSnapshot<List> snapshot) {
                 if (snapshot.hasError) {
                   return const Text('Error');
@@ -100,11 +97,20 @@ class _PetsPageState extends State<PetsPage> {
                                     ),
                                     title: Text(
                                       specie.name,
-                                      style: txtStyle,
+                                       textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 25,
+                                      ),
                                     ),
                                     subtitle: Text(
                                       specie.specie,
-                                      style: txtStyle.copyWith(fontSize: 17),
+                                       textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                        //fontWeight: FontWeight.bold,
+                                        fontSize: 20,
+                                      ),
+                                      //style: txtStyle.copyWith(fontSize: 17),
                                     ),
                                     trailing: IconButton(
                                       icon: const Icon(Icons.delete,

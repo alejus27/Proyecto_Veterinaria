@@ -132,8 +132,6 @@ class PetService {
     }
   }
 
-
-
   // Permite obtener todas las mascotas de la base de datos de de Firebase
   // Retorna una lista con las mascotas que haya encontrado
   Future<List<Pet>> getPetsBD() async {
@@ -172,4 +170,6 @@ class PetService {
       return mascotas;
     }
   }
+
+
 }

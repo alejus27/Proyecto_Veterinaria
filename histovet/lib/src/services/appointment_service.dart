@@ -4,6 +4,8 @@ import '../models/appointment.dart';
 
 import 'package:firebase_database/firebase_database.dart';
 
+import 'package:firebase_auth/firebase_auth.dart';
+
 // Clase encargada de realizar las operaciones con medicina en la base de datos de Firebase
 class AppointmentService {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
@@ -39,6 +41,7 @@ class AppointmentService {
       final collection = FirebaseFirestore.instance
           .collection('appointment')
           .where("name", isEqualTo: name);
+
       collection.snapshots().listen((querySnapshot) {
         for (var doc in querySnapshot.docs) {
           Map<String, dynamic> data = doc.data();
@@ -141,12 +144,49 @@ class AppointmentService {
               data["vet_name"],
               data["doctor"],
               data["time"]);
+
           appointments.add(newAppointment);
         }
       });
       return appointments;
     } catch (e) {
       return appointments;
+    }
+  }
+
+  getId() {
+    final FirebaseAuth auth = FirebaseAuth.instance;
+    final User? user = auth.currentUser;
+    final uid = user?.uid;
+
+    return uid;
+  }
+
+  getName()  {
+    final uid = getId();
+
+    String name = "";
+
+    try {
+      var collection = FirebaseFirestore.instance
+          .collection('profiles')
+          .where("userId", isEqualTo: uid);
+
+      collection.snapshots().listen((querySnapshot) {
+        for (var doc in querySnapshot.docs) {
+          Map<String, dynamic> data = doc.data();
+          print(doc.data());
+          //print(data["first_name"]);
+
+          name = (data["first_name"]);
+        }
+      });
+
+      print(name);
+      
+      return name;
+    } catch (e) {
+      print("Error");
     }
   }
 }

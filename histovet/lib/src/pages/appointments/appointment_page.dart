@@ -88,13 +88,24 @@ class _AppointmentsPageState extends State<AppointmentsPage> {
                                     ),
                                     title: Text(
                                       "Centro Clinico: "+appoint.vet_name,
-                                      style: txtStyle.copyWith(fontSize: 18),
+                                       textAlign: TextAlign.center,
+                                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18, ),
                                     ),
-                                    subtitle: Text(
-                                      "Doctor: "+appoint.doctor,
-                                      style: txtStyle.copyWith(fontSize: 18),
-                            
+
+                                    subtitle: Column(
+                                      children: [
+                                        Text(
+                                            "Mascota: "+appoint.petName),
+                                        Text(
+                                            "Doctor: "+appoint.doctor),
+                                        Text(
+                                            "Fecha: "+appoint.fecha),
+                                        Text(
+                                            "Hora: "+appoint.time)
+                                      ],
                                     ),
+                                    
+                                    
                                     trailing: IconButton(
                                       icon: const Icon(Icons.delete,
                                           color: Colors.black),

@@ -73,13 +73,34 @@ class _SalesPAgeState extends State<SalesPage> {
                                     color: Colors.black,
                                   ),
                                   title: Text(
-                                    'Producto: '+sale.name,
-                                    style: txtStyle.copyWith(fontSize: 18),
+                                    'Producto: ' + sale.name,
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18,
+                                    ),
                                   ),
-                                  subtitle: Text(
-                                  
-                                    'Total pagado: \$'+sale.total.toString(),
-                                    style: txtStyle.copyWith(fontSize: 18),
+                                  subtitle: Column(
+                                    children: [
+                                       Text(
+                                        'Cantidad: ' +
+                                            sale.cantidad.toString(),
+                                            style: TextStyle(
+                                        //fontWeight: FontWeight.bold,
+                                        fontSize: 15,
+                                      ),
+                                        
+                                      ),
+                                      Text(
+                                        'Total pagado: \$' +
+                                            sale.total.toString(),
+                                            style: TextStyle(
+                                        //fontWeight: FontWeight.bold,
+                                        fontSize: 15,
+                                      ),
+                                       
+                                      ),
+                                    ],
                                   ),
                                 )),
                           )
